@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!-- Settings, should always be in the overflow -->
+    <item
+        android:id="@+id/action_settings_main"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_database"
+        app:showAsAction="always">
+        <menu>
+
+            <item
+                android:id="@+id/action_database"
+                android:title="@string/action_database" />
+            <item
+                android:id="@+id/action_data_sync"
+                android:title="@string/action_data_sync" />
+            <item
+                android:id="@+id/changePassword"
+                android:title="Change Password" />
+            <item
+                android:id="@+id/checkOpenForms"
+                android:title="Unfinished Forms"
+                app:showAsAction="collapseActionView" />
+            <item
+                android:id="@+id/formsReportDate"
+                android:title="Patient Report by Date"
+                android:titleCondensed="List of all forms by date"
+                app:showAsAction="collapseActionView" />
+            <item
+                android:id="@+id/formsReportCluster"
+                android:title="Patient Report by Camp"
+                android:titleCondensed="List of all forms by date"
+                app:showAsAction="collapseActionView" />
+
+        </menu>
+    </item>
+</menu>

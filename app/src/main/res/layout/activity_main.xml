@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.hf_patient.ui.MainActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+
+        <!-- CUSTOM TOOLBAR -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layoutDirection="ltr"
+            android:textAlignment="center"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/black" />
+
+        <TextView
+            android:id="@+id/testing"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/redOverlay"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            android:text="@string/only_for_testing"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/lblAppVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/whiteOverlay"
+            android:textAlignment="center"
+            android:textColor="@color/redDark"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <ScrollView
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/app_bg_gray"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/statisticLayout"
+                    layout="@layout/statistic_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:padding="12dp"
+                        android:text="Enter Facility Code"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/grayLight"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/camps"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bacground_border"
+                            android:gravity="center"
+                            android:hint="####-#"
+                            android:imeOptions="actionSearch"
+                            android:inputType="number"
+                            android:padding="@dimen/_5sdp"
+                            app:mask="####-#"
+                            app:pattern="^(\\d{4,4}\\-\\d{1,1})$" />
+
+                        <ProgressBar
+                            android:id="@+id/btn_search_camp_progress"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="4dp"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:theme="@style/ProgressBarStyle"
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/btn_check_camp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@drawable/search"
+                            android:elevation="1dp"
+                            android:onClick="@{callback::openSpecificActivity}"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <include
+                    android:id="@+id/cam"
+                    layout="@layout/cardlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/btnSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+
+                    <Button
+                        android:id="@+id/formA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@color/colorPrimary"
+                        android:drawableStart="@drawable/action_button"
+                        android:elevation="1dp"
+                        android:onClick="@{callback::openSpecificActivity}"
+                        android:padding="12dp"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:text="+ ADD PATIENT  "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/editForm"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/openform_background"
+                        android:drawableStart="@drawable/open_form"
+                        android:onClick="@{callback::openSpecificActivity}"
+                        android:padding="8dp"
+                        android:text="EDIT FORM"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/white"
+                        android:visibility="gone" />
+
+                    <!--                    <Button
+                                            android:id="@+id/photos"
+                                            android:layout_width="220dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="10dp"
+                                            android:background="@drawable/openform_background"
+                                            android:drawableStart="@drawable/open_form"
+                                            android:onClick="@{callback::uploadPhotos}"
+                                            android:padding="8dp"
+                                            android:text="UPLOAD PHOTOS"
+                                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                            android:textColor="@color/white" />-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/adminSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        style="?android:attr/buttonBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn01"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="@{callback::openSpecificActivity}"
+                            android:text="01-HH" />
+
+                        <Button
+                            android:id="@+id/btn02"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="@{callback::openSpecificActivity}"
+                            android:text="02-CB" />
+
+                        <Button
+                            android:id="@+id/btn03"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="openForm"
+                            android:text="03-CS" />
+
+                        <Button
+                            android:id="@+id/btn04"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="openForm"
+                            android:text="04-im" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="?android:attr/buttonBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn05"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="openForm"
+                            android:text="05-pd" />
+
+                        <Button
+                            android:id="@+id/btn06"
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="openForm"
+                            android:text="06-fb" />
+
+                        <Button
+                            android:id="@+id/btn07"
+
+                            style="?android:attr/buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:onClick="openForm"
+                            android:text="07-cv" />
+
+                        <!--     <Button
+                                 android:id="@+id/btn08"
+                                 style="?android:attr/buttonBarButtonStyle"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_margin="8dp"
+                                 android:onClick="openForm"
+                                 android:text="08-se" />-->
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/databaseBtn"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@color/whiteOverlay"
+                        android:drawableStart="@drawable/database"
+                        android:onClick="@{callback::openSpecificActivity}"
+                        android:padding="8dp"
+                        android:text="@string/database"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/blackOverlay" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

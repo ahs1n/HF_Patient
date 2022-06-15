@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.list_activity.FormsReportDate">
+
+    <androidx.cardview.widget.CardView
+        style="@style/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/labels"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_margin="0dp"
+                    android:gravity="bottom"
+                    android:lineHeight="20dp"
+                    android:padding="0dp"
+                    android:paddingStart="24dp"
+                    android:text="Patients By Camp No."
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/labels"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_margin="0dp"
+                    android:gravity="top"
+                    android:padding="0dp"
+                    android:paddingStart="24dp"
+                    android:text="Please enter a Camp No. to search patients"
+                    android:textColor="#7f7f7f"
+                    android:textSize="14dp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/dtFilter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:digits="01234567890-"
+                    android:maxLength="10" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="12dp"
+                    android:onClick="filterForms"
+                    android:src="@drawable/search" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fc_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        tools:listitem="@layout/pendingform_layout" />
+
+    <TextView
+        android:id="@+id/noresult"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="No results found"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:visibility="gone" />
+</LinearLayout>

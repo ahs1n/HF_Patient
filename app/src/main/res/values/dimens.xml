@@ -1,0 +1,7 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="app_bar_height">270sp</dimen>
+    <dimen name="app_bar_height_selected_children_list">330sp</dimen>
+
+</resources>

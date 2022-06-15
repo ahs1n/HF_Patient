@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="edu.aku.hassannaqvi.hf_patient">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <application
+        android:name="edu.aku.hassannaqvi.hf_patient.core.MainApp"
+        android:allowBackup="false"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@drawable/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.SplashscreenActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.sections.SectionMobileHealthR2"
+            android:label="@string/mobilehealthserviceform_heading"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish1">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.SyncActivity"
+            android:label="Download and Upload Data Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.EndingActivity"
+            android:label="ِانٹرویو اسٹیٹس"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeUrdu" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.TakePhoto"
+            android:hardwareAccelerated="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.list_activity.FormsReportCluster"
+            android:label="Forms Report"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.list_activity.FormsReportDate"
+            android:label="Forms Report"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.database.AndroidManager"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.aku.hassannaqvi.hf_patient.ui.ChangePasswordActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <meta-data
+            android:name="YEK_REVRES"
+            android:value="cQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2r5u8x/A?D(G+KbPeShVmYq3t6v9y$BNE)" />
+        <meta-data
+            android:name="YEK_TRATS"
+            android:value="7" />
+    </application>
+
+</manifest>

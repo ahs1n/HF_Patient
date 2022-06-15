@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greenLight"
+        android:gravity="center"
+        android:minHeight="160dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/ic_info"
+            app:tint="@android:color/holo_red_light" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Warning!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/grayDark"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/dialog_text"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/grayDark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOk"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_button"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Yes, Exit"
+            android:textColor="@color/greenLight" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNo"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/secondary_button"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="No"
+            android:textColor="@color/redLight" />
+
+    </LinearLayout>
+
+</LinearLayout>

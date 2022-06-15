@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/parentLayout"
+        style="@style/cardView"
+        android:layout_width="@dimen/_115sdp"
+        android:layout_height="@dimen/_115sdp"
+        android:layout_margin="@dimen/_6sdp"
+        android:elevation="@dimen/_2sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containeridcard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/completeFlag"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:elevation="1dp"
+                android:src="@drawable/ic_incomplete_star"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/childImg"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_65sdp"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="@dimen/_2sdp"
+                android:src="@drawable/ctr_childboy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_3sdp"
+                android:fontFamily="monospace"
+                android:text="Child Namejjjjjjj jj"
+                android:textAlignment="center"
+                android:textColor="#009688"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/childImg"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_3sdp"
+                android:fontFamily="monospace"
+                android:text="Age"
+                android:textAlignment="center"
+                android:textColor="#FF5722"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/res_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_3sdp"
+                android:fontFamily="monospace"
+                android:text="Mother Name"
+                android:textAlignment="center"
+                android:textColor="#FF5722"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age"
+                tools:ignore="HardcodedText" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
