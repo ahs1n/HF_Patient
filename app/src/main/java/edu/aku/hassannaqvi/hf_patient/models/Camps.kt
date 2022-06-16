@@ -55,7 +55,7 @@ class Camps() : Parcelable {
     }
 
     object TableCamp : BaseColumns {
-        const val TABLE_NAME = "camps"
+        const val TABLE_NAME = "Camps"
         const val COLUMN_NAME_NULLABLE = "nullColumnHack"
         const val COLUMN_ID = "_ID"
         const val COLUMN_ID_CAMP = "idCamp"

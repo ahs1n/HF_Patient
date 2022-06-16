@@ -12,6 +12,7 @@
     <color name="colorPrimaryDarkOverlay">#7f3E2723</color>
     <color name="colorAccentOverlay">#7fB9F6CA</color>
     <color name="colorAccentLightOverlay">#7fB9F6CA</color>
+    <attr name="colorOnSurface" format="color" />
 
 
     <!-- Standard App Colors -->

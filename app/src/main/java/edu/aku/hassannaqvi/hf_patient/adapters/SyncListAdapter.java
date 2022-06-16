@@ -1,6 +1,7 @@
 package edu.aku.hassannaqvi.hf_patient.adapters;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,9 @@ import java.util.List;
 import edu.aku.hassannaqvi.hf_patient.R;
 import edu.aku.hassannaqvi.hf_patient.databinding.SyncListAdapterBinding;
 import edu.aku.hassannaqvi.hf_patient.models.SyncModel;
-import edu.aku.hassannaqvi.hf_patient.utils.AppUtilsKt;
 
 public class SyncListAdapter extends RecyclerView.Adapter<SyncListAdapter.SyncListViewHolder> {
+    private static final String TAG = "SyncListAdapter";
     List<SyncModel> synclist;
     SyncListViewHolder holder;
 
@@ -76,8 +77,14 @@ public class SyncListAdapter extends RecyclerView.Adapter<SyncListAdapter.SyncLi
 
         public void bindUser(SyncModel model) {
             binding.statusColor.setBackgroundColor(checkStatus(model.getstatusID()));
-            binding.tvTableName.setText(AppUtilsKt.convertStringToUpperCase(model.gettableName()));
-            binding.tvStatus.setText(model.getstatus());
+            String tableName = model.getTableTitle().toUpperCase();
+
+            binding.tvTableName.setText(tableName);
+            binding.tvStatus.setText(model.getInfo());
+            binding.tvMsg.setText(model.getmessage());
+            Log.d(TAG, "bindUser: " + tableName + " - " + model.getmessage());
+            if (tableName.contains("VERSION") && model.getmessage().contains("New"))
+                binding.tvMsg.setTextColor(Color.RED);
             binding.tvMsg.setText(model.getmessage());
             if (model.getstatusID() == 1 || model.getstatusID() == 3 || model.getstatusID() == 4) {
                 binding.pb.setVisibility(View.GONE);

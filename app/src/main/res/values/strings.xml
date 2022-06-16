@@ -15,6 +15,8 @@
     <string name="btnLogin">Login</string>
     <string name="country">Language (Click to change)</string>
     <string name="downData">Download Data</string>
+    <string name="oldPassword" translatable="false">Old Password</string>
+    <string name="newPassword" translatable="false">New Password</string>
 
     <!--SECTION HEADINGS-->
     <string name="mobilehealthserviceform_heading"> Mobile Health Service Form </string>
