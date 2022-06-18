@@ -854,4 +854,8 @@ public class SyncActivity extends AppCompatActivity {
 
         return toMinutes > 0 ? toMinutes + "m " + toSeconds + "s" : toSeconds > 0 ? TimeUnit.MILLISECONDS.toSeconds(timeElapsed) + "s" : timeElapsed + "ms";
     }
+
+    public void btnContinue(View view) {
+        finish();
+    }
 }
