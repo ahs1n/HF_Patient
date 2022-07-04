@@ -6,6 +6,7 @@
         <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/drawable/capsule.xml" value="0.3880208333333333" />
         <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/drawable/top_round_shape.xml" value="0.3880208333333333" />
         <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/layout/activity_change_password.xml" value="0.371875" />
+        <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/layout/activity_forms_report_cluster.xml" value="0.371875" />
         <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/layout/activity_info_mobile_health_r2.xml" value="0.35625" />
         <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/layout/activity_login.xml" value="0.371875" />
         <entry key="..\:/Android Office Work/HF_Patient/app/src/main/res/layout/activity_main.xml" value="0.3507692307692308" />
@@ -18,5 +19,5 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>

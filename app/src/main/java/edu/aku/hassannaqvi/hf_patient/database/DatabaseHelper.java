@@ -376,9 +376,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allForms;
     }
@@ -411,7 +408,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         c.close();
 
-        db.close();
         if (loggedInUser.getPassword().equals("")) {
             Toast.makeText(mContext, "Stored password is invalid", Toast.LENGTH_SHORT).show();
             return false;
@@ -468,9 +464,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allForms;
@@ -544,9 +537,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allForms;
     }
@@ -589,9 +579,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allForms;
@@ -664,9 +651,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return all;
     }
@@ -701,9 +685,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return camp;
     }
@@ -737,9 +718,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return docs;
@@ -776,9 +754,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allDC;
     }
@@ -809,9 +784,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allBL;
@@ -853,9 +825,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allFC;
@@ -941,9 +910,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allBL;
@@ -1091,59 +1057,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Download data functions
      * */
-    public int syncDistricts(JSONArray Districtslist) {
+    public int syncDistricts(JSONArray Districtslist) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(Districts.TableDistricts.TABLE_NAME, null, null);
         int insertCount = 0;
-        try {
-            for (int i = 0; i < Districtslist.length(); i++) {
-                JSONObject jsonObjectDistrict = Districtslist.getJSONObject(i);
-                Districts District = new Districts();
-                District.sync(jsonObjectDistrict);
-                ContentValues values = new ContentValues();
+        for (int i = 0; i < Districtslist.length(); i++) {
+            JSONObject jsonObjectDistrict = Districtslist.getJSONObject(i);
+            Districts District = new Districts();
+            District.sync(jsonObjectDistrict);
+            ContentValues values = new ContentValues();
 
-                values.put(TableDistricts.COLUMN_DISTRICT_CODE, District.getDistrictCode());
+            values.put(TableDistricts.COLUMN_DISTRICT_CODE, District.getDistrictCode());
                 values.put(TableDistricts.COLUMN_DISTRICT_NAME, District.getDistrictName());
                 long rowID = db.insert(TableDistricts.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
-
-        } catch (Exception e) {
-            Log.d(TAG, "syncDistrict(e): " + e);
-            db.close();
-        } finally {
-            db.close();
-        }
         return insertCount;
     }
 
-    public int syncCluster(JSONArray clusterList) {
+    public int syncCluster(JSONArray clusterList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(TableClusters.TABLE_NAME, null, null);
         int insertCount = 0;
-        try {
+        for (int i = 0; i < clusterList.length(); i++) {
+            JSONObject jsonObjectCluster = clusterList.getJSONObject(i);
+            Clusters cluster = new Clusters();
+            cluster.sync(jsonObjectCluster);
+            ContentValues values = new ContentValues();
 
-            for (int i = 0; i < clusterList.length(); i++) {
-                JSONObject jsonObjectCluster = clusterList.getJSONObject(i);
-                Clusters cluster = new Clusters();
-                cluster.sync(jsonObjectCluster);
-                ContentValues values = new ContentValues();
-
-                values.put(TableClusters.COLUMN_CLUSTER_CODE, cluster.getClusterCode());
+            values.put(TableClusters.COLUMN_CLUSTER_CODE, cluster.getClusterCode());
                 values.put(TableClusters.COLUMN_CLUSTER_NAME, cluster.getClustername());
                 values.put(TableClusters.COLUMN_DIST_CODE, cluster.getDistCode());
 
                 long rowID = db.insert(TableClusters.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
-            db.close();
-
-        } catch (Exception e) {
-            Log.d(TAG, "syncCluster(e): " + e);
-            db.close();
-        } finally {
-            db.close();
-        }
         return insertCount;
     }
 
@@ -1188,17 +1136,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
-    public int syncUCs(JSONArray ucList) {
+    public int syncUCs(JSONArray ucList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(TableUCs.TABLE_NAME, null, null);
         int insertCount = 0;
-        try {
 
-            for (int i = 0; i < ucList.length(); i++) {
-                JSONObject jsonObjectUc = ucList.getJSONObject(i);
-                UCs uc = new UCs();
-                uc.sync(jsonObjectUc);
-                ContentValues values = new ContentValues();
+        for (int i = 0; i < ucList.length(); i++) {
+            JSONObject jsonObjectUc = ucList.getJSONObject(i);
+            UCs uc = new UCs();
+            uc.sync(jsonObjectUc);
+            ContentValues values = new ContentValues();
 
                 values.put(TableUCs.COLUMN_UC_CODE, uc.getUcCode());
                 values.put(TableUCs.COLUMN_UC_NAME, uc.getUcName());
@@ -1207,30 +1154,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long rowID = db.insert(TableUCs.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
-            db.close();
-
-        } catch (Exception e) {
-            Log.d(TAG, "syncUc(e): " + e);
-            db.close();
-        } finally {
-            db.close();
-        }
         return insertCount;
     }
 
-    public int syncCamps(JSONArray campList) {
+    public int syncCamps(JSONArray campList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(Camps.TableCamp.TABLE_NAME, null, null);
         int insertCount = 0;
-        try {
+        for (int i = 0; i < campList.length(); i++) {
+            JSONObject json = campList.getJSONObject(i);
+            Camps camps = new Camps();
+            camps.sync(json);
+            ContentValues values = new ContentValues();
 
-            for (int i = 0; i < campList.length(); i++) {
-                JSONObject json = campList.getJSONObject(i);
-                Camps camps = new Camps();
-                camps.sync(json);
-                ContentValues values = new ContentValues();
-
-                values.put(Camps.TableCamp.COLUMN_ID_CAMP, camps.getIdCamp());
+            values.put(Camps.TableCamp.COLUMN_ID_CAMP, camps.getIdCamp());
                 values.put(Camps.TableCamp.COLUMN_CAMP_NO, camps.getCamp_no());
                 values.put(Camps.TableCamp.COLUMN_DIST_ID, camps.getDist_id());
                 values.put(Camps.TableCamp.COLUMN_DISTRICT, camps.getDistrict());
@@ -1242,44 +1179,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long rowID = db.insert(Camps.TableCamp.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
-            db.close();
-
-        } catch (Exception e) {
-            Log.d(TAG, "syncCamp(e): " + e);
-            db.close();
-        } finally {
-            db.close();
-        }
         return insertCount;
     }
 
-    public int synccamp_dr(JSONArray docList) {
+    public int synccamp_dr(JSONArray docList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(Doctor.TableDoctor.TABLE_NAME, null, null);
         int insertCount = 0;
-        try {
+        for (int i = 0; i < docList.length(); i++) {
+            JSONObject json = docList.getJSONObject(i);
+            Doctor doc = new Doctor();
+            doc.sync(json);
+            ContentValues values = new ContentValues();
 
-            for (int i = 0; i < docList.length(); i++) {
-                JSONObject json = docList.getJSONObject(i);
-                Doctor doc = new Doctor();
-                doc.sync(json);
-                ContentValues values = new ContentValues();
-
-                values.put(Doctor.TableDoctor.COLUMN_ID_CAMP, doc.getIdCamp());
+            values.put(Doctor.TableDoctor.COLUMN_ID_CAMP, doc.getIdCamp());
                 values.put(Doctor.TableDoctor.COLUMN_ID_DOCTOR, doc.getIddoctor());
                 values.put(Doctor.TableDoctor.COLUMN_STAFF_NAME, doc.getStaff_name());
 
                 long rowID = db.insert(Doctor.TableDoctor.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
-            db.close();
-
-        } catch (Exception e) {
-            Log.d(TAG, "syncDoctor(e): " + e);
-            db.close();
-        } finally {
-            db.close();
-        }
         return insertCount;
     }
 
@@ -1318,18 +1237,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return (int) count;
     }
 
-    public int syncUsers(JSONArray userList) {
+    public int syncUsers(JSONArray userList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(UsersTable.TABLE_NAME, null, null);
         int insertCount = 0;
-        try {
-            for (int i = 0; i < userList.length(); i++) {
+        for (int i = 0; i < userList.length(); i++) {
 
-                JSONObject jsonObjectUser = userList.getJSONObject(i);
+            JSONObject jsonObjectUser = userList.getJSONObject(i);
 
-                Users user = new Users();
-                user.sync(jsonObjectUser);
-                ContentValues values = new ContentValues();
+            Users user = new Users();
+            user.sync(jsonObjectUser);
+            ContentValues values = new ContentValues();
 
                 values.put(UsersTable.COLUMN_USERNAME, user.getUserName());
                 values.put(UsersTable.COLUMN_PASSWORD, user.getPassword());
@@ -1341,13 +1259,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long rowID = db.insert(UsersTable.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }
-
-        } catch (Exception e) {
-            Log.d(TAG, "syncUser(e): " + e);
-            db.close();
-        } finally {
-            db.close();
-        }
         return insertCount;
     }
 
@@ -1392,9 +1303,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         Log.d(TAG, "getUnsyncedForms: " + allForms.toString().length());
@@ -1464,9 +1372,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allFC;
     }
@@ -1532,9 +1437,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allFC;
     }
@@ -1599,9 +1501,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allFC;
     }
@@ -1661,9 +1560,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return jsa;
@@ -1884,9 +1780,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allFC;
     }
@@ -1934,9 +1827,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allFC;
@@ -2027,9 +1917,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allFC;
