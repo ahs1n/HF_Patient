@@ -513,20 +513,22 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/ss110" />
-                        </LinearLayout>
 
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/ss110"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/ss110"
-                            android:inputType="number"
-                            android:maxLength="3"
-                            app:mask="###.#"
-                            app:maxValue="200"
-                            app:minValue="1"
-                            app:pattern="^(\\d{3,3}\\.\\d{1,1})$"
-                            app:type="range" />
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/ss110"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:hint="###.#"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                app:mask="###.#"
+                                app:maxValue="200"
+                                app:minValue="1"
+                                app:pattern="^(\\d{3,3}\\.\\d{1,1})$"
+                                app:type="range" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
