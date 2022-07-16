@@ -99,7 +99,7 @@ public class SyncActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         dbBackup(this);
-        toKeepUnusedFunctions();
+//        toKeepUnusedFunctions();
 
     }
 
