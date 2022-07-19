@@ -171,7 +171,10 @@ object CreateTable {
             + UCs.TableUCs.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + UCs.TableUCs.COLUMN_UC_NAME + " TEXT,"
             + UCs.TableUCs.COLUMN_UC_CODE + " TEXT,"
-            + UCs.TableUCs.COLUMN_DISTRICT_CODE + " TEXT"
+            + UCs.TableUCs.COLUMN_DISTRICT_CODE + " TEXT,"
+            + UCs.TableUCs.COLUMN_DISTRICT_NAME + " TEXT,"
+            + UCs.TableUCs.COLUMN_PROVINCE_CODE + " TEXT,"
+            + UCs.TableUCs.COLUMN_PROVINCE_NAME + " TEXT"
             + " );")
 
     const val SQL_CREATE_CLUSTERS = ("CREATE TABLE " + Clusters.TableClusters.TABLE_NAME + "("

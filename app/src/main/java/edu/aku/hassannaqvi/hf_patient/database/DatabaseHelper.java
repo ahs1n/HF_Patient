@@ -1147,13 +1147,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             uc.sync(jsonObjectUc);
             ContentValues values = new ContentValues();
 
-                values.put(TableUCs.COLUMN_UC_CODE, uc.getUcCode());
-                values.put(TableUCs.COLUMN_UC_NAME, uc.getUcName());
-                values.put(TableUCs.COLUMN_DISTRICT_CODE, uc.getDistrictCode());
+            values.put(TableUCs.COLUMN_UC_CODE, uc.getUcCode());
+            values.put(TableUCs.COLUMN_UC_NAME, uc.getUcName());
+            values.put(TableUCs.COLUMN_DISTRICT_CODE, uc.getDistCode());
+            values.put(TableUCs.COLUMN_DISTRICT_NAME, uc.getDistName());
+            values.put(TableUCs.COLUMN_PROVINCE_CODE, uc.getProvCode());
+            values.put(TableUCs.COLUMN_PROVINCE_NAME, uc.getProvName());
 
-                long rowID = db.insert(TableUCs.TABLE_NAME, null, values);
-                if (rowID != -1) insertCount++;
-            }
+            long rowID = db.insert(TableUCs.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
         return insertCount;
     }
 
