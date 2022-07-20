@@ -53,9 +53,10 @@ import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivitySyncBinding;
-import edu.aku.hassannaqvi.hf_patient.models.Camps;
 import edu.aku.hassannaqvi.hf_patient.models.Doctor;
+import edu.aku.hassannaqvi.hf_patient.models.HealthFacilities;
 import edu.aku.hassannaqvi.hf_patient.models.SyncModel;
+import edu.aku.hassannaqvi.hf_patient.models.UCs;
 import edu.aku.hassannaqvi.hf_patient.models.Users;
 import edu.aku.hassannaqvi.hf_patient.models.VersionApp;
 import edu.aku.hassannaqvi.hf_patient.workers.DataDownWorkerALL;
@@ -182,7 +183,9 @@ public class SyncActivity extends AppCompatActivity {
 
                     String select = " idCamp, camp_no, dist_id, district, ucCode, ucName, area_name, plan_date ";
                     String filter = " camp_status = 'Conducted'  AND camp_round=4 AND (locked = 0 OR locked is NULL)";
-                    downloadTables.add(new SyncModel(Camps.TableCamp.TABLE_NAME, select, filter));
+//                    downloadTables.add(new SyncModel(Camps.TableCamp.TABLE_NAME, select, filter));
+                    downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
+                    downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME));
                     downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];

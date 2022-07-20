@@ -15,6 +15,7 @@ import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_CLU
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_DISTRICTS;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_DOCTOR;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_ENTRYLOGS;
+import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_FACILITIES;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_FORMS;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_IMMUNIZATION;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_MOBILE_HEALTH;
@@ -69,6 +70,7 @@ import edu.aku.hassannaqvi.hf_patient.models.Doctor;
 import edu.aku.hassannaqvi.hf_patient.models.EntryLog;
 import edu.aku.hassannaqvi.hf_patient.models.Form;
 import edu.aku.hassannaqvi.hf_patient.models.FormIndicatorsModel;
+import edu.aku.hassannaqvi.hf_patient.models.HealthFacilities;
 import edu.aku.hassannaqvi.hf_patient.models.Immunization;
 import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
 import edu.aku.hassannaqvi.hf_patient.models.UCs;
@@ -100,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_DISTRICTS);
+        db.execSQL(SQL_CREATE_FACILITIES);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_CLUSTERS);
         db.execSQL(SQL_CREATE_FORMS);
@@ -694,7 +697,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = null;
 
-        String whereClause = Doctor.TableDoctor.COLUMN_ID_CAMP + "=?";
+        String whereClause = Doctor.TableDoctor.COLUMN_UC_CODE + "=?";
         String[] whereArgs = {camno};
         String groupBy = null;
         String having = null;
@@ -1068,10 +1071,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
 
             values.put(TableDistricts.COLUMN_DISTRICT_CODE, District.getDistrictCode());
-                values.put(TableDistricts.COLUMN_DISTRICT_NAME, District.getDistrictName());
-                long rowID = db.insert(TableDistricts.TABLE_NAME, null, values);
-                if (rowID != -1) insertCount++;
-            }
+            values.put(TableDistricts.COLUMN_DISTRICT_NAME, District.getDistrictName());
+            long rowID = db.insert(TableDistricts.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
+        return insertCount;
+    }
+
+    // Sync Facilities
+    public int synchf_list(JSONArray healthfacilities) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.delete(HealthFacilities.TableHealthFacilities.TABLE_NAME, null, null);
+        int insertCount = 0;
+
+        for (int i = 0; i < healthfacilities.length(); i++) {
+            JSONObject json = healthfacilities.getJSONObject(i);
+            HealthFacilities facilities = new HealthFacilities();
+            facilities.sync(json);
+            ContentValues values = new ContentValues();
+
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_UC_CODE, facilities.getUcCode());
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_DISTRICT_CODE, facilities.getDistrictCode());
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_NAME, facilities.getFacilityName());
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_CODE, facilities.getFacilityCode());
+
+            long rowID = db.insert(HealthFacilities.TableHealthFacilities.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
         return insertCount;
     }
 
@@ -1136,7 +1162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
-    public int syncUCs(JSONArray ucList) throws JSONException {
+    public int syncuclist(JSONArray ucList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(TableUCs.TABLE_NAME, null, null);
         int insertCount = 0;
@@ -1185,7 +1211,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
-    public int synccamp_dr(JSONArray docList) throws JSONException {
+    public int syncdoctorlist(JSONArray docList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.delete(Doctor.TableDoctor.TABLE_NAME, null, null);
         int insertCount = 0;
@@ -1195,8 +1221,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             doc.sync(json);
             ContentValues values = new ContentValues();
 
-            values.put(Doctor.TableDoctor.COLUMN_ID_CAMP, doc.getIdCamp());
-                values.put(Doctor.TableDoctor.COLUMN_ID_DOCTOR, doc.getIddoctor());
+            values.put(Doctor.TableDoctor.COLUMN_UC_CODE, doc.getUcCode());
+            values.put(Doctor.TableDoctor.COLUMN_ID_DOCTOR, doc.getIddoctor());
                 values.put(Doctor.TableDoctor.COLUMN_STAFF_NAME, doc.getStaff_name());
 
                 long rowID = db.insert(Doctor.TableDoctor.TABLE_NAME, null, values);
@@ -1258,7 +1284,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(UsersTable.COLUMN_DIST_ID, user.getDist_id());
                 values.put(UsersTable.COLUMN_ENABLED, user.getEnabled());
                 values.put(UsersTable.COLUMN_ISNEW_USER, user.getNewUser());
-                values.put(UsersTable.COLUMN_PWD_EXPIRY, user.getPwdExpiry());
+            values.put(UsersTable.COLUMN_PWD_EXPIRY, user.getPwdExpiry());
+            values.put(UsersTable.COLUMN_UC_CODE, user.getUcCode());
                 long rowID = db.insert(UsersTable.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
             }

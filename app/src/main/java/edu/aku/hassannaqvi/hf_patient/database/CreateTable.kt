@@ -140,6 +140,7 @@ object CreateTable {
             + Users.UsersTable.COLUMN_FULLNAME + " TEXT,"
             + Users.UsersTable.COLUMN_ENABLED + " TEXT,"
             + Users.UsersTable.COLUMN_ISNEW_USER + " TEXT,"
+            + Users.UsersTable.COLUMN_UC_CODE + " TEXT,"
             + Users.UsersTable.COLUMN_PWD_EXPIRY + " TEXT,"
             + Users.UsersTable.COLUMN_DIST_ID + " TEXT"
             + " );")
@@ -166,6 +167,15 @@ object CreateTable {
             + Districts.TableDistricts.COLUMN_DISTRICT_NAME + " TEXT,"
             + Districts.TableDistricts.COLUMN_DISTRICT_CODE + " TEXT"
             + " );")
+
+    const val SQL_CREATE_FACILITIES =
+        ("CREATE TABLE " + HealthFacilities.TableHealthFacilities.TABLE_NAME + "("
+                + HealthFacilities.TableHealthFacilities.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_UC_CODE + " TEXT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_DISTRICT_CODE + " TEXT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_NAME + " TEXT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_CODE + " TEXT"
+                + " );")
 
     const val SQL_CREATE_UCS = ("CREATE TABLE " + UCs.TableUCs.TABLE_NAME + "("
             + UCs.TableUCs.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -220,7 +230,7 @@ object CreateTable {
 
     const val SQL_CREATE_DOCTOR = ("CREATE TABLE " + Doctor.TableDoctor.TABLE_NAME + "("
             + Doctor.TableDoctor.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + Doctor.TableDoctor.COLUMN_ID_CAMP + " TEXT,"
+            + Doctor.TableDoctor.COLUMN_UC_CODE + " TEXT,"
             + Doctor.TableDoctor.COLUMN_ID_DOCTOR + " TEXT,"
             + Doctor.TableDoctor.COLUMN_STAFF_NAME + " TEXT"
             + " );")

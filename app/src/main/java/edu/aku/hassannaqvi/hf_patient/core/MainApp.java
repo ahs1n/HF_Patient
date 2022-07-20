@@ -36,7 +36,7 @@ public class MainApp extends Application {
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
     //    public static final String _IP = "https://cls-pae-fp51764";// .TEST server
     //public static final String _IP = "http://43.245.131.159:8080";// .TEST server
-    public static final String _HOST_URL = MainApp._IP + "/shrc_camps/api/";// .TEST server;
+    public static final String _HOST_URL = MainApp._IP + "/hfp/api/";// .TEST server;
     public static final String _SERVER_URL = "syncGCM.php";
     public static final String _SERVER_GET_URL = "getDataGCM.php";
     public static final String _PHOTO_UPLOAD_URL = _HOST_URL + "uploads.php";

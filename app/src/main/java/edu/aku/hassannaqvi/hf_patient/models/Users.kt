@@ -7,6 +7,7 @@ import org.json.JSONObject
 
 /**
  * Created by hassan.naqvi on 11/30/2016.
+ * updated by muhammad.hussain on 19/07/2022.
  */
 class Users {
     var userID: Long = 0
@@ -17,6 +18,7 @@ class Users {
     var enabled: String = StringUtils.EMPTY
     var pwdExpiry: String = StringUtils.EMPTY
     var newUser: String = StringUtils.EMPTY
+    var ucCode: String = StringUtils.EMPTY
 
     constructor() {
         // Default Constructor
@@ -36,6 +38,7 @@ class Users {
         enabled = jsonObject.getString(UsersTable.COLUMN_ENABLED)
         pwdExpiry = jsonObject.getString(UsersTable.COLUMN_PWD_EXPIRY)
         newUser = jsonObject.getString(UsersTable.COLUMN_ISNEW_USER)
+        ucCode = jsonObject.getString(UsersTable.COLUMN_UC_CODE)
         return this
     }
 
@@ -48,6 +51,7 @@ class Users {
         enabled = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_ENABLED))
         pwdExpiry = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_PWD_EXPIRY))
         newUser = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_ISNEW_USER))
+        ucCode = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_UC_CODE))
         return this
     }
 
@@ -55,11 +59,12 @@ class Users {
         const val TABLE_NAME = "Users"
         const val COLUMN_ID = "_id"
         const val COLUMN_USERNAME = "username"
-        const val COLUMN_PASSWORD = "passwordenc"
+        const val COLUMN_PASSWORD = "passwordEnc"
         const val COLUMN_FULLNAME = "full_name"
         const val COLUMN_DIST_ID = "dist_id"
         const val COLUMN_ENABLED = "enabled"
         const val COLUMN_ISNEW_USER = "isNewUser"
+        const val COLUMN_UC_CODE = "uccode"
         const val COLUMN_PWD_EXPIRY = "pwdExpiry"
     }
 }
