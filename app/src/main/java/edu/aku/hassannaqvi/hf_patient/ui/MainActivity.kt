@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -48,6 +49,9 @@ class MainActivity : AppCompatActivity() {
     private var exit = false
     private var sysdateToday = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(Date())
     private lateinit var camp: Camps
+    private var facilities = mutableListOf("....")
+    private var facilityCode = mutableListOf("....")
+    private lateinit var facilityAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,43 @@ class MainActivity : AppCompatActivity() {
         if (MainApp.admin) bi.adminSection.visibility = View.VISIBLE
         viewModel =
             obtainViewModel(MainViewModel::class.java, GeneralRepository(DatabaseHelper(this)))
+
+        /*
+        * Setting Adapters
+        * */
+        facilityAdapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, facilities)
+        bi.facility.adapter = facilityAdapter
+
+
+        /*
+        * Calling viewmodel facility data function
+        * Fetch facility result response
+        * */
+
+        viewModel.healthFacilitiesResponse.observe(this) {
+            it?.let {
+                when (it.status) {
+                    ResponseStatus.SUCCESS -> {
+                        lifecycleScope.launch {
+                            facilities.clear()
+                            facilityCode.clear()
+                            facilities.add("....")
+                            it.data?.forEach { item ->
+                                facilities.add(item.facilityName)
+                                facilityCode.add(item.facilityCode)
+                            }
+                            facilityAdapter.notifyDataSetChanged()
+                        }
+                    }
+                    ResponseStatus.ERROR -> {
+                    }
+                    ResponseStatus.LOADING -> {
+                    }
+
+                }
+            }
+        }
 
 
         /*
@@ -102,6 +143,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        viewModel.getFacilitiesFromDB()
 
         /*
         * Get Today's form from DB
@@ -254,10 +296,12 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+
     override fun onResume() {
         super.onResume()
 
         animateFadeIn()
+        viewModel.getFacilitiesFromDB()
         viewModel.getFormsStatusUploadStatus(sysdateToday)
     }
 
@@ -278,6 +322,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     fun populateCampDetails() {
         if (!Validator.emptyTextBox(this, bi.camps)) return

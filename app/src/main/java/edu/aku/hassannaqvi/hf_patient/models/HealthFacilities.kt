@@ -28,6 +28,8 @@ class HealthFacilities {
     fun hydrate(cursor: Cursor): HealthFacilities {
         districtCode =
             cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_DISTRICT_CODE))
+        ucCode =
+            cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_UC_CODE))
         facilityCode =
             cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_FACILITY_CODE))
         facilityName =

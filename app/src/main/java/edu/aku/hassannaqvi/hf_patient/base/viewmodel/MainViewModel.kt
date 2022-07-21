@@ -7,6 +7,7 @@ import edu.aku.hassannaqvi.hf_patient.base.repository.GeneralRepository
 import edu.aku.hassannaqvi.hf_patient.base.repository.ResponseStatusCallbacks
 import edu.aku.hassannaqvi.hf_patient.models.Camps
 import edu.aku.hassannaqvi.hf_patient.models.FormIndicatorsModel
+import edu.aku.hassannaqvi.hf_patient.models.HealthFacilities
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -43,6 +44,39 @@ class MainViewModel(val repository: GeneralRepository) : ViewModel() {
     private val _campsResponse: MutableLiveData<ResponseStatusCallbacks<Camps>> = MutableLiveData()
     val campsResponse: MutableLiveData<ResponseStatusCallbacks<Camps>>
         get() = _campsResponse
+
+
+    /*
+    * Get facilities from DB
+    * */
+    private val _healthFacilities: MutableLiveData<ResponseStatusCallbacks<List<HealthFacilities>>> =
+        MutableLiveData()
+    val healthFacilitiesResponse: MutableLiveData<ResponseStatusCallbacks<List<HealthFacilities>>>
+        get() = _healthFacilities
+
+    fun getFacilitiesFromDB() {
+        _healthFacilities.value = ResponseStatusCallbacks.loading(null)
+        viewModelScope.launch {
+            try {
+                /*delay(1000)*/
+                val facility = repository.getFacilitiesFromDB()
+                _healthFacilities.value = if (facility.size > 0) {
+                    ResponseStatusCallbacks.success(
+                        data = facility,
+                        message = "Health Facility Found"
+                    )
+                } else
+                    ResponseStatusCallbacks.error(
+                        data = null,
+                        message = "No Health Facility Found!"
+                    )
+            } catch (e: java.lang.Exception) {
+                _healthFacilities.value =
+                    ResponseStatusCallbacks.error(data = null, message = e.message.toString())
+            }
+        }
+
+    }
 
 
     fun getFormsStatusUploadStatus(date: String) {

@@ -1995,4 +1995,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return alc;
         }
     }
+
+    public ArrayList<HealthFacilities> getAllFacilities() {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = HealthFacilities.TableHealthFacilities._ID + " ASC";
+        ArrayList<HealthFacilities> allHF = new ArrayList<>();
+        c = db.query(
+                HealthFacilities.TableHealthFacilities.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            allHF.add(new HealthFacilities().hydrate(c));
+        }
+        if (c != null) {
+            c.close();
+        }
+        return allHF;
+    }
 }

@@ -32,6 +32,11 @@ open class GeneralRepository(private val db: DatabaseHelper) : GeneralDataSource
             db.getUCsByDistricts(dCode)
         }
 
+    override suspend fun getFacilitiesFromDB(): ArrayList<HealthFacilities> =
+        withContext(Dispatchers.IO) {
+            db.allFacilities
+        }
+
     override suspend fun getBLByDistrictsFromDB(
         distCode: String,
         cluster: String,

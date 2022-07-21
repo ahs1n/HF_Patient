@@ -21,6 +21,8 @@ interface GeneralDataSource {
     suspend fun getUploadStatus(): Flow<FormIndicatorsModel>
 
     suspend fun getFormStatus(date: String): Flow<FormIndicatorsModel>
+
+    suspend fun getFacilitiesFromDB(): ArrayList<HealthFacilities>
     /*
     * For MainActivity End
     * */
