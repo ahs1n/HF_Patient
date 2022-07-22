@@ -13,6 +13,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +31,7 @@ import edu.aku.hassannaqvi.hf_patient.database.AndroidManager
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivityMainBinding
 import edu.aku.hassannaqvi.hf_patient.models.Camps
+import edu.aku.hassannaqvi.hf_patient.models.HealthFacilities
 import edu.aku.hassannaqvi.hf_patient.ui.list_activity.FormsReportCluster
 import edu.aku.hassannaqvi.hf_patient.ui.list_activity.FormsReportDate
 import edu.aku.hassannaqvi.hf_patient.ui.sections.SectionMobileHealthR2
@@ -49,8 +52,10 @@ class MainActivity : AppCompatActivity() {
     private var exit = false
     private var sysdateToday = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(Date())
     private lateinit var camp: Camps
-    private var facilities = mutableListOf("....")
-    private var facilityCode = mutableListOf("....")
+    private lateinit var facility: HealthFacilities
+    private var facilityNames = mutableListOf("....")
+    private var facilityCodes = mutableListOf("....")
+    private var ucCodes = mutableListOf("....")
     private lateinit var facilityAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,8 +72,31 @@ class MainActivity : AppCompatActivity() {
         * Setting Adapters
         * */
         facilityAdapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, facilities)
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, facilityNames)
         bi.facility.adapter = facilityAdapter
+        bi.facility.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                bi.cam.campno.text = null
+                bi.cam.uc2.text = null
+                bi.cam.area2.text = null
+                bi.btnSection.visibility = View.GONE
+                bi.cam.root.visibility = View.GONE
+                if (position == 0) return
+                bi.btnSection.visibility = View.VISIBLE
+                bi.cam.root.visibility = View.VISIBLE
+                bi.cam.campno.text = facilityNames[position]
+                bi.cam.uc2.text = ucCodes[position]
+                bi.cam.area2.text = facilityCodes[position]
+                facilityAdapter.notifyDataSetChanged()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
 
 
         /*
@@ -81,12 +109,16 @@ class MainActivity : AppCompatActivity() {
                 when (it.status) {
                     ResponseStatus.SUCCESS -> {
                         lifecycleScope.launch {
-                            facilities.clear()
-                            facilityCode.clear()
-                            facilities.add("....")
+                            facilityNames.clear()
+                            facilityCodes.clear()
+                            ucCodes.clear()
+                            facilityNames.add("....")
+                            facilityCodes.add("....")
+                            ucCodes.add("....")
                             it.data?.forEach { item ->
-                                facilities.add(item.facilityName)
-                                facilityCode.add(item.facilityCode)
+                                facilityNames.add(item.facilityName)
+                                facilityCodes.add(item.facilityCode)
+                                ucCodes.add(item.ucCode)
                             }
                             facilityAdapter.notifyDataSetChanged()
                         }
@@ -118,7 +150,6 @@ class MainActivity : AppCompatActivity() {
                                 //TODO: CardToPopulate
                                 //openWarningDialog(item.camp_no, item.district, item.ucName)
                                 bi.cam.campno.text = camp.camp_no
-                                bi.cam.dist2.text = camp.district
                                 bi.cam.uc2.text = camp.ucName
                                 bi.cam.area2.text = camp.area_name
                             }
@@ -143,6 +174,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
         viewModel.getFacilitiesFromDB()
 
         /*

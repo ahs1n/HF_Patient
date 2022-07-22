@@ -557,9 +557,9 @@
     <string name="ss101d">Date</string>
     <string name="ss101m">Month</string>
     <string name="ss101y">Year</string>
-    <string name="ss102">Facility Code</string>
-    <string name="ss103">District Name</string>
-    <string name="ss104">UC Name</string>
+    <string name="ss102">Facility Name</string>
+    <string name="ss103">Facility Code</string>
+    <string name="ss104">UC Code</string>
     <string name="ss105">Patient Name</string>
     <string name="ss106">Father’s / Husband Name</string>
     <string name="ss107">Age</string>

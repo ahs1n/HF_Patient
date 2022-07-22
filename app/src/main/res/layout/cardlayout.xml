@@ -53,7 +53,7 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/dist1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 android:padding="4dp"
                 android:text="@string/mh03"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/gray" />
+                android:textColor="@color/gray" />-->
 
             <View
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:id="@+id/uc1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mh04"
+                android:text="UC Code"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
@@ -103,7 +103,7 @@
                 android:id="@+id/area1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mh05"
+                android:text="Facility Code"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
