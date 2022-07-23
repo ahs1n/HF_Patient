@@ -94,6 +94,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            resValue("string", "DB_PASSWORD_hf_patient.db", "password")
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -198,5 +202,8 @@ dependencies {
     // Android Runtime Permissions
     implementation "com.github.permissions-dispatcher:permissionsdispatcher:4.9.1"
     annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:4.9.1"
+
+    // Android Database Browser
+    debugImplementation 'com.amitshekhar.android:debug-db-encrypt:1.0.6'
 
 }

@@ -1,7 +1,6 @@
 package edu.aku.hassannaqvi.hf_patient.ui.sections;
 
 import static edu.aku.hassannaqvi.hf_patient.core.MainApp.mobileHealth;
-import static edu.aku.hassannaqvi.hf_patient.utils.DateUtilsKt.convertDateFormat;
 import static edu.aku.hassannaqvi.hf_patient.utils.extension.ActivityExtKt.gotoActivity;
 import static edu.aku.hassannaqvi.hf_patient.utils.extension.ActivityExtKt.gotoActivityWithPutExtra;
 
@@ -9,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +35,7 @@ import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivityMobileHealthR2Binding;
 import edu.aku.hassannaqvi.hf_patient.models.Camps;
+import edu.aku.hassannaqvi.hf_patient.models.Doctor;
 import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
 import edu.aku.hassannaqvi.hf_patient.ui.MainActivity;
 import edu.aku.hassannaqvi.hf_patient.utils.AppUtilsKt;
@@ -45,6 +49,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
     private String patientType;
     private List<String> campNo;
     private DatabaseHelper db;
+    private ArrayList<String> doctorNames, doctorCodes;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -57,12 +62,57 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         /*
          * Get camp data and set it to xml
          * */
-        Camps camp = new Gson().fromJson(SharedStorage.INSTANCE.getSelectedCampData(this), Camps.class);
+        Camps camp = new Gson().fromJson(SharedStorage.INSTANCE.getSelectedFacilityData(this), Camps.class);
         bi.setCamps(camp);
+
         db = MainApp.appInfo.dbHelper;
         //populateSpinner(camp.getIdCamp());  // Populate Doctors' Name
-        bi.ss101.setMinDate(convertDateFormat(camp.getPlan_date()));
+//        bi.ss101.setMinDate(convertDateFormat(camp.getPlan_date()));
         setupSkips();
+        populateSpinner();
+    }
+
+    private void populateSpinner() {
+
+        Collection<Doctor> doctors = db.getDoctorsByUC(MainApp.user.getUcCode());
+
+        doctorNames = new ArrayList<>();
+        doctorCodes = new ArrayList<>();
+        doctorNames.add("...");
+        doctorCodes.add("...");
+
+        for (Doctor dc : doctors) {
+            doctorNames.add(dc.getStaff_name());
+            doctorCodes.add(dc.getIddoctor());
+        }
+
+        if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu")) {
+            doctorNames.add("Test Doctor 1");
+            doctorNames.add("Test Doctor 2");
+            doctorNames.add("Test Doctor 3");
+
+            doctorCodes.add("001");
+            doctorCodes.add("002");
+            doctorCodes.add("003");
+        }
+        // Apply the adapter to the spinner
+        bi.pc201a.setAdapter(new ArrayAdapter<>(SectionMobileHealthR2.this, R.layout.custom_spinner, doctorNames));
+
+        bi.pc201a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position != 0) {
+                    MainApp.selectedDoctorName = (doctorNames.get(bi.pc201a.getSelectedItemPosition()));
+//                    mobileHealth.setPc201a(MainApp.selectedDoctorName);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+        });
     }
 
 
@@ -72,7 +122,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
             Clear.clearAllFields(bi.fldGrpCVss109);
             Clear.clearAllFields(bi.fldGrpCVvs301);
 
-            if (i == bi.ss108a.getId()) {
+            if (i == bi.ss10801.getId()) {
                 Clear.clearAllFields(bi.fldGrpCVss109);
                 bi.fldGrpCVss109.setVisibility(View.GONE);
                 Clear.clearAllFields(bi.fldGrpCVvs301);
@@ -90,7 +140,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         });*/
 
         bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> {
-            if (i == bi.ss108a.getId()) {
+            if (i == bi.ss10801.getId()) {
                 Clear.clearAllFields(bi.fldGrpCVss109);
                 bi.fldGrpCVss109.setVisibility(View.GONE);
                 Clear.clearAllFields(bi.fldGrpCVvs301);
@@ -105,6 +155,9 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
             }
         });
 
+
+        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
+        bi.ss108a.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
 
         bi.vs307.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs308));
 
@@ -365,8 +418,12 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         mobileHealth.setSs107y(bi.ss107y.getText().toString());
         mobileHealth.setSs107m(bi.ss107m.getText().toString());
         mobileHealth.setSs107d(bi.ss107d.getText().toString());
-        mobileHealth.setSs108(bi.ss108a.isChecked() ? "1"
-                : bi.ss108b.isChecked() ? "2"
+        mobileHealth.setSs108(bi.ss10801.isChecked() ? "1"
+                : bi.ss10802.isChecked() ? "2"
+                : "-1");
+        mobileHealth.setSs108a(bi.ss1081.isChecked() ? "1"
+                : bi.ss1082.isChecked() ? "2"
+                : bi.ss1083.isChecked() ? "3"
                 : "-1");
         mobileHealth.setSs109(bi.ss109a.isChecked() ? "1"
                 : bi.ss109b.isChecked() ? "2"
@@ -378,6 +435,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         mobileHealth.setSs111c(bi.ss111c.isChecked() ? "3" : "-1");
         mobileHealth.setSs111d(bi.ss111d.isChecked() ? "4" : "-1");
         mobileHealth.setSs11199(bi.ss11199.isChecked() ? "99" : "-1");
+        mobileHealth.setPc201a(bi.pc201a.getSelectedItem().toString());
         mobileHealth.setPc20101(bi.pc20101.isChecked() ? "1" : "-1");
         mobileHealth.setPc20102(bi.pc20102.isChecked() ? "2" : "-1");
         mobileHealth.setPc20103(bi.pc20103.isChecked() ? "3" : "-1");

@@ -70,7 +70,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:text='@={camps.camp_no}'
+                                android:text="@={camps.facilityName}"
                                 android:textAlignment="center" />
                         </LinearLayout>
 
@@ -108,7 +108,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:text="@{camps.district}" />
+                                android:text="@{camps.facilityCode}" />
                         </LinearLayout>
 
 
@@ -130,7 +130,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:text="@{camps.ucName}" />
+                                android:text="@{camps.ucCode}" />
                         </LinearLayout>
 
 
@@ -411,18 +411,78 @@
                             android:orientation="horizontal">
 
                             <RadioButton
-                                android:id="@+id/ss108a"
+                                android:id="@+id/ss10801"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/ss108a" />
+                                android:text="@string/ss10801" />
 
                             <RadioButton
-                                android:id="@+id/ss108b"
+                                android:id="@+id/ss10802"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/ss108b" />
+                                android:text="@string/ss10802" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--ss108a  Radio-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVss108a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_ss108a" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@string/ss108a" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/ss108a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/ss1081"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ss1081" />
+
+                            <RadioButton
+                                android:id="@+id/ss1082"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ss1082" />
+
+                            <RadioButton
+                                android:id="@+id/ss1083"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ss1083" />
                         </RadioGroup>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -430,7 +490,8 @@
                 <!-- ss109  Radio   -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVss109"
-                    style="@style/cardView">
+                    style="@style/cardView"
+                    android:visibility="@{ss10801.checked || !ss1081.checked ? View.GONE : View.VISIBLE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -606,6 +667,44 @@
                             android:tag="-1"
                             android:text="@string/nr"
                             android:textColor="@color/redDark" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--pc201a  Dropdown-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVpc201a"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_pc201a" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@string/pc201a" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/pc201a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/pc201a" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

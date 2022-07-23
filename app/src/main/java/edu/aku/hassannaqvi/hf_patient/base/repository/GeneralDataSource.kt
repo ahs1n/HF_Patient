@@ -48,6 +48,8 @@ interface GeneralDataSource {
 
     suspend fun getUcsByDistrictsFromDB(dCode: String): ArrayList<UCs>
 
+    suspend fun getFacilitiesByUCFromDB(ucCode: String): ArrayList<HealthFacilities>
+
     suspend fun getBLByDistrictsFromDB(distCode: String, cluster: String, hhno: String): BLRandom
 
     suspend fun getFormByDistrictsFromDB(distCode: String, cluster: String, hhno: String): Form

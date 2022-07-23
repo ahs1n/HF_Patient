@@ -38,6 +38,7 @@ public class MobileHealth extends BaseObservable {
     public String ss107m;
     public String ss107d;
     public String ss108;
+    public String ss108a;
     public String ss109;
     public String ss110;
     public String ss111;
@@ -47,6 +48,7 @@ public class MobileHealth extends BaseObservable {
     public String ss111d;
     public String ss11199;
     public String pc201;
+    public String pc201a;
     public String pc20101;
     public String pc20102;
     public String pc20103;
@@ -388,6 +390,7 @@ public class MobileHealth extends BaseObservable {
                       .put("ss107m", ss107m)
                       .put("ss107d", ss107d)*/
                     .put("ss108", ss108)
+                    .put("ss108a", ss108a)
                     .put("ss109", ss109)
                     .put("ss110", ss110)
                     .put("ss111a", ss111a)
@@ -396,6 +399,7 @@ public class MobileHealth extends BaseObservable {
                     .put("ss111d", ss111d)
                     .put("ss11199", ss11199)
                     .put("pc20101", pc20101)
+                    .put("pc201a", pc201a)
                     .put("pc20102", pc20102)
                     .put("pc20103", pc20103)
                     .put("pc20104", pc20104)
@@ -553,6 +557,7 @@ public class MobileHealth extends BaseObservable {
                 this.ss107m = json.getString("ss107m");
                 this.ss107d = json.getString("ss107d");*/
             this.ss108 = json.getString("ss108");
+            this.ss108a = json.getString("ss108a");
             this.ss109 = json.getString("ss109");
             this.ss110 = json.getString("ss110");
             this.ss111a = json.getString("ss111a");
@@ -560,6 +565,7 @@ public class MobileHealth extends BaseObservable {
             this.ss111c = json.getString("ss111c");
             this.ss111d = json.getString("ss111d");
             this.ss11199 = json.getString("ss11199");
+            this.pc201a = json.getString("pc201a");
             this.pc20101 = json.getString("pc20101");
             this.pc20102 = json.getString("pc20102");
             this.pc20103 = json.getString("pc20103");
@@ -773,6 +779,16 @@ public class MobileHealth extends BaseObservable {
     }
 
     @Bindable
+    public String getSs108a() {
+        return ss108a;
+    }
+
+    public void setSs108a(String ss108a) {
+        this.ss108a = ss108a;
+        notifyPropertyChanged(BR.ss108a);
+    }
+
+    @Bindable
     public String getSs109() {
         return ss109;
     }
@@ -861,6 +877,17 @@ public class MobileHealth extends BaseObservable {
     public void setPc201(String pc201) {
         this.pc201 = pc201;
         notifyPropertyChanged(BR.pc201);
+    }
+
+
+    @Bindable
+    public String getPc201a() {
+        return pc201a;
+    }
+
+    public void setPc201a(String pc201a) {
+        this.pc201a = pc201a;
+        notifyPropertyChanged(BR.pc201a);
     }
 
     @Bindable

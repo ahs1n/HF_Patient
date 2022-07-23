@@ -10,9 +10,9 @@ import org.json.JSONObject
 
 class Camps() : Parcelable {
     var idCamp: String = StringUtils.EMPTY
-    var camp_no: String = StringUtils.EMPTY
+    var facilityName: String = StringUtils.EMPTY
     var dist_id: String = StringUtils.EMPTY
-    var district: String = StringUtils.EMPTY
+    var facilityCode: String = StringUtils.EMPTY
     var ucCode: String = StringUtils.EMPTY
     var ucName: String = StringUtils.EMPTY
     var area_name: String = StringUtils.EMPTY
@@ -20,9 +20,9 @@ class Camps() : Parcelable {
 
     constructor(parcel: Parcel) : this() {
         idCamp = parcel.readString().toString()
-        camp_no = parcel.readString().toString()
+        facilityName = parcel.readString().toString()
         dist_id = parcel.readString().toString()
-        district = parcel.readString().toString()
+        facilityCode = parcel.readString().toString()
         ucCode = parcel.readString().toString()
         ucName = parcel.readString().toString()
         area_name = parcel.readString().toString()
@@ -32,9 +32,9 @@ class Camps() : Parcelable {
     @Throws(JSONException::class)
     fun sync(jsonObject: JSONObject): Camps {
         idCamp = jsonObject.getString(TableCamp.COLUMN_ID_CAMP)
-        camp_no = jsonObject.getString(TableCamp.COLUMN_CAMP_NO)
+        facilityName = jsonObject.getString(TableCamp.COLUMN_FACILITY_NAME)
         dist_id = jsonObject.getString(TableCamp.COLUMN_DIST_ID)
-        district = jsonObject.getString(TableCamp.COLUMN_DISTRICT)
+        facilityCode = jsonObject.getString(TableCamp.COLUMN_FACILITY_CODE)
         ucCode = jsonObject.getString(TableCamp.COLUMN_UC_CODE)
         ucName = jsonObject.getString(TableCamp.COLUMN_UC_NAME)
         area_name = jsonObject.getString(TableCamp.COLUMN_AREA_NAME)
@@ -44,9 +44,11 @@ class Camps() : Parcelable {
 
     fun hydrate(cursor: Cursor): Camps {
         idCamp = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_ID_CAMP))
-        camp_no = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_CAMP_NO))
+        facilityName =
+            cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_FACILITY_NAME))
         dist_id = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_DIST_ID))
-        district = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_DISTRICT))
+        facilityCode =
+            cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_FACILITY_CODE))
         ucCode = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_UC_CODE))
         ucName = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_UC_NAME))
         area_name = cursor.getString(cursor.getColumnIndexOrThrow(TableCamp.COLUMN_AREA_NAME))
@@ -59,9 +61,9 @@ class Camps() : Parcelable {
         const val COLUMN_NAME_NULLABLE = "nullColumnHack"
         const val COLUMN_ID = "_ID"
         const val COLUMN_ID_CAMP = "idCamp"
-        const val COLUMN_CAMP_NO = "camp_no"
+        const val COLUMN_FACILITY_NAME = "facilityName"
         const val COLUMN_DIST_ID = "dist_id"
-        const val COLUMN_DISTRICT = "district"
+        const val COLUMN_FACILITY_CODE = "facilityCode"
         const val COLUMN_UC_CODE = "ucCode"
         const val COLUMN_UC_NAME = "ucName"
         const val COLUMN_AREA_NAME = "area_name"
@@ -70,9 +72,9 @@ class Camps() : Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(idCamp)
-        parcel.writeString(camp_no)
+        parcel.writeString(facilityName)
         parcel.writeString(dist_id)
-        parcel.writeString(district)
+        parcel.writeString(facilityCode)
         parcel.writeString(ucCode)
         parcel.writeString(ucName)
         parcel.writeString(area_name)

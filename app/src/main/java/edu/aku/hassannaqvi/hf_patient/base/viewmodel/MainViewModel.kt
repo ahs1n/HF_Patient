@@ -54,28 +54,43 @@ class MainViewModel(val repository: GeneralRepository) : ViewModel() {
     val healthFacilitiesResponse: MutableLiveData<ResponseStatusCallbacks<List<HealthFacilities>>>
         get() = _healthFacilities
 
-    fun getFacilitiesFromDB() {
+// For show all facilities in dropdown list
+fun getFacilitiesFromDB() {
+    _healthFacilities.value = ResponseStatusCallbacks.loading(null)
+    viewModelScope.launch {
+        try {
+            delay(1000)
+            val facility = repository.getFacilitiesFromDB()
+            _healthFacilities.value = if (facility.size > 0) {
+                ResponseStatusCallbacks.success(
+                    data = facility,
+                    message = "Health Facility Found"
+                )
+            } else
+                ResponseStatusCallbacks.error(
+                    data = null,
+                    message = "No Health Facility Found!"
+                )
+        } catch (e: java.lang.Exception) {
+            _healthFacilities.value =
+                ResponseStatusCallbacks.error(data = null, message = e.message.toString())
+        }
+    }
+
+}
+
+    fun getFacilitiesByUCFromDB(ucCode: String) {
         _healthFacilities.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
-                /*delay(1000)*/
-                val facility = repository.getFacilitiesFromDB()
-                _healthFacilities.value = if (facility.size > 0) {
-                    ResponseStatusCallbacks.success(
-                        data = facility,
-                        message = "Health Facility Found"
-                    )
-                } else
-                    ResponseStatusCallbacks.error(
-                        data = null,
-                        message = "No Health Facility Found!"
-                    )
-            } catch (e: java.lang.Exception) {
+                delay(1000)
+                val facility = repository.getFacilitiesByUCFromDB(ucCode)
+                _healthFacilities.value = ResponseStatusCallbacks.success(data = facility)
+            } catch (e: Exception) {
                 _healthFacilities.value =
                     ResponseStatusCallbacks.error(data = null, message = e.message.toString())
             }
         }
-
     }
 
 

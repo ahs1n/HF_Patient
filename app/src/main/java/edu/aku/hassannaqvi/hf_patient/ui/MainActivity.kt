@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var facility: HealthFacilities
     private var facilityNames = mutableListOf("....")
     private var facilityCodes = mutableListOf("....")
+    private var ucNames = mutableListOf("....")
     private var ucCodes = mutableListOf("....")
     private lateinit var facilityAdapter: ArrayAdapter<String>
 
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity() {
             ) {
                 bi.cam.campno.text = null
                 bi.cam.uc2.text = null
+                bi.cam.uc4.text = null
                 bi.cam.area2.text = null
                 bi.btnSection.visibility = View.GONE
                 bi.cam.root.visibility = View.GONE
@@ -90,9 +92,12 @@ class MainActivity : AppCompatActivity() {
                 bi.btnSection.visibility = View.VISIBLE
                 bi.cam.root.visibility = View.VISIBLE
                 bi.cam.campno.text = facilityNames[position]
-                bi.cam.uc2.text = ucCodes[position]
+                bi.cam.uc2.text = ucNames[position]
+                bi.cam.uc4.text = ucCodes[position]
                 bi.cam.area2.text = facilityCodes[position]
                 facilityAdapter.notifyDataSetChanged()
+
+                populateCampDetails()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -111,14 +116,23 @@ class MainActivity : AppCompatActivity() {
                         lifecycleScope.launch {
                             facilityNames.clear()
                             facilityCodes.clear()
+                            ucNames.clear()
                             ucCodes.clear()
                             facilityNames.add("....")
                             facilityCodes.add("....")
+                            ucNames.add("....")
                             ucCodes.add("....")
                             it.data?.forEach { item ->
                                 facilityNames.add(item.facilityName)
                                 facilityCodes.add(item.facilityCode)
+                                ucNames.add(item.ucName)
                                 ucCodes.add(item.ucCode)
+
+                                facility = item
+                                bi.cam.campno.text = facility.facilityName
+                                bi.cam.uc2.text = facility.ucName
+                                bi.cam.uc4.text = facility.ucCode
+                                bi.cam.area2.text = facility.facilityCode
                             }
                             facilityAdapter.notifyDataSetChanged()
                         }
@@ -149,7 +163,7 @@ class MainActivity : AppCompatActivity() {
 
                                 //TODO: CardToPopulate
                                 //openWarningDialog(item.camp_no, item.district, item.ucName)
-                                bi.cam.campno.text = camp.camp_no
+                                bi.cam.campno.text = camp.facilityName
                                 bi.cam.uc2.text = camp.ucName
                                 bi.cam.area2.text = camp.area_name
                             }
@@ -175,7 +189,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.getFacilitiesFromDB()
+        viewModel.getFacilitiesByUCFromDB(MainApp.user.ucCode)
 
         /*
         * Get Today's form from DB
@@ -333,7 +347,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         animateFadeIn()
-        viewModel.getFacilitiesFromDB()
+        viewModel.getFacilitiesByUCFromDB(MainApp.user.ucCode)
         viewModel.getFormsStatusUploadStatus(sysdateToday)
     }
 
@@ -345,7 +359,7 @@ class MainActivity : AppCompatActivity() {
     fun openSpecificActivity(v: View) {
         when (v.id) {
             R.id.formA -> {
-                SharedStorage.setSelectedCampData(this, Gson().toJson(camp))
+                SharedStorage.setSelectedFacilityData(this, Gson().toJson(facility))
                 gotoActivity(SectionMobileHealthR2::class.java)
             }
             R.id.databaseBtn -> startActivity(Intent(this, AndroidManager::class.java))
@@ -357,8 +371,10 @@ class MainActivity : AppCompatActivity() {
 
 
     fun populateCampDetails() {
-        if (!Validator.emptyTextBox(this, bi.camps)) return
-        viewModel.getCampFromDB(bi.camps.text.toString(), MainApp.user.dist_id)
+//        if (!Validator.emptyTextBox(this, bi.camps)) return
+//        viewModel.getCampFromDB(bi.camps.text.toString(), MainApp.user.dist_id)
+        if (!Validator.emptySpinner(this, bi.facility)) return
+        viewModel.getFacilitiesByUCFromDB(MainApp.user.ucCode)
     }
 
     /*

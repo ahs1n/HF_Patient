@@ -44,6 +44,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import edu.aku.hassannaqvi.hf_patient.contracts.ChildContract;
 import edu.aku.hassannaqvi.hf_patient.contracts.ChildContract.ChildTable;
@@ -664,7 +665,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = null;
 
-        String whereClause = Camps.TableCamp.COLUMN_CAMP_NO + "=? AND " + Camps.TableCamp.COLUMN_DIST_ID + "=?";
+        String whereClause = Camps.TableCamp.COLUMN_FACILITY_NAME + "=? AND " + Camps.TableCamp.COLUMN_DIST_ID + "=?";
         String[] whereArgs = {campNo, distCode};
         String groupBy = null;
         String having = null;
@@ -1091,6 +1092,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
 
             values.put(HealthFacilities.TableHealthFacilities.COLUMN_UC_CODE, facilities.getUcCode());
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_UC_NAME, facilities.getUcName());
             values.put(HealthFacilities.TableHealthFacilities.COLUMN_DISTRICT_CODE, facilities.getDistrictCode());
             values.put(HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_NAME, facilities.getFacilityName());
             values.put(HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_CODE, facilities.getFacilityCode());
@@ -1197,10 +1199,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
 
             values.put(Camps.TableCamp.COLUMN_ID_CAMP, camps.getIdCamp());
-                values.put(Camps.TableCamp.COLUMN_CAMP_NO, camps.getCamp_no());
-                values.put(Camps.TableCamp.COLUMN_DIST_ID, camps.getDist_id());
-                values.put(Camps.TableCamp.COLUMN_DISTRICT, camps.getDistrict());
-                values.put(Camps.TableCamp.COLUMN_UC_CODE, camps.getUcCode());
+            values.put(Camps.TableCamp.COLUMN_FACILITY_NAME, camps.getFacilityName());
+            values.put(Camps.TableCamp.COLUMN_DIST_ID, camps.getDist_id());
+            values.put(Camps.TableCamp.COLUMN_FACILITY_CODE, camps.getFacilityCode());
+            values.put(Camps.TableCamp.COLUMN_UC_CODE, camps.getUcCode());
                 values.put(Camps.TableCamp.COLUMN_UC_NAME, camps.getUcName());
                 values.put(Camps.TableCamp.COLUMN_AREA_NAME, camps.getArea_name());
                 values.put(Camps.TableCamp.COLUMN_PLAN_DATE, camps.getPlan_date());
@@ -2025,5 +2027,61 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.close();
         }
         return allHF;
+    }
+
+    public ArrayList<HealthFacilities> getAllFacilitiesByUC(String ucCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = HealthFacilities.TableHealthFacilities.COLUMN_UC_CODE + " = ? ";
+        String[] whereArgs = {ucCode};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_CODE + " ASC";
+        ArrayList<HealthFacilities> hf = new ArrayList<>();
+
+        c = db.query(
+                HealthFacilities.TableHealthFacilities.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return8
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            hf.add(new HealthFacilities().hydrate(c));
+        }
+        return hf;
+    }
+
+    public Collection<Doctor> getDoctorsByUC(String ucCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = Doctor.TableDoctor.COLUMN_UC_CODE + " = ? ";
+        String[] whereArgs = {ucCode};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = Doctor.TableDoctor.COLUMN_ID_DOCTOR + " ASC";
+        List<Doctor> doctors = new ArrayList<>();
+
+        c = db.query(
+                Doctor.TableDoctor.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            doctors.add(new Doctor().hydrate(c));
+        }
+        return doctors;
     }
 }

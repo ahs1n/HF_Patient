@@ -13,6 +13,7 @@ import org.json.JSONObject
 class HealthFacilities {
     var districtCode: String = StringUtils.EMPTY
     var ucCode: String = StringUtils.EMPTY
+    var ucName: String = StringUtils.EMPTY
     var facilityCode: String = StringUtils.EMPTY
     var facilityName: String = StringUtils.EMPTY
 
@@ -20,6 +21,7 @@ class HealthFacilities {
     fun sync(jsonObject: JSONObject): HealthFacilities {
         districtCode = jsonObject.getString(TableHealthFacilities.COLUMN_DISTRICT_CODE)
         ucCode = jsonObject.getString(TableHealthFacilities.COLUMN_UC_CODE)
+        ucName = jsonObject.getString(TableHealthFacilities.COLUMN_UC_NAME)
         facilityCode = jsonObject.getString(TableHealthFacilities.COLUMN_FACILITY_CODE)
         facilityName = jsonObject.getString(TableHealthFacilities.COLUMN_FACILITY_NAME)
         return this
@@ -30,6 +32,8 @@ class HealthFacilities {
             cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_DISTRICT_CODE))
         ucCode =
             cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_UC_CODE))
+        ucName =
+            cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_UC_NAME))
         facilityCode =
             cursor.getString(cursor.getColumnIndexOrThrow(TableHealthFacilities.COLUMN_FACILITY_CODE))
         facilityName =
@@ -42,6 +46,7 @@ class HealthFacilities {
         const val COLUMN_NAME_NULLABLE = "nullColumnHack"
         const val COLUMN_ID = "_ID"
         const val COLUMN_UC_CODE = "uccode"
+        const val COLUMN_UC_NAME = "ucname"
         const val COLUMN_DISTRICT_CODE = "distcode"
         const val COLUMN_FACILITY_NAME = "hf_name"
         const val COLUMN_FACILITY_CODE = "hf_code"

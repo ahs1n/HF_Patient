@@ -30,7 +30,7 @@ import edu.aku.hassannaqvi.hf_patient.models.Users;
 
 public class MainApp extends Application {
 
-    public static final String PROJECT_NAME = "SHRUC Camps";
+    public static final String PROJECT_NAME = "HF Patient";
     public static final String DIST_ID = null;
     public static final String SYNC_LOGIN = "sync_login";
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
@@ -61,6 +61,8 @@ public class MainApp extends Application {
     public static SharedPreferences sharedPref;
     public static String IBAHC = "";
     public static int TRATS = 8;
+    public static String selectedDoctorCode;
+    public static String selectedDoctorName;
 
     public static boolean permissionCheck = false;
 

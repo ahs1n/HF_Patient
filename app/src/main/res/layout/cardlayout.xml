@@ -77,10 +77,33 @@
                 android:background="@color/gray" />
 
             <TextView
+                android:id="@+id/area1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Facility Code"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/area2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/mh05"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/gray" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_margin="8dp"
+                android:background="@color/gray" />
+
+            <TextView
                 android:id="@+id/uc1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UC Code"
+                android:text="UC Name"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
@@ -100,19 +123,19 @@
                 android:background="@color/gray" />
 
             <TextView
-                android:id="@+id/area1"
+                android:id="@+id/uc3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Facility Code"
+                android:text="UC Code"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/area2"
+                android:id="@+id/uc4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="@string/mh05"
+                android:text="@string/mh04"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/gray" />
 

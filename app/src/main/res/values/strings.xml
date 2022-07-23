@@ -567,8 +567,12 @@
     <string name="ss107m">Months</string>
     <string name="ss107d">Days</string>
     <string name="ss108">Gender</string>
-    <string name="ss108a">Male</string>
-    <string name="ss108b">Female</string>
+    <string name="ss10801">Male</string>
+    <string name="ss10802">Female</string>
+    <string name="ss108a">Marital Status</string>
+    <string name="ss1081">Married</string>
+    <string name="ss1082">Un-Married</string>
+    <string name="ss1083">Divorced/Widowed</string>
     <string name="ss109">Patient’s Pregnancy Status</string>
     <string name="ss109a">Yes</string>
     <string name="ss109b">No</string>
@@ -580,6 +584,7 @@
     <string name="ss111d">Doctor’s Consultation</string>
     <string name="dstitle">SECTION 2: DOCTOR’S SECTION  </string>
     <string name="pctitle">2.1 Presenting Complaint</string>
+    <string name="pc201a">Doctor`s Name</string>
     <string name="pc201">Presenting Complaint</string>
     <string name="pc20101">Fever</string>
     <string name="pc20102">Cough</string>
@@ -702,9 +707,11 @@
     <string name='Q_ss106'>ss106</string>
     <string name='Q_ss107'>ss107</string>
     <string name='Q_ss108'>ss108</string>
+    <string name='Q_ss108a'>ss108a</string>
     <string name='Q_ss109'>ss109</string>
     <string name='Q_ss110'>ss110</string>
     <string name='Q_ss111'>ss111</string>
+    <string name='Q_pc201a'>pc201a</string>
     <string name='Q_sstitle'>sstitle</string>
     <string name='Q_vs301'>vs301</string>
     <string name='Q_vs302'>vs302</string>
