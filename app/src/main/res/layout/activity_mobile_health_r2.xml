@@ -491,7 +491,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVss109"
                     style="@style/cardView"
-                    android:visibility="@{ss10801.checked || !ss1081.checked ? View.GONE : View.VISIBLE}">
+                    android:visibility="@{!ss1081.checked ? View.GONE : View.VISIBLE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -585,7 +585,7 @@
                                 android:inputType="number"
                                 android:maxLength="3"
                                 app:mask="###.#"
-                                app:maxValue="200"
+                                app:maxValue="150"
                                 app:minValue="1"
                                 app:pattern="^(\\d{3,3}\\.\\d{1,1})$"
                                 app:type="range" />
@@ -635,12 +635,14 @@
 
                             <CheckBox
                                 android:id="@+id/ss111a"
+                                android:enabled="@{!ss10801.checked}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ss111a" />
 
                             <CheckBox
                                 android:id="@+id/ss111b"
+                                android:enabled="@{!ss10801.checked}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ss111b" />
@@ -1370,7 +1372,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <!-- vs302  Radio   -->
+
+                <!-- vs302  Radio   -->
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVvs302"
                         style="@style/cardView">

@@ -139,6 +139,8 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
             }
         });*/
 
+//        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs301));
+
         bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> {
             if (i == bi.ss10801.getId()) {
                 Clear.clearAllFields(bi.fldGrpCVss109);
@@ -156,10 +158,13 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         });
 
 
-        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
+//        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
         bi.ss108a.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
+        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss111));
 
         bi.vs307.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs308));
+
+        bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
 
         bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
         bi.ss11199.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.ss111check, !b));

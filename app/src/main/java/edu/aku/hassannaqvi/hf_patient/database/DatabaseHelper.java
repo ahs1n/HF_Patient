@@ -7,17 +7,9 @@ import static edu.aku.hassannaqvi.hf_patient.core.UserAuth.checkPassword;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_ALTER_USERS_ENABLED;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_ALTER_USERS_ISNEW_USER;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_ALTER_USERS_PWD_EXPIRY;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_BL_RANDOM;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_CAMP;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_CHILD;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_CHILD_INFO;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_CLUSTERS;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_DISTRICTS;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_DOCTOR;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_ENTRYLOGS;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_FACILITIES;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_FORMS;
-import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_IMMUNIZATION;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_MOBILE_HEALTH;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_UCS;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_CREATE_USERS;
@@ -102,18 +94,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_USERS);
-        db.execSQL(SQL_CREATE_DISTRICTS);
+//        db.execSQL(SQL_CREATE_DISTRICTS);
         db.execSQL(SQL_CREATE_FACILITIES);
         db.execSQL(SQL_CREATE_UCS);
-        db.execSQL(SQL_CREATE_CLUSTERS);
-        db.execSQL(SQL_CREATE_FORMS);
-        db.execSQL(SQL_CREATE_CHILD_INFO);
-        db.execSQL(SQL_CREATE_CHILD);
-        db.execSQL(SQL_CREATE_IMMUNIZATION);
+//        db.execSQL(SQL_CREATE_CLUSTERS);
+//        db.execSQL(SQL_CREATE_FORMS);
+//        db.execSQL(SQL_CREATE_CHILD_INFO);
+//        db.execSQL(SQL_CREATE_CHILD);
+//        db.execSQL(SQL_CREATE_IMMUNIZATION);
         db.execSQL(SQL_CREATE_MOBILE_HEALTH);
         db.execSQL(SQL_CREATE_VERSIONAPP);
-        db.execSQL(SQL_CREATE_BL_RANDOM);
-        db.execSQL(SQL_CREATE_CAMP);
+//        db.execSQL(SQL_CREATE_BL_RANDOM);
+//        db.execSQL(SQL_CREATE_CAMP);
         db.execSQL(SQL_CREATE_DOCTOR);
         db.execSQL(SQL_CREATE_ENTRYLOGS);
     }
