@@ -13,11 +13,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.hf_patient.BR;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 
 
-public class MobileHealth extends BaseObservable {
+public class PatientDetails extends BaseObservable {
 
     private final String patientType = StringUtils.EMPTY;
     private final String chkWeight = StringUtils.EMPTY;
@@ -157,7 +157,7 @@ public class MobileHealth extends BaseObservable {
     private String sA;
 
 
-    public MobileHealth() {
+    public PatientDetails() {
 
     }
 
@@ -190,7 +190,7 @@ public class MobileHealth extends BaseObservable {
         return uid;
     }
 
-    public MobileHealth setUid(String uid) {
+    public PatientDetails setUid(String uid) {
         this.uid = uid;
         return this;
     }
@@ -201,7 +201,7 @@ public class MobileHealth extends BaseObservable {
         return userName;
     }
 
-    public MobileHealth setUserName(String userName) {
+    public PatientDetails setUserName(String userName) {
         this.userName = userName;
         return this;
     }
@@ -212,7 +212,7 @@ public class MobileHealth extends BaseObservable {
         return deviceId;
     }
 
-    public MobileHealth setDeviceId(String deviceId) {
+    public PatientDetails setDeviceId(String deviceId) {
         this.deviceId = deviceId;
         return this;
     }
@@ -222,7 +222,7 @@ public class MobileHealth extends BaseObservable {
         return deviceTag;
     }
 
-    public MobileHealth setDeviceTag(String deviceTag) {
+    public PatientDetails setDeviceTag(String deviceTag) {
         this.deviceTag = deviceTag;
         return this;
     }
@@ -232,7 +232,7 @@ public class MobileHealth extends BaseObservable {
         return appver;
     }
 
-    public MobileHealth setAppver(String appver) {
+    public PatientDetails setAppver(String appver) {
         this.appver = appver;
         return this;
     }
@@ -242,7 +242,7 @@ public class MobileHealth extends BaseObservable {
         return sysDate;
     }
 
-    public MobileHealth setSysDate(String sysDate) {
+    public PatientDetails setSysDate(String sysDate) {
         this.sysDate = sysDate;
         return this;
     }
@@ -253,7 +253,7 @@ public class MobileHealth extends BaseObservable {
         return endTime;
     }
 
-    public MobileHealth setEndTime(String endTime) {
+    public PatientDetails setEndTime(String endTime) {
         this.endTime = endTime;
         return this;
     }
@@ -264,7 +264,7 @@ public class MobileHealth extends BaseObservable {
         return synced;
     }
 
-    public MobileHealth setSynced(String synced) {
+    public PatientDetails setSynced(String synced) {
         this.synced = synced;
         return this;
     }
@@ -274,7 +274,7 @@ public class MobileHealth extends BaseObservable {
         return syncDate;
     }
 
-    public MobileHealth setSyncDate(String syncDate) {
+    public PatientDetails setSyncDate(String syncDate) {
         this.syncDate = syncDate;
         return this;
     }
@@ -284,7 +284,7 @@ public class MobileHealth extends BaseObservable {
         return serial;
     }
 
-    public MobileHealth setSerial(String serial) {
+    public PatientDetails setSerial(String serial) {
         this.serial = serial;
         return this;
     }
@@ -294,7 +294,7 @@ public class MobileHealth extends BaseObservable {
         return sA;
     }
 
-    public MobileHealth setsA(String sA) {
+    public PatientDetails setsA(String sA) {
         this.sA = sA;
         return this;
     }
@@ -310,57 +310,57 @@ public class MobileHealth extends BaseObservable {
     }
 
 
-    public MobileHealth Sync(JSONObject jsonObject) throws JSONException {
-        this.id = jsonObject.getString(MHContract.MHTable.COLUMN_ID);
-        this.uid = jsonObject.getString(MHContract.MHTable.COLUMN_UID);
-        this.userName = jsonObject.getString(MHContract.MHTable.COLUMN_USERNAME);
-        this.sysDate = jsonObject.getString(MHContract.MHTable.COLUMN_SYSDATE);
-        this.deviceId = jsonObject.getString(MHContract.MHTable.COLUMN_DEVICEID);
-        this.deviceTag = jsonObject.getString(MHContract.MHTable.COLUMN_DEVICETAGID);
-        this.appver = jsonObject.getString(MHContract.MHTable.COLUMN_APPVERSION);
-        this.synced = jsonObject.getString(MHContract.MHTable.COLUMN_SYNCED);
-        this.syncDate = jsonObject.getString(MHContract.MHTable.COLUMN_SYNCED_DATE);
-        this.status = jsonObject.getString(MHContract.MHTable.COLUMN_STATUS);
-        this.serial = jsonObject.getString(MHContract.MHTable.COLUMN_SERIAL);
-        this.ss101 = jsonObject.getString(MHContract.MHTable.COLUMN_SS101);
-        this.ss102 = jsonObject.getString(MHContract.MHTable.COLUMN_SS102);
-        this.ss103 = jsonObject.getString(MHContract.MHTable.COLUMN_SS103);
-        this.ss104 = jsonObject.getString(MHContract.MHTable.COLUMN_SS104);
-        this.ss105 = jsonObject.getString(MHContract.MHTable.COLUMN_SS105);
-        this.ss106 = jsonObject.getString(MHContract.MHTable.COLUMN_SS106);
-        this.ss107 = jsonObject.getString(MHContract.MHTable.COLUMN_SS107);
+    public PatientDetails Sync(JSONObject jsonObject) throws JSONException {
+        this.id = jsonObject.getString(PDContract.MHTable.COLUMN_ID);
+        this.uid = jsonObject.getString(PDContract.MHTable.COLUMN_UID);
+        this.userName = jsonObject.getString(PDContract.MHTable.COLUMN_USERNAME);
+        this.sysDate = jsonObject.getString(PDContract.MHTable.COLUMN_SYSDATE);
+        this.deviceId = jsonObject.getString(PDContract.MHTable.COLUMN_DEVICEID);
+        this.deviceTag = jsonObject.getString(PDContract.MHTable.COLUMN_DEVICETAGID);
+        this.appver = jsonObject.getString(PDContract.MHTable.COLUMN_APPVERSION);
+        this.synced = jsonObject.getString(PDContract.MHTable.COLUMN_SYNCED);
+        this.syncDate = jsonObject.getString(PDContract.MHTable.COLUMN_SYNCED_DATE);
+        this.status = jsonObject.getString(PDContract.MHTable.COLUMN_STATUS);
+        this.serial = jsonObject.getString(PDContract.MHTable.COLUMN_SERIAL);
+        this.ss101 = jsonObject.getString(PDContract.MHTable.COLUMN_SS101);
+        this.ss102 = jsonObject.getString(PDContract.MHTable.COLUMN_SS102);
+        this.ss103 = jsonObject.getString(PDContract.MHTable.COLUMN_SS103);
+        this.ss104 = jsonObject.getString(PDContract.MHTable.COLUMN_SS104);
+        this.ss105 = jsonObject.getString(PDContract.MHTable.COLUMN_SS105);
+        this.ss106 = jsonObject.getString(PDContract.MHTable.COLUMN_SS106);
+        this.ss107 = jsonObject.getString(PDContract.MHTable.COLUMN_SS107);
 
-        this.sA = jsonObject.getString(MHContract.MHTable.COLUMN_SA);
+        this.sA = jsonObject.getString(PDContract.MHTable.COLUMN_SA);
 
         return this;
 
     }
 
 
-    public MobileHealth Hydrate(Cursor cursor) throws JSONException {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_ID));
-        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_UID));
-        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_USERNAME));
-        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SYSDATE));
-        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_DEVICEID));
-        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_DEVICETAGID));
-        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_APPVERSION));
-        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SYNCED));
-        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SYNCED_DATE));
-        this.status = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_STATUS));
-        this.serial = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SERIAL));
-        this.ss101 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS101));
-        this.ss102 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS102));
-        this.ss103 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS103));
-        this.ss104 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS104));
-        this.ss105 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS105));
-        this.ss106 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS106));
-        this.ss107 = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SS107));
+    public PatientDetails Hydrate(Cursor cursor) throws JSONException {
+        this.id = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_ID));
+        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_UID));
+        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_USERNAME));
+        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYSDATE));
+        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_DEVICEID));
+        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_DEVICETAGID));
+        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_APPVERSION));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYNCED));
+        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYNCED_DATE));
+        this.status = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_STATUS));
+        this.serial = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SERIAL));
+        this.ss101 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS101));
+        this.ss102 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS102));
+        this.ss103 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS103));
+        this.ss104 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS104));
+        this.ss105 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS105));
+        this.ss106 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS106));
+        this.ss107 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS107));
 
         //For childCount
         //this.sA = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SA));
 
-        sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SA)));
+        sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SA)));
 
         return this;
     }
@@ -369,7 +369,7 @@ public class MobileHealth extends BaseObservable {
     //TODO: Try this instead of toJSONObject
     @Override
     public String toString() {
-        return new GsonBuilder().create().toJson(this, MobileHealth.class);
+        return new GsonBuilder().create().toJson(this, PatientDetails.class);
     }
 
 
@@ -501,26 +501,26 @@ public class MobileHealth extends BaseObservable {
         JSONObject json = new JSONObject();
 
 
-        json.put(MHContract.MHTable.COLUMN_ID, this.id);
-        json.put(MHContract.MHTable.COLUMN_UID, this.uid);
-        json.put(MHContract.MHTable.COLUMN_USERNAME, this.userName);
-        json.put(MHContract.MHTable.COLUMN_SYSDATE, this.sysDate);
-        json.put(MHContract.MHTable.COLUMN_DEVICEID, this.deviceId);
-        json.put(MHContract.MHTable.COLUMN_DEVICETAGID, this.deviceTag);
-        json.put(MHContract.MHTable.COLUMN_APPVERSION, this.appver);
-        json.put(MHContract.MHTable.COLUMN_SYNCED, this.synced);
-        json.put(MHContract.MHTable.COLUMN_SYNCED_DATE, this.syncDate);
-        json.put(MHContract.MHTable.COLUMN_STATUS, this.status);
-        json.put(MHContract.MHTable.COLUMN_SERIAL, this.serial);
-        json.put(MHContract.MHTable.COLUMN_SS101, this.ss101);
-        json.put(MHContract.MHTable.COLUMN_SS102, this.ss102);
-        json.put(MHContract.MHTable.COLUMN_SS103, this.ss103);
-        json.put(MHContract.MHTable.COLUMN_SS104, this.ss104);
-        json.put(MHContract.MHTable.COLUMN_SS105, this.ss105);
-        json.put(MHContract.MHTable.COLUMN_SS106, this.ss106);
-        json.put(MHContract.MHTable.COLUMN_SS107, this.ss107);
+        json.put(PDContract.MHTable.COLUMN_ID, this.id);
+        json.put(PDContract.MHTable.COLUMN_UID, this.uid);
+        json.put(PDContract.MHTable.COLUMN_USERNAME, this.userName);
+        json.put(PDContract.MHTable.COLUMN_SYSDATE, this.sysDate);
+        json.put(PDContract.MHTable.COLUMN_DEVICEID, this.deviceId);
+        json.put(PDContract.MHTable.COLUMN_DEVICETAGID, this.deviceTag);
+        json.put(PDContract.MHTable.COLUMN_APPVERSION, this.appver);
+        json.put(PDContract.MHTable.COLUMN_SYNCED, this.synced);
+        json.put(PDContract.MHTable.COLUMN_SYNCED_DATE, this.syncDate);
+        json.put(PDContract.MHTable.COLUMN_STATUS, this.status);
+        json.put(PDContract.MHTable.COLUMN_SERIAL, this.serial);
+        json.put(PDContract.MHTable.COLUMN_SS101, this.ss101);
+        json.put(PDContract.MHTable.COLUMN_SS102, this.ss102);
+        json.put(PDContract.MHTable.COLUMN_SS103, this.ss103);
+        json.put(PDContract.MHTable.COLUMN_SS104, this.ss104);
+        json.put(PDContract.MHTable.COLUMN_SS105, this.ss105);
+        json.put(PDContract.MHTable.COLUMN_SS106, this.ss106);
+        json.put(PDContract.MHTable.COLUMN_SS107, this.ss107);
 
-        json.put(MHContract.MHTable.COLUMN_SA, new JSONObject(sAtoString()));
+        json.put(PDContract.MHTable.COLUMN_SA, new JSONObject(sAtoString()));
 
         //For ChildCount
         //json.put(MHContract.MHTable.COLUMN_SA, this.sA == null ? JSONObject.NULL : this.sA);

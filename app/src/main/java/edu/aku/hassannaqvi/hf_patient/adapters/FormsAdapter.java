@@ -15,7 +15,7 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.hf_patient.R;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
-import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
+import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 
 
 /**
@@ -24,10 +24,10 @@ import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
 public class FormsAdapter extends RecyclerView.Adapter<FormsAdapter.ViewHolder> {
     Context c;
     DatabaseHelper db;
-    private List<MobileHealth> fc = Collections.emptyList();
+    private List<PatientDetails> fc = Collections.emptyList();
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FormsAdapter(List<MobileHealth> fc, Context c) {
+    public FormsAdapter(List<PatientDetails> fc, Context c) {
         this.fc = fc;
         this.c = c;
         Log.d("TAG:count", String.valueOf(getItemCount()));

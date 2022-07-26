@@ -1,6 +1,6 @@
 package edu.aku.hassannaqvi.hf_patient.ui.sections;
 
-import static edu.aku.hassannaqvi.hf_patient.core.MainApp.mobileHealth;
+import static edu.aku.hassannaqvi.hf_patient.core.MainApp.patientDetails;
 import static edu.aku.hassannaqvi.hf_patient.utils.extension.ActivityExtKt.gotoActivity;
 import static edu.aku.hassannaqvi.hf_patient.utils.extension.ActivityExtKt.gotoActivityWithPutExtra;
 
@@ -30,13 +30,13 @@ import java.util.List;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.hf_patient.R;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivityMobileHealthR2Binding;
 import edu.aku.hassannaqvi.hf_patient.models.Camps;
 import edu.aku.hassannaqvi.hf_patient.models.Doctor;
-import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
+import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 import edu.aku.hassannaqvi.hf_patient.ui.MainActivity;
 import edu.aku.hassannaqvi.hf_patient.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.hf_patient.utils.EndSectionActivity;
@@ -158,7 +158,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         });
 
 
-//        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
+        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
         bi.ss108a.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
         bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss111));
 
@@ -299,6 +299,13 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
             bi.fldGrpCVss109.setVisibility(View.VISIBLE);
             bi.fldGrpCVvs301.setVisibility(View.VISIBLE);
         }
+
+        if (age < 13) {
+            Clear.clearAllFields(bi.fldGrpCVss108a);
+            bi.fldGrpCVss108a.setVisibility(View.GONE);
+        } else {
+            bi.fldGrpCVss108a.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setTags(RadioGroup rg, View[] views) {
@@ -383,13 +390,13 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 
 
     private boolean UpdateDB() {
-        long updcount = db.addMH(mobileHealth);
-        mobileHealth.setId(String.valueOf(updcount));
+        long updcount = db.addMH(patientDetails);
+        patientDetails.setId(String.valueOf(updcount));
         if (updcount > 0) {
-            mobileHealth.setUid(mobileHealth.getDeviceId() + mobileHealth.getId());
-            long count = db.updatesMHColumn(MHContract.MHTable.COLUMN_UID, mobileHealth.getUid());
+            patientDetails.setUid(patientDetails.getDeviceId() + patientDetails.getId());
+            long count = db.updatesMHColumn(PDContract.MHTable.COLUMN_UID, patientDetails.getUid());
             if (count > 0)
-                count = db.updatesMHColumn(MHContract.MHTable.COLUMN_SA, mobileHealth.sAtoString());
+                count = db.updatesMHColumn(PDContract.MHTable.COLUMN_SA, patientDetails.sAtoString());
             if (count > 0) return true;
             else {
                 Toast.makeText(this, "SORRY! Failed to update DB", Toast.LENGTH_SHORT).show();
@@ -405,151 +412,151 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 
     private void saveDraft() {
 
-        mobileHealth = new MobileHealth();
-        mobileHealth.setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
-        mobileHealth.setUserName(MainApp.user.getUserName());
-        mobileHealth.setDeviceId(MainApp.appInfo.getDeviceID());
-        mobileHealth.setDeviceTag(MainApp.appInfo.getTagName());
-        mobileHealth.setAppver(MainApp.appInfo.getAppVersion());
+        patientDetails = new PatientDetails();
+        patientDetails.setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+        patientDetails.setUserName(MainApp.user.getUserName());
+        patientDetails.setDeviceId(MainApp.appInfo.getDeviceID());
+        patientDetails.setDeviceTag(MainApp.appInfo.getTagName());
+        patientDetails.setAppver(MainApp.appInfo.getAppVersion());
 
 
-        mobileHealth.setSs101(bi.ss101.getText().toString());
-        mobileHealth.setSs102(bi.ss102.getText().toString());
-        mobileHealth.setSs103(bi.ss103.getText().toString());
-        mobileHealth.setSs104(bi.ss104.getText().toString());
-        mobileHealth.setSs105(bi.ss105.getText().toString());
-        mobileHealth.setSs106(bi.ss106.getText().toString());
-        mobileHealth.setSs107(bi.ss107y.getText().toString() + "-" + bi.ss107m.getText().toString() + "-" + bi.ss107d.getText().toString());
-        mobileHealth.setSs107y(bi.ss107y.getText().toString());
-        mobileHealth.setSs107m(bi.ss107m.getText().toString());
-        mobileHealth.setSs107d(bi.ss107d.getText().toString());
-        mobileHealth.setSs108(bi.ss10801.isChecked() ? "1"
+        patientDetails.setSs101(bi.ss101.getText().toString());
+        patientDetails.setSs102(bi.ss102.getText().toString());
+        patientDetails.setSs103(bi.ss103.getText().toString());
+        patientDetails.setSs104(bi.ss104.getText().toString());
+        patientDetails.setSs105(bi.ss105.getText().toString());
+        patientDetails.setSs106(bi.ss106.getText().toString());
+        patientDetails.setSs107(bi.ss107y.getText().toString() + "-" + bi.ss107m.getText().toString() + "-" + bi.ss107d.getText().toString());
+        patientDetails.setSs107y(bi.ss107y.getText().toString());
+        patientDetails.setSs107m(bi.ss107m.getText().toString());
+        patientDetails.setSs107d(bi.ss107d.getText().toString());
+        patientDetails.setSs108(bi.ss10801.isChecked() ? "1"
                 : bi.ss10802.isChecked() ? "2"
                 : "-1");
-        mobileHealth.setSs108a(bi.ss1081.isChecked() ? "1"
+        patientDetails.setSs108a(bi.ss1081.isChecked() ? "1"
                 : bi.ss1082.isChecked() ? "2"
                 : bi.ss1083.isChecked() ? "3"
                 : "-1");
-        mobileHealth.setSs109(bi.ss109a.isChecked() ? "1"
+        patientDetails.setSs109(bi.ss109a.isChecked() ? "1"
                 : bi.ss109b.isChecked() ? "2"
                 : bi.ss10999.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setSs110(bi.ss110.getText().toString());
-        mobileHealth.setSs111a(bi.ss111a.isChecked() ? "1" : "-1");
-        mobileHealth.setSs111b(bi.ss111b.isChecked() ? "2" : "-1");
-        mobileHealth.setSs111c(bi.ss111c.isChecked() ? "3" : "-1");
-        mobileHealth.setSs111d(bi.ss111d.isChecked() ? "4" : "-1");
-        mobileHealth.setSs11199(bi.ss11199.isChecked() ? "99" : "-1");
-        mobileHealth.setPc201a(bi.pc201a.getSelectedItem().toString());
-        mobileHealth.setPc20101(bi.pc20101.isChecked() ? "1" : "-1");
-        mobileHealth.setPc20102(bi.pc20102.isChecked() ? "2" : "-1");
-        mobileHealth.setPc20103(bi.pc20103.isChecked() ? "3" : "-1");
-        mobileHealth.setPc20104(bi.pc20104.isChecked() ? "4" : "-1");
-        mobileHealth.setPc20105(bi.pc20105.isChecked() ? "5" : "-1");
-        mobileHealth.setPc20106(bi.pc20106.isChecked() ? "6" : "-1");
-        mobileHealth.setPc20107(bi.pc20107.isChecked() ? "7" : "-1");
-        mobileHealth.setPc20108(bi.pc20108.isChecked() ? "8" : "-1");
-        mobileHealth.setPc20109(bi.pc20109.isChecked() ? "9" : "-1");
-        mobileHealth.setPc20110(bi.pc20110.isChecked() ? "10" : "-1");
-        mobileHealth.setPc20111(bi.pc20111.isChecked() ? "11" : "-1");
-        mobileHealth.setPc20112(bi.pc20112.isChecked() ? "12" : "-1");
-        mobileHealth.setPc20113(bi.pc20113.isChecked() ? "13" : "-1");
-        mobileHealth.setPc20114(bi.pc20114.isChecked() ? "14" : "-1");
-        mobileHealth.setPc20115(bi.pc20115.isChecked() ? "15" : "-1");
-        mobileHealth.setPc20116(bi.pc20116.isChecked() ? "16" : "-1");
-        mobileHealth.setPc20117(bi.pc20117.isChecked() ? "17" : "-1");
-        mobileHealth.setPc20118(bi.pc20118.isChecked() ? "18" : "-1");
-        mobileHealth.setPc20119(bi.pc20119.isChecked() ? "19" : "-1");
-        mobileHealth.setPc20196(bi.pc20196.isChecked() ? "20" : "-1");
-        mobileHealth.setPc20196x(bi.pc20196x.getText().toString());
-        mobileHealth.setPc20199(bi.pc20199.isChecked() ? "99" : "-1");
-        mobileHealth.setDi20201(bi.di20201.isChecked() ? "1" : "-1");
-        mobileHealth.setDi20202(bi.di20202.isChecked() ? "2" : "-1");
-        mobileHealth.setDi20203(bi.di20203.isChecked() ? "3" : "-1");
-        mobileHealth.setDi20204(bi.di20204.isChecked() ? "4" : "-1");
-        mobileHealth.setDi20205(bi.di20205.isChecked() ? "5" : "-1");
-        mobileHealth.setDi20206(bi.di20206.isChecked() ? "6" : "-1");
-        mobileHealth.setDi20207(bi.di20207.isChecked() ? "7" : "-1");
-        mobileHealth.setDi20208(bi.di20208.isChecked() ? "8" : "-1");
-        mobileHealth.setDi20209(bi.di20209.isChecked() ? "9" : "-1");
-        mobileHealth.setDi20210(bi.di20210.isChecked() ? "10" : "-1");
-        mobileHealth.setDi20211(bi.di20211.isChecked() ? "11" : "-1");
-        mobileHealth.setDi20212(bi.di20212.isChecked() ? "12" : "-1");
-        mobileHealth.setDi20213(bi.di20213.isChecked() ? "13" : "-1");
-        mobileHealth.setDi20214(bi.di20214.isChecked() ? "14" : "-1");
-        mobileHealth.setDi20215(bi.di20215.isChecked() ? "15" : "-1");
-        mobileHealth.setDi20216(bi.di20216.isChecked() ? "16" : "-1");
-        mobileHealth.setDi20217(bi.di20217.isChecked() ? "17" : "-1");
-        mobileHealth.setDi20218(bi.di20218.isChecked() ? "18" : "-1");
-        mobileHealth.setDi20219(bi.di20219.isChecked() ? "19" : "-1");
-        mobileHealth.setDi20296(bi.di20296.isChecked() ? "96" : "-1");
-        mobileHealth.setDi20296x(bi.di20296x.getText().toString());
-        mobileHealth.setDi20299(bi.di20299.isChecked() ? "99" : "-1");
-        mobileHealth.setMe20301(bi.me20301.isChecked() ? "1" : "-1");
-        mobileHealth.setMe20302(bi.me20302.isChecked() ? "2" : "-1");
-        mobileHealth.setMe20303(bi.me20303.isChecked() ? "3" : "-1");
-        mobileHealth.setMe20304(bi.me20304.isChecked() ? "4" : "-1");
-        mobileHealth.setMe20305(bi.me20305.isChecked() ? "5" : "-1");
-        mobileHealth.setMe20306(bi.me20306.isChecked() ? "6" : "-1");
-        mobileHealth.setMe20307(bi.me20307.isChecked() ? "7" : "-1");
-        mobileHealth.setMe20308(bi.me20308.isChecked() ? "8" : "-1");
-        mobileHealth.setMe20309(bi.me20309.isChecked() ? "9" : "-1");
-        mobileHealth.setMe20310(bi.me20310.isChecked() ? "10" : "-1");
-        mobileHealth.setMe20311(bi.me20311.isChecked() ? "11" : "-1");
-        mobileHealth.setMe20312(bi.me20312.isChecked() ? "12" : "-1");
-        mobileHealth.setMe20313(bi.me20313.isChecked() ? "13" : "-1");
-        mobileHealth.setMe20314(bi.me20314.isChecked() ? "14" : "-1");
-        mobileHealth.setMe20315(bi.me20315.isChecked() ? "15" : "-1");
-        mobileHealth.setMe20316(bi.me20316.isChecked() ? "16" : "-1");
-        mobileHealth.setMe20317(bi.me20317.isChecked() ? "17" : "-1");
-        mobileHealth.setMe20318(bi.me20318.isChecked() ? "18" : "-1");
-        mobileHealth.setMe20319(bi.me20319.isChecked() ? "19" : "-1");
-        mobileHealth.setMe20320(bi.me20320.isChecked() ? "20" : "-1");
-        mobileHealth.setMe20321(bi.me20321.isChecked() ? "21" : "-1");
-        mobileHealth.setMe20322(bi.me20322.isChecked() ? "22" : "-1");
-        mobileHealth.setMe20323(bi.me20323.isChecked() ? "23" : "-1");
-        mobileHealth.setMe20324(bi.me20324.isChecked() ? "24" : "-1");
-        mobileHealth.setMe20396(bi.me20396.isChecked() ? "96" : "-1");
-        mobileHealth.setMe20396x(bi.me20396x.getText().toString());
-        mobileHealth.setMe20399(bi.me20399.isChecked() ? "99" : "-1");
-        mobileHealth.setVs301(bi.vs301a.isChecked() ? "1"
+        patientDetails.setSs110(bi.ss110.getText().toString());
+        patientDetails.setSs111a(bi.ss111a.isChecked() ? "1" : "-1");
+        patientDetails.setSs111b(bi.ss111b.isChecked() ? "2" : "-1");
+        patientDetails.setSs111c(bi.ss111c.isChecked() ? "3" : "-1");
+        patientDetails.setSs111d(bi.ss111d.isChecked() ? "4" : "-1");
+        patientDetails.setSs11199(bi.ss11199.isChecked() ? "99" : "-1");
+        patientDetails.setPc201a(bi.pc201a.getSelectedItem().toString());
+        patientDetails.setPc20101(bi.pc20101.isChecked() ? "1" : "-1");
+        patientDetails.setPc20102(bi.pc20102.isChecked() ? "2" : "-1");
+        patientDetails.setPc20103(bi.pc20103.isChecked() ? "3" : "-1");
+        patientDetails.setPc20104(bi.pc20104.isChecked() ? "4" : "-1");
+        patientDetails.setPc20105(bi.pc20105.isChecked() ? "5" : "-1");
+        patientDetails.setPc20106(bi.pc20106.isChecked() ? "6" : "-1");
+        patientDetails.setPc20107(bi.pc20107.isChecked() ? "7" : "-1");
+        patientDetails.setPc20108(bi.pc20108.isChecked() ? "8" : "-1");
+        patientDetails.setPc20109(bi.pc20109.isChecked() ? "9" : "-1");
+        patientDetails.setPc20110(bi.pc20110.isChecked() ? "10" : "-1");
+        patientDetails.setPc20111(bi.pc20111.isChecked() ? "11" : "-1");
+        patientDetails.setPc20112(bi.pc20112.isChecked() ? "12" : "-1");
+        patientDetails.setPc20113(bi.pc20113.isChecked() ? "13" : "-1");
+        patientDetails.setPc20114(bi.pc20114.isChecked() ? "14" : "-1");
+        patientDetails.setPc20115(bi.pc20115.isChecked() ? "15" : "-1");
+        patientDetails.setPc20116(bi.pc20116.isChecked() ? "16" : "-1");
+        patientDetails.setPc20117(bi.pc20117.isChecked() ? "17" : "-1");
+        patientDetails.setPc20118(bi.pc20118.isChecked() ? "18" : "-1");
+        patientDetails.setPc20119(bi.pc20119.isChecked() ? "19" : "-1");
+        patientDetails.setPc20196(bi.pc20196.isChecked() ? "20" : "-1");
+        patientDetails.setPc20196x(bi.pc20196x.getText().toString());
+        patientDetails.setPc20199(bi.pc20199.isChecked() ? "99" : "-1");
+        patientDetails.setDi20201(bi.di20201.isChecked() ? "1" : "-1");
+        patientDetails.setDi20202(bi.di20202.isChecked() ? "2" : "-1");
+        patientDetails.setDi20203(bi.di20203.isChecked() ? "3" : "-1");
+        patientDetails.setDi20204(bi.di20204.isChecked() ? "4" : "-1");
+        patientDetails.setDi20205(bi.di20205.isChecked() ? "5" : "-1");
+        patientDetails.setDi20206(bi.di20206.isChecked() ? "6" : "-1");
+        patientDetails.setDi20207(bi.di20207.isChecked() ? "7" : "-1");
+        patientDetails.setDi20208(bi.di20208.isChecked() ? "8" : "-1");
+        patientDetails.setDi20209(bi.di20209.isChecked() ? "9" : "-1");
+        patientDetails.setDi20210(bi.di20210.isChecked() ? "10" : "-1");
+        patientDetails.setDi20211(bi.di20211.isChecked() ? "11" : "-1");
+        patientDetails.setDi20212(bi.di20212.isChecked() ? "12" : "-1");
+        patientDetails.setDi20213(bi.di20213.isChecked() ? "13" : "-1");
+        patientDetails.setDi20214(bi.di20214.isChecked() ? "14" : "-1");
+        patientDetails.setDi20215(bi.di20215.isChecked() ? "15" : "-1");
+        patientDetails.setDi20216(bi.di20216.isChecked() ? "16" : "-1");
+        patientDetails.setDi20217(bi.di20217.isChecked() ? "17" : "-1");
+        patientDetails.setDi20218(bi.di20218.isChecked() ? "18" : "-1");
+        patientDetails.setDi20219(bi.di20219.isChecked() ? "19" : "-1");
+        patientDetails.setDi20296(bi.di20296.isChecked() ? "96" : "-1");
+        patientDetails.setDi20296x(bi.di20296x.getText().toString());
+        patientDetails.setDi20299(bi.di20299.isChecked() ? "99" : "-1");
+        patientDetails.setMe20301(bi.me20301.isChecked() ? "1" : "-1");
+        patientDetails.setMe20302(bi.me20302.isChecked() ? "2" : "-1");
+        patientDetails.setMe20303(bi.me20303.isChecked() ? "3" : "-1");
+        patientDetails.setMe20304(bi.me20304.isChecked() ? "4" : "-1");
+        patientDetails.setMe20305(bi.me20305.isChecked() ? "5" : "-1");
+        patientDetails.setMe20306(bi.me20306.isChecked() ? "6" : "-1");
+        patientDetails.setMe20307(bi.me20307.isChecked() ? "7" : "-1");
+        patientDetails.setMe20308(bi.me20308.isChecked() ? "8" : "-1");
+        patientDetails.setMe20309(bi.me20309.isChecked() ? "9" : "-1");
+        patientDetails.setMe20310(bi.me20310.isChecked() ? "10" : "-1");
+        patientDetails.setMe20311(bi.me20311.isChecked() ? "11" : "-1");
+        patientDetails.setMe20312(bi.me20312.isChecked() ? "12" : "-1");
+        patientDetails.setMe20313(bi.me20313.isChecked() ? "13" : "-1");
+        patientDetails.setMe20314(bi.me20314.isChecked() ? "14" : "-1");
+        patientDetails.setMe20315(bi.me20315.isChecked() ? "15" : "-1");
+        patientDetails.setMe20316(bi.me20316.isChecked() ? "16" : "-1");
+        patientDetails.setMe20317(bi.me20317.isChecked() ? "17" : "-1");
+        patientDetails.setMe20318(bi.me20318.isChecked() ? "18" : "-1");
+        patientDetails.setMe20319(bi.me20319.isChecked() ? "19" : "-1");
+        patientDetails.setMe20320(bi.me20320.isChecked() ? "20" : "-1");
+        patientDetails.setMe20321(bi.me20321.isChecked() ? "21" : "-1");
+        patientDetails.setMe20322(bi.me20322.isChecked() ? "22" : "-1");
+        patientDetails.setMe20323(bi.me20323.isChecked() ? "23" : "-1");
+        patientDetails.setMe20324(bi.me20324.isChecked() ? "24" : "-1");
+        patientDetails.setMe20396(bi.me20396.isChecked() ? "96" : "-1");
+        patientDetails.setMe20396x(bi.me20396x.getText().toString());
+        patientDetails.setMe20399(bi.me20399.isChecked() ? "99" : "-1");
+        patientDetails.setVs301(bi.vs301a.isChecked() ? "1"
                 : bi.vs301b.isChecked() ? "2"
                 : bi.vs30199.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setVs302(bi.vs302a.isChecked() ? "1"
+        patientDetails.setVs302(bi.vs302a.isChecked() ? "1"
                 : bi.vs302b.isChecked() ? "2"
                 : bi.vs30299.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setVs303(bi.vs303a.isChecked() ? "1"
+        patientDetails.setVs303(bi.vs303a.isChecked() ? "1"
                 : bi.vs303b.isChecked() ? "2"
                 : bi.vs30399.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setVs304(bi.vs304a.isChecked() ? "1"
+        patientDetails.setVs304(bi.vs304a.isChecked() ? "1"
                 : bi.vs304b.isChecked() ? "2"
                 : bi.vs304c.isChecked() ? "3"
                 : bi.vs304d.isChecked() ? "4"
                 : bi.vs30499.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setVs305(bi.vs305a.isChecked() ? "1"
+        patientDetails.setVs305(bi.vs305a.isChecked() ? "1"
                 : bi.vs305b.isChecked() ? "2"
                 : bi.vs305c.isChecked() ? "3"
                 : bi.vs305d.isChecked() ? "4"
                 : bi.vs30599.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setVs306a(bi.vs306a.isChecked() ? "1" : "-1");
-        mobileHealth.setVs306b(bi.vs306b.isChecked() ? "2" : "-1");
-        mobileHealth.setVs306c(bi.vs306c.isChecked() ? "3" : "-1");
-        mobileHealth.setVs306d(bi.vs306d.isChecked() ? "4" : "-1");
-        mobileHealth.setVs306e(bi.vs306e.isChecked() ? "5" : "-1");
-        mobileHealth.setVs306f(bi.vs306f.isChecked() ? "6" : "-1");
-        mobileHealth.setVs306g(bi.vs306g.isChecked() ? "7" : "-1");
-        mobileHealth.setVs306i(bi.vs306i.isChecked() ? "8" : "-1");
-        mobileHealth.setVs30699(bi.vs30699.isChecked() ? "99" : "-1");
-        mobileHealth.setVs307(bi.vs307a.isChecked() ? "1"
+        patientDetails.setVs306a(bi.vs306a.isChecked() ? "1" : "-1");
+        patientDetails.setVs306b(bi.vs306b.isChecked() ? "2" : "-1");
+        patientDetails.setVs306c(bi.vs306c.isChecked() ? "3" : "-1");
+        patientDetails.setVs306d(bi.vs306d.isChecked() ? "4" : "-1");
+        patientDetails.setVs306e(bi.vs306e.isChecked() ? "5" : "-1");
+        patientDetails.setVs306f(bi.vs306f.isChecked() ? "6" : "-1");
+        patientDetails.setVs306g(bi.vs306g.isChecked() ? "7" : "-1");
+        patientDetails.setVs306i(bi.vs306i.isChecked() ? "8" : "-1");
+        patientDetails.setVs30699(bi.vs30699.isChecked() ? "99" : "-1");
+        patientDetails.setVs307(bi.vs307a.isChecked() ? "1"
                 : bi.vs307b.isChecked() ? "2"
                 : bi.vs30799.isChecked() ? "99"
                 : "-1");
-        mobileHealth.setVs308(bi.vs308a.isChecked() ? "1"
+        patientDetails.setVs308(bi.vs308a.isChecked() ? "1"
                 : bi.vs308b.isChecked() ? "2"
                 : "-1");
 

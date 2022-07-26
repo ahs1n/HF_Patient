@@ -2,7 +2,7 @@ package edu.aku.hassannaqvi.hf_patient.database;
 
 import static edu.aku.hassannaqvi.hf_patient.core.MainApp.IBAHC;
 import static edu.aku.hassannaqvi.hf_patient.core.MainApp.PROJECT_NAME;
-import static edu.aku.hassannaqvi.hf_patient.core.MainApp.mobileHealth;
+import static edu.aku.hassannaqvi.hf_patient.core.MainApp.patientDetails;
 import static edu.aku.hassannaqvi.hf_patient.core.UserAuth.checkPassword;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_ALTER_USERS_ENABLED;
 import static edu.aku.hassannaqvi.hf_patient.database.CreateTable.SQL_ALTER_USERS_ISNEW_USER;
@@ -47,8 +47,8 @@ import edu.aku.hassannaqvi.hf_patient.contracts.FormsContract;
 import edu.aku.hassannaqvi.hf_patient.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.hf_patient.contracts.IMContract;
 import edu.aku.hassannaqvi.hf_patient.contracts.IMContract.IMTable;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract.MHTable;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract.MHTable;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.models.BLRandom;
 import edu.aku.hassannaqvi.hf_patient.models.BLRandom.TableRandom;
@@ -65,7 +65,7 @@ import edu.aku.hassannaqvi.hf_patient.models.Form;
 import edu.aku.hassannaqvi.hf_patient.models.FormIndicatorsModel;
 import edu.aku.hassannaqvi.hf_patient.models.HealthFacilities;
 import edu.aku.hassannaqvi.hf_patient.models.Immunization;
-import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
+import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 import edu.aku.hassannaqvi.hf_patient.models.UCs;
 import edu.aku.hassannaqvi.hf_patient.models.UCs.TableUCs;
 import edu.aku.hassannaqvi.hf_patient.models.Users;
@@ -298,38 +298,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public Long addMH(MobileHealth mobileHealth) {
+    public Long addMH(PatientDetails patientDetails) {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(MHContract.MHTable.COLUMN_PROJECT_NAME, mobileHealth.getProjectName());
-        values.put(MHContract.MHTable.COLUMN_UID, mobileHealth.getUid());
-        values.put(MHContract.MHTable.COLUMN_USERNAME, mobileHealth.getUserName());
-        values.put(MHContract.MHTable.COLUMN_SYSDATE, mobileHealth.getSysDate());
-        values.put(MHContract.MHTable.COLUMN_SA, mobileHealth.sAtoString());
-        values.put(MHContract.MHTable.COLUMN_SS101, mobileHealth.getSs101());
-        values.put(MHContract.MHTable.COLUMN_SS102, mobileHealth.getSs102());
-        values.put(MHContract.MHTable.COLUMN_SS103, mobileHealth.getSs103());
-        values.put(MHContract.MHTable.COLUMN_SS104, mobileHealth.getSs104());
-        values.put(MHContract.MHTable.COLUMN_SS105, mobileHealth.getSs105());
-        values.put(MHContract.MHTable.COLUMN_SS106, mobileHealth.getSs106());
-        values.put(MHContract.MHTable.COLUMN_SS107, mobileHealth.getSs107());
-        values.put(MHContract.MHTable.COLUMN_DEVICEID, mobileHealth.getDeviceId());
-        values.put(MHContract.MHTable.COLUMN_DEVICETAGID, mobileHealth.getDeviceTag());
-        values.put(MHContract.MHTable.COLUMN_SYNCED, mobileHealth.getSynced());
-        values.put(MHContract.MHTable.COLUMN_SYNCED_DATE, mobileHealth.getSyncDate());
-        values.put(MHContract.MHTable.COLUMN_APPVERSION, mobileHealth.getAppver());
-        values.put(MHContract.MHTable.COLUMN_STATUS, mobileHealth.getStatus());
-        values.put(MHContract.MHTable.COLUMN_SERIAL, mobileHealth.getSerial());
+        values.put(PDContract.MHTable.COLUMN_PROJECT_NAME, patientDetails.getProjectName());
+        values.put(PDContract.MHTable.COLUMN_UID, patientDetails.getUid());
+        values.put(PDContract.MHTable.COLUMN_USERNAME, patientDetails.getUserName());
+        values.put(PDContract.MHTable.COLUMN_SYSDATE, patientDetails.getSysDate());
+        values.put(PDContract.MHTable.COLUMN_SA, patientDetails.sAtoString());
+        values.put(PDContract.MHTable.COLUMN_SS101, patientDetails.getSs101());
+        values.put(PDContract.MHTable.COLUMN_SS102, patientDetails.getSs102());
+        values.put(PDContract.MHTable.COLUMN_SS103, patientDetails.getSs103());
+        values.put(PDContract.MHTable.COLUMN_SS104, patientDetails.getSs104());
+        values.put(PDContract.MHTable.COLUMN_SS105, patientDetails.getSs105());
+        values.put(PDContract.MHTable.COLUMN_SS106, patientDetails.getSs106());
+        values.put(PDContract.MHTable.COLUMN_SS107, patientDetails.getSs107());
+        values.put(PDContract.MHTable.COLUMN_DEVICEID, patientDetails.getDeviceId());
+        values.put(PDContract.MHTable.COLUMN_DEVICETAGID, patientDetails.getDeviceTag());
+        values.put(PDContract.MHTable.COLUMN_SYNCED, patientDetails.getSynced());
+        values.put(PDContract.MHTable.COLUMN_SYNCED_DATE, patientDetails.getSyncDate());
+        values.put(PDContract.MHTable.COLUMN_APPVERSION, patientDetails.getAppver());
+        values.put(PDContract.MHTable.COLUMN_STATUS, patientDetails.getStatus());
+        values.put(PDContract.MHTable.COLUMN_SERIAL, patientDetails.getSerial());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
         newRowId = db.insert(
-                MHContract.MHTable.TABLE_NAME,
-                MHContract.MHTable.COLUMN_NAME_NULLABLE,
+                PDContract.MHTable.TABLE_NAME,
+                PDContract.MHTable.COLUMN_NAME_NULLABLE,
                 values);
         return newRowId;
     }
@@ -989,10 +989,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(column, value);
 
-        String selection = MHContract.MHTable._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(mobileHealth.getId())};
+        String selection = PDContract.MHTable._ID + " =? ";
+        String[] selectionArgs = {String.valueOf(patientDetails.getId())};
 
-        return db.update(MHContract.MHTable.TABLE_NAME,
+        return db.update(PDContract.MHTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -1529,46 +1529,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFC;
     }
 
-    public JSONArray getUnsyncedMH() throws JSONException {
+    public JSONArray getUnsyncedPD() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
-                MHContract.MHTable.COLUMN_ID,
-                MHContract.MHTable.COLUMN_UID,
-                MHContract.MHTable.COLUMN_USERNAME,
-                MHContract.MHTable.COLUMN_SYSDATE,
-                MHContract.MHTable.COLUMN_DEVICEID,
-                MHContract.MHTable.COLUMN_DEVICETAGID,
-                MHContract.MHTable.COLUMN_APPVERSION,
-                MHContract.MHTable.COLUMN_SYNCED,
-                MHContract.MHTable.COLUMN_SYNCED_DATE,
-                MHContract.MHTable.COLUMN_STATUS,
-                MHContract.MHTable.COLUMN_SERIAL,
-                MHContract.MHTable.COLUMN_SS101,
-                MHContract.MHTable.COLUMN_SS102,
-                MHContract.MHTable.COLUMN_SS103,
-                MHContract.MHTable.COLUMN_SS104,
-                MHContract.MHTable.COLUMN_SS105,
-                MHContract.MHTable.COLUMN_SS106,
-                MHContract.MHTable.COLUMN_SS107,
-                MHContract.MHTable.COLUMN_SA
+                PDContract.MHTable.COLUMN_ID,
+                PDContract.MHTable.COLUMN_UID,
+                PDContract.MHTable.COLUMN_USERNAME,
+                PDContract.MHTable.COLUMN_SYSDATE,
+                PDContract.MHTable.COLUMN_DEVICEID,
+                PDContract.MHTable.COLUMN_DEVICETAGID,
+                PDContract.MHTable.COLUMN_APPVERSION,
+                PDContract.MHTable.COLUMN_SYNCED,
+                PDContract.MHTable.COLUMN_SYNCED_DATE,
+                PDContract.MHTable.COLUMN_STATUS,
+                PDContract.MHTable.COLUMN_SERIAL,
+                PDContract.MHTable.COLUMN_SS101,
+                PDContract.MHTable.COLUMN_SS102,
+                PDContract.MHTable.COLUMN_SS103,
+                PDContract.MHTable.COLUMN_SS104,
+                PDContract.MHTable.COLUMN_SS105,
+                PDContract.MHTable.COLUMN_SS106,
+                PDContract.MHTable.COLUMN_SS107,
+                PDContract.MHTable.COLUMN_SA
         };
 
         String whereClause;
-        whereClause = MHContract.MHTable.COLUMN_SYNCED + " is null ";
+        whereClause = PDContract.MHTable.COLUMN_SYNCED + " is null ";
 
         String[] whereArgs = null;
 
         String groupBy = null;
         String having = null;
 
-        String orderBy = MHContract.MHTable.COLUMN_ID + " ASC";
+        String orderBy = PDContract.MHTable.COLUMN_ID + " ASC";
 
         JSONArray jsa = new JSONArray();
 
         try {
             c = db.query(
-                    MHContract.MHTable.TABLE_NAME,  // The table to query
+                    PDContract.MHTable.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
                     whereClause,               // The columns for the WHERE clause
                     whereArgs,                 // The values for the WHERE clause
@@ -1578,7 +1578,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 Log.d(TAG, "getUnsyncedMH: " + c.getCount());
-                MobileHealth mhForm = new MobileHealth();
+                PatientDetails mhForm = new PatientDetails();
                 jsa.put(mhForm.Hydrate(c).toJSONObject());
             }
         } finally {
@@ -1705,15 +1705,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(MHContract.MHTable.COLUMN_SYNCED, true);
-        values.put(MHContract.MHTable.COLUMN_SYNCED_DATE, new Date().toString());
+        values.put(PDContract.MHTable.COLUMN_SYNCED, true);
+        values.put(PDContract.MHTable.COLUMN_SYNCED_DATE, new Date().toString());
 
 // Which row to update, based on the title
-        String where = MHContract.MHTable.COLUMN_ID + " = ?";
+        String where = PDContract.MHTable.COLUMN_ID + " = ?";
         String[] whereArgs = {id};
 
         int count = db.update(
-                MHContract.MHTable.TABLE_NAME,
+                PDContract.MHTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
@@ -1751,7 +1751,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Collection<MobileHealth> getFormsByCluster(String cluster) throws JSONException {
+    public Collection<PatientDetails> getFormsByCluster(String cluster) throws JSONException {
 
         // String sysdate =  spDateT.substring(0, 8).trim()
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
@@ -1776,7 +1776,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String orderBy =
                 MHTable.COLUMN_ID + " ASC";
 
-        Collection<MobileHealth> allFC = new ArrayList<>();
+        Collection<PatientDetails> allFC = new ArrayList<>();
         try {
             c = db.query(
                     MHTable.TABLE_NAME,  // The table to query
@@ -1788,7 +1788,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                MobileHealth fc = new MobileHealth();
+                PatientDetails fc = new PatientDetails();
                 fc.setId(c.getString(c.getColumnIndexOrThrow(MHTable.COLUMN_ID)));
                 fc.setUid(c.getString(c.getColumnIndexOrThrow(MHTable.COLUMN_UID)));
                 fc.setSysDate(c.getString(c.getColumnIndexOrThrow(MHTable.COLUMN_SYSDATE)));
@@ -1890,7 +1890,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public Collection<MobileHealth> getTodayForms(String sysdate) throws JSONException {
+    public Collection<PatientDetails> getTodayForms(String sysdate) throws JSONException {
 
         // String sysdate =  spDateT.substring(0, 8).trim()
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
@@ -1915,7 +1915,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String orderBy = MHTable.COLUMN_ID + " DESC";
 
-        Collection<MobileHealth> allFC = new ArrayList<>();
+        Collection<PatientDetails> allFC = new ArrayList<>();
         try {
             c = db.query(
                     MHTable.TABLE_NAME,  // The table to query
@@ -1927,7 +1927,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                MobileHealth fc = new MobileHealth();
+                PatientDetails fc = new PatientDetails();
                 fc.setId(c.getString(c.getColumnIndexOrThrow(MHTable.COLUMN_ID)));
                 fc.setUid(c.getString(c.getColumnIndexOrThrow(MHTable.COLUMN_UID)));
                 fc.setSysDate(c.getString(c.getColumnIndexOrThrow(MHTable.COLUMN_SYSDATE)));

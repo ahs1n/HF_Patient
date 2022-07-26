@@ -25,7 +25,7 @@ import edu.aku.hassannaqvi.hf_patient.models.Child;
 import edu.aku.hassannaqvi.hf_patient.models.ChildInformation;
 import edu.aku.hassannaqvi.hf_patient.models.Form;
 import edu.aku.hassannaqvi.hf_patient.models.Immunization;
-import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
+import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 import edu.aku.hassannaqvi.hf_patient.models.Users;
 
 public class MainApp extends Application {
@@ -49,7 +49,7 @@ public class MainApp extends Application {
     public static Form form;
     public static Child child;
     public static Immunization immunization;
-    public static MobileHealth mobileHealth;
+    public static PatientDetails patientDetails;
     public static ChildInformation childInformation;
     public static String DeviceURL = "devices.php";
     public static AppInfo appInfo;

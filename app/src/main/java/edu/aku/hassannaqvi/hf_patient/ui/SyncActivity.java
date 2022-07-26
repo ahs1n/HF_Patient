@@ -49,7 +49,7 @@ import edu.aku.hassannaqvi.hf_patient.CONSTANTS;
 import edu.aku.hassannaqvi.hf_patient.R;
 import edu.aku.hassannaqvi.hf_patient.adapters.SyncListAdapter;
 import edu.aku.hassannaqvi.hf_patient.contracts.EntryLog;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivitySyncBinding;
@@ -142,9 +142,9 @@ public class SyncActivity extends AppCompatActivity {
                 MainApp.uploadData.clear();
 
                 // MobileHealth
-                uploadTables.add(new SyncModel(MHContract.MHTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(PDContract.MHTable.TABLE_NAME));
                 try {
-                    MainApp.uploadData.add(db.getUnsyncedMH());
+                    MainApp.uploadData.add(db.getUnsyncedPD());
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.d(TAG, "ProcessStart(MHTable): " + e.getMessage());

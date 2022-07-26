@@ -6,11 +6,11 @@ import android.provider.BaseColumns;
  * Created by hassan.naqvi on 11/30/2016.
  */
 
-public class MHContract {
+public class PDContract {
 
 
     public static abstract class MHTable implements BaseColumns {
-        public static final String TABLE_NAME = "mobilehealth_r4";
+        public static final String TABLE_NAME = "patientdetails";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECT_NAME = "projectName";
         public static final String COLUMN_ID = "_id";

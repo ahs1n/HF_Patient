@@ -1,7 +1,7 @@
 package edu.aku.hassannaqvi.hf_patient.ui;
 
 import static edu.aku.hassannaqvi.hf_patient.CONSTANTS.SECTION_MAIN_CHECK_FOR_END;
-import static edu.aku.hassannaqvi.hf_patient.core.MainApp.mobileHealth;
+import static edu.aku.hassannaqvi.hf_patient.core.MainApp.patientDetails;
 import static edu.aku.hassannaqvi.hf_patient.utils.extension.ActivityExtKt.gotoActivity;
 
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.hf_patient.R;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivityEndingBinding;
@@ -55,11 +55,11 @@ public class EndingActivity extends AppCompatActivity {
     }
 
     private void saveDraft() {
-        mobileHealth.setStatus(bi.istatusa.isChecked() ? "1"
+        patientDetails.setStatus(bi.istatusa.isChecked() ? "1"
                 : bi.istatusb.isChecked() ? "2"
                 : bi.istatusc.isChecked() ? "3"
                 : "-1");
-        mobileHealth.setEndTime(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime()));
+        patientDetails.setEndTime(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime()));
     }
 
 
@@ -76,7 +76,7 @@ public class EndingActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        int updcount = db.updatesMHColumn(MHContract.MHTable.COLUMN_STATUS, mobileHealth.getStatus());
+        int updcount = db.updatesMHColumn(PDContract.MHTable.COLUMN_STATUS, patientDetails.getStatus());
         if (updcount > 0) {
             //int count = db.updateEnding();
             return updcount > 0;

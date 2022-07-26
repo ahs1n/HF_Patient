@@ -1,7 +1,7 @@
 package edu.aku.hassannaqvi.hf_patient.ui.sections;
 
 import static edu.aku.hassannaqvi.hf_patient.core.MainApp.form;
-import static edu.aku.hassannaqvi.hf_patient.core.MainApp.mobileHealth;
+import static edu.aku.hassannaqvi.hf_patient.core.MainApp.patientDetails;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +18,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.hf_patient.R;
-import edu.aku.hassannaqvi.hf_patient.contracts.MHContract;
+import edu.aku.hassannaqvi.hf_patient.contracts.PDContract;
 import edu.aku.hassannaqvi.hf_patient.core.MainApp;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hf_patient.databinding.ActivityInfoMobileHealthR2Binding;
-import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
+import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 import edu.aku.hassannaqvi.hf_patient.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.hf_patient.utils.EndSectionActivity;
 
@@ -45,11 +45,11 @@ public class InfoSectionMobileHealth extends AppCompatActivity implements EndSec
 
     private boolean UpdateDB() {
         DatabaseHelper db = MainApp.appInfo.dbHelper;
-        long updcount = db.addMH(mobileHealth);
-        mobileHealth.setId(String.valueOf(updcount));
+        long updcount = db.addMH(patientDetails);
+        patientDetails.setId(String.valueOf(updcount));
         if (updcount > 0) {
-            mobileHealth.setUid(mobileHealth.getDeviceId() + mobileHealth.getId());
-            long count = db.updatesMHColumn(MHContract.MHTable.COLUMN_UID, mobileHealth.getUid());
+            patientDetails.setUid(patientDetails.getDeviceId() + patientDetails.getId());
+            long count = db.updatesMHColumn(PDContract.MHTable.COLUMN_UID, patientDetails.getUid());
             return true;
         } else {
             Toast.makeText(this, "SORRY!! Failed to update DB)", Toast.LENGTH_SHORT).show();
@@ -60,8 +60,8 @@ public class InfoSectionMobileHealth extends AppCompatActivity implements EndSec
 
     private void saveDraft() {
 
-        mobileHealth = new MobileHealth();
-        mobileHealth.setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+        patientDetails = new PatientDetails();
+        patientDetails.setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
        /* mobileHealth.setUuid(MainApp.form.getUid());
         mobileHealth.setUserName(MainApp.user.getUserName());
         mobileHealth.setDcode(MainApp.form.getDcode());
@@ -72,10 +72,10 @@ public class InfoSectionMobileHealth extends AppCompatActivity implements EndSec
         mobileHealth.setDeviceTag(MainApp.appInfo.getTagName());
         mobileHealth.setAppver(MainApp.appInfo.getAppVersion());*/
 
-        mobileHealth.setSs101(bi.ss101.getText().toString().trim().isEmpty() ? "-1" : bi.ss101.getText().toString());
-        mobileHealth.setSs102(bi.ss102.getText().toString().trim().isEmpty() ? "-1" : bi.ss102.getText().toString());
-        mobileHealth.setSs103(bi.ss103.getText().toString().trim().isEmpty() ? "-1" : bi.ss103.getText().toString());
-        mobileHealth.setSs104(bi.ss104.getText().toString().trim().isEmpty() ? "-1" : bi.ss104.getText().toString());
+        patientDetails.setSs101(bi.ss101.getText().toString().trim().isEmpty() ? "-1" : bi.ss101.getText().toString());
+        patientDetails.setSs102(bi.ss102.getText().toString().trim().isEmpty() ? "-1" : bi.ss102.getText().toString());
+        patientDetails.setSs103(bi.ss103.getText().toString().trim().isEmpty() ? "-1" : bi.ss103.getText().toString());
+        patientDetails.setSs104(bi.ss104.getText().toString().trim().isEmpty() ? "-1" : bi.ss104.getText().toString());
         //mobileHealth.setSs105(bi.ss105.getText().toString().trim().isEmpty() ? "-1" : bi.ss105.getText().toString());
 
     }

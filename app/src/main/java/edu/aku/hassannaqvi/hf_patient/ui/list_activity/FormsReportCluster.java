@@ -20,13 +20,13 @@ import java.util.List;
 import edu.aku.hassannaqvi.hf_patient.R;
 import edu.aku.hassannaqvi.hf_patient.adapters.FormsAdapter;
 import edu.aku.hassannaqvi.hf_patient.database.DatabaseHelper;
-import edu.aku.hassannaqvi.hf_patient.models.MobileHealth;
+import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 
 
 public class FormsReportCluster extends AppCompatActivity {
     private static final String TAG = "FormsReportCluster";
     DatabaseHelper db;
-    Collection<MobileHealth> fc;
+    Collection<PatientDetails> fc;
     String sysdateToday = new SimpleDateFormat("dd-MM-yy").format(new Date());
     TextView dtFilter;
     TextView noresult;
@@ -59,7 +59,7 @@ public class FormsReportCluster extends AppCompatActivity {
         }
 
         // specify an adapter (see also next example)
-        formsAdapter = new FormsAdapter((List<MobileHealth>) fc, this);
+        formsAdapter = new FormsAdapter((List<PatientDetails>) fc, this);
         recyclerView.setAdapter(formsAdapter);
     }
 
@@ -75,7 +75,7 @@ public class FormsReportCluster extends AppCompatActivity {
         if (fc.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
             noresult.setVisibility(View.GONE);
-            formsAdapter = new FormsAdapter((List<MobileHealth>) fc, this);
+            formsAdapter = new FormsAdapter((List<PatientDetails>) fc, this);
             formsAdapter.notifyDataSetChanged();
             recyclerView.setAdapter(formsAdapter);
         } else {
