@@ -179,7 +179,6 @@ public class SyncActivity extends AppCompatActivity {
                 } else {
                     // Set tables to DOWNLOAD
                     downloadTables.add(new SyncModel(Users.UsersTable.TABLE_NAME));
-                    downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));
 
                     String select = " idCamp, camp_no, dist_id, district, ucCode, ucName, area_name, plan_date ";
                     String filter = " camp_status = 'Conducted'  AND camp_round=4 AND (locked = 0 OR locked is NULL)";
@@ -187,6 +186,7 @@ public class SyncActivity extends AppCompatActivity {
                     downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
                     downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME));
                     downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
+                    downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);

@@ -635,14 +635,14 @@
 
                             <CheckBox
                                 android:id="@+id/ss111a"
-                                android:enabled="@{!ss10801.checked}"
+                                android:enabled="@{!ss10801.checked &amp;&amp; !ss1082.checked}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ss111a" />
 
                             <CheckBox
                                 android:id="@+id/ss111b"
-                                android:enabled="@{!ss10801.checked}"
+                                android:enabled="@{!ss10801.checked &amp;&amp; !ss1082.checked}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ss111b" />
