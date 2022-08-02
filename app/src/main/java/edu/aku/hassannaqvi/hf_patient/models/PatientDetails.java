@@ -41,6 +41,7 @@ public class PatientDetails extends BaseObservable {
     public String ss108a;
     public String ss109;
     public String ss110;
+    public String ss11099;
     public String ss111;
     public String ss111a;
     public String ss111b;
@@ -393,6 +394,7 @@ public class PatientDetails extends BaseObservable {
                     .put("ss108a", ss108a)
                     .put("ss109", ss109)
                     .put("ss110", ss110)
+                    .put("ss11099", ss11099)
                     .put("ss111a", ss111a)
                     .put("ss111b", ss111b)
                     .put("ss111c", ss111c)
@@ -560,6 +562,7 @@ public class PatientDetails extends BaseObservable {
             this.ss108a = json.getString("ss108a");
             this.ss109 = json.getString("ss109");
             this.ss110 = json.getString("ss110");
+            this.ss11099 = json.getString("ss11099");
             this.ss111a = json.getString("ss111a");
             this.ss111b = json.getString("ss111b");
             this.ss111c = json.getString("ss111c");
@@ -806,6 +809,16 @@ public class PatientDetails extends BaseObservable {
     public void setSs110(String ss110) {
         this.ss110 = ss110;
         notifyPropertyChanged(BR.ss110);
+    }
+
+    @Bindable
+    public String getSs11099() {
+        return ss11099;
+    }
+
+    public void setSs11099(String ss11099) {
+        this.ss11099 = ss11099;
+        notifyPropertyChanged(BR.ss11099);
     }
 
     @Bindable

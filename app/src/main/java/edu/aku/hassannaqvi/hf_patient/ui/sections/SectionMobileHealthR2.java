@@ -168,6 +168,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
 
         bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
+        bi.ss11099.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.ss110, !b));
         bi.ss11199.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.ss111check, !b));
         bi.pc20199.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.pc201check, !b));
         bi.di20299.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.di202check, !b));
@@ -291,6 +292,13 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
             bi.fldGrpU5.setVisibility(View.VISIBLE);
         }
 
+        if (age < 5) {
+            Clear.clearAllFields(bi.fldGrpCVpc201);
+            bi.fldGrpCVpc201.setVisibility(View.GONE);
+        } else {
+            bi.fldGrpCVpc201.setVisibility(View.VISIBLE);
+        }
+
         if (age < 14) {
             Clear.clearAllFields(bi.fldGrpCVss109);
             bi.fldGrpCVss109.setVisibility(View.GONE);
@@ -302,9 +310,11 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         }
 
         if (age < 13) {
-            Clear.clearAllFields(bi.fldGrpCVss108a);
+//            Clear.clearAllFields(bi.fldGrpCVss108a);
+            bi.ss1082.setChecked(true);
             bi.fldGrpCVss108a.setVisibility(View.GONE);
         } else {
+            Clear.clearAllFields(bi.fldGrpCVss108a);
             bi.fldGrpCVss108a.setVisibility(View.VISIBLE);
         }
     }
@@ -443,6 +453,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
                 : bi.ss10999.isChecked() ? "99"
                 : "-1");
         patientDetails.setSs110(bi.ss110.getText().toString());
+        patientDetails.setSs11099(bi.ss11099.isChecked() ? "99" : "-1");
         patientDetails.setSs111a(bi.ss111a.isChecked() ? "1" : "-1");
         patientDetails.setSs111b(bi.ss111b.isChecked() ? "2" : "-1");
         patientDetails.setSs111c(bi.ss111c.isChecked() ? "3" : "-1");

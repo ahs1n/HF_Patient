@@ -589,6 +589,16 @@
                                 app:minValue="1"
                                 app:pattern="^(\\d{3,3}\\.\\d{1,1})$"
                                 app:type="range" />
+
+                            <CheckBox
+                                android:id="@+id/ss11099"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:background="#7fefd6d6"
+                                android:tag="-1"
+                                android:text="@string/nr"
+                                android:textColor="@color/redDark" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
