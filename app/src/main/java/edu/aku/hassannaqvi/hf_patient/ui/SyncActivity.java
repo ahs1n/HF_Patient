@@ -45,7 +45,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import edu.aku.hassannaqvi.hf_patient.CONSTANTS;
 import edu.aku.hassannaqvi.hf_patient.R;
 import edu.aku.hassannaqvi.hf_patient.adapters.SyncListAdapter;
 import edu.aku.hassannaqvi.hf_patient.contracts.EntryLog;
@@ -173,20 +172,27 @@ public class SyncActivity extends AppCompatActivity {
                 bi.mTextViewS.setVisibility(View.GONE);
                 bi.pBar.setVisibility(View.GONE);
                 downloadTables.clear();
-                boolean sync_flag = getIntent().getBooleanExtra(CONSTANTS.SYNC_LOGIN, false);
+                boolean sync_flag = getIntent().getBooleanExtra("login", false);
+                String select = " * ";
+                String filter = " colflag is null ";
+
                 if (sync_flag) {
                     //campCode = getIntent().getStringExtra(CONSTANTS.SYNC_CAMPID_LOGIN);
-                } else {
-                    // Set tables to DOWNLOAD
                     downloadTables.add(new SyncModel(Users.UsersTable.TABLE_NAME));
-
-                    String select = " idCamp, camp_no, dist_id, district, ucCode, ucName, area_name, plan_date ";
-                    String filter = " camp_status = 'Conducted'  AND camp_round=4 AND (locked = 0 OR locked is NULL)";
-//                    downloadTables.add(new SyncModel(Camps.TableCamp.TABLE_NAME, select, filter));
                     downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
-                    downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME));
                     downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
                     downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));
+                } else {
+                    // Set tables to DOWNLOAD
+//                    downloadTables.add(new SyncModel(Users.UsersTable.TABLE_NAME));
+
+                    select = " * ";
+                    filter = " (colflag is null or colflag=0) AND uccode = '" + MainApp.user.getUcCode() + "' ";
+//                    downloadTables.add(new SyncModel(Camps.TableCamp.TABLE_NAME, select, filter));
+/*                    downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
+                    downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
+                    downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));*/
+                    downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME, select, filter));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);

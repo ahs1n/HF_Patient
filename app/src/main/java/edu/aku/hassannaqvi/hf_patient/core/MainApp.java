@@ -42,7 +42,7 @@ public class MainApp extends Application {
     public static final String _PHOTO_UPLOAD_URL = _HOST_URL + "uploads.php";
     public static final String _APP_FOLDER = "../app/";
     public static final String _UPDATE_URL = MainApp._IP + "/app/";
-    public static final String _USER_URL = "resetpassword.php";
+    public static final String _USER_URL = "resetpasswordgcm.php";
     private static final String TAG = "MainApp";
     public static File sdDir;
     public static String[] downloadData;
