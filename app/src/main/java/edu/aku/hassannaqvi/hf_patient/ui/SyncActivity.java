@@ -180,7 +180,6 @@ public class SyncActivity extends AppCompatActivity {
                     //campCode = getIntent().getStringExtra(CONSTANTS.SYNC_CAMPID_LOGIN);
                     downloadTables.add(new SyncModel(Users.UsersTable.TABLE_NAME));
                     downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
-                    downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
                     downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));
                 } else {
                     // Set tables to DOWNLOAD
@@ -193,6 +192,7 @@ public class SyncActivity extends AppCompatActivity {
                     downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
                     downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));*/
                     downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME, select, filter));
+                    downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);
