@@ -18,5 +18,7 @@ class CONSTANTS {
         const val CAMP_DATA = "campDATA"
         const val SELECTED_CAMP_DATA = "selectedCampData"
         const val SELECTED_FACILITY_DATA = "selectedFacilityData"
+
+        const val MINYEAR = 1940
     }
 }

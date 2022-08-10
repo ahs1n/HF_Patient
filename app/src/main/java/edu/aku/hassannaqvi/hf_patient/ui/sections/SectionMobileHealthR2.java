@@ -39,6 +39,7 @@ import edu.aku.hassannaqvi.hf_patient.models.Doctor;
 import edu.aku.hassannaqvi.hf_patient.models.PatientDetails;
 import edu.aku.hassannaqvi.hf_patient.ui.MainActivity;
 import edu.aku.hassannaqvi.hf_patient.utils.AppUtilsKt;
+import edu.aku.hassannaqvi.hf_patient.utils.DateUtils;
 import edu.aku.hassannaqvi.hf_patient.utils.EndSectionActivity;
 import edu.aku.hassannaqvi.hf_patient.utils.shared.SharedStorage;
 
@@ -70,6 +71,8 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 //        bi.ss101.setMinDate(convertDateFormat(camp.getPlan_date()));
         setupSkips();
         populateSpinner();
+
+        bi.ss101.setMinDate(DateUtils.getMonthsBack("dd/MM/yyyy", -2));
     }
 
     private void populateSpinner() {
@@ -162,6 +165,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 
         bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss109));
         bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVss111));
+        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs301));
 
         bi.vs307.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs308));
 
