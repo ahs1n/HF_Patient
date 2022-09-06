@@ -121,29 +121,6 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 
     private void setupSkips() {
 
-/*        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> {
-            Clear.clearAllFields(bi.fldGrpCVss109);
-            Clear.clearAllFields(bi.fldGrpCVvs301);
-
-            if (i == bi.ss10801.getId()) {
-                Clear.clearAllFields(bi.fldGrpCVss109);
-                bi.fldGrpCVss109.setVisibility(View.GONE);
-                Clear.clearAllFields(bi.fldGrpCVvs301);
-                bi.fldGrpCVvs301.setVisibility(View.GONE);
-            } else {
-                if (TextUtils.isEmpty(bi.ss107y.getText().toString())) {
-                    return;
-                } else if (Integer.parseInt(bi.ss107y.getText().toString()) >= 14) {
-                    Clear.clearAllFields(bi.fldGrpCVss109);
-                    bi.fldGrpCVss109.setVisibility(View.VISIBLE);
-                    Clear.clearAllFields(bi.fldGrpCVvs301);
-                    bi.fldGrpCVvs301.setVisibility(View.VISIBLE);
-                }
-            }
-        });*/
-
-//        bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs301));
-
         bi.ss108.setOnCheckedChangeListener((radioGroup, i) -> {
             if (i == bi.ss10801.getId()) {
                 Clear.clearAllFields(bi.fldGrpCVss109);
@@ -178,104 +155,43 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         bi.di20299.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.di202check, !b));
         bi.me20399.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.me203check, !b));
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            bi.llscrollviewmh26.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-
-                    bi.llscrollviewmh26.getChildAt(bi.llscrollviewmh26.getChildCount() - 1);
-                    int diff = (bi.llscrollviewmh26.getRight() - (bi.llscrollviewmh26.getWidth() + bi.llscrollviewmh26.getScrollX()));
-                    if (diff == 0) {
-                        AllVaccinationsViewed = true;
-                    }
-                }
-            });
-        }*/
-
-/*
-        bi.chkWeight.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.mh012, !b));
-        bi.chkHeight.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.mh015, !b));
-        bi.chkMUAC.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.mh016, !b));
-        bi.mh01704.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.llmh020, !b));
-        bi.mh017097.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.mh017check, !b));
-        bi.mh018097.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.mh018check, !b));
-        bi.mh019097.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.mh019check, !b));
-
-
-        //TODO:
-        bi.mh025.setOnCheckedChangeListener((radioGroup, i) -> {
-            //Log.d("TAG", "setupSkips:1 "+bi.mh02202.isChecked()+"|"+bi.mh02501.isChecked());
-            if (bi.mh02202.isChecked() && bi.mh02501.isChecked()) {
-                // Log.d("TAG", "setupSkips:2 ");
-                openWarningDialog(this, "Error", "Answer conflicts with Q. MH022", bi.mh025);
-                //bi.mh025.clearCheck();
-            }
-        });
-        bi.mh022.setOnCheckedChangeListener((radioGroup, i) -> {
-            if (bi.mh02202.isChecked() && bi.mh02501.isChecked()) {
-                openWarningDialog(this, "Error", "Answer conflicts with Q. MH025", bi.mh022);
-            }
-        });
-
-        bi.mh024.setOnCheckedChangeListener((radioGroup, i) -> {
-            if (bi.mh02302.isChecked() && bi.mh02401.isChecked()) {
-                openWarningDialog(this, "Error", "Answer conflicts with Q. MH023", bi.mh024);
-            }
-        });
-
-        bi.mh023.setOnCheckedChangeListener((radioGroup, i) -> {
-            if (bi.mh02302.isChecked() && bi.mh02401.isChecked()) {
-                openWarningDialog(this, "Error", "Answer conflicts with Q. MH024", bi.mh023);
-            }
-        });
-        //bi.mh023.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearRadioGroup(bi.mh024, i != bi.mh02302.getId()));
-
-
-        bi.mh027b.setOnCheckedChangeListener((radioGroup, i) -> {
-            bi.mh02601.setTag(null);
-            bi.rgmh02601.setTag(null);
-            bi.rgmh02602.setTag(null);
-            bi.rgmh02603.setTag(null);
-            bi.rgmh02604.setTag(null);
-            bi.rgmh02605.setTag(null);
-            bi.mh026019.setTag(null);
-            bi.mh026021.setTag(null);
-            bi.mh026022.setTag(null);
-            Clear.clearAllFields(bi.fldGrpCVmh026);
-            Clear.clearAllFields(bi.fldGrpCVmh027);
-            Clear.clearAllFields(bi.fldGrpCVmh027a);
-            bi.mh02601.setChecked(false);
-            bi.mh026019.setChecked(false);
-            bi.mh026021.setChecked(false);
-            bi.mh026022.setChecked(false);
-            bi.fldGrpCVmh026.setVisibility(View.GONE);
-            bi.fldGrpCVmh027.setVisibility(View.GONE);
-            bi.fldGrpCVmh027a.setVisibility(View.VISIBLE);
-            if (i == bi.mh027b02.getId()) {
-                bi.fldGrpCVmh026.setVisibility(View.VISIBLE);
-                bi.fldGrpCVmh027.setVisibility(View.VISIBLE);
-                //bi.fldGrpCVmh027a.setVisibility(View.VISIBLE);
-            }*//* else if (i == bi.mh027b01.getId()) {
+        bi.vs303a.setOnCheckedChangeListener((radioGroup, i) -> {
+            bi.bcg.setTag(null);
+            bi.penta.setTag(null);
+            bi.measles.setTag(null);
+            bi.dpt.setTag(null);
+            bi.opv.setTag(null);
+            bi.pcv.setTag(null);
+            bi.rota.setTag(null);
+            bi.hepb.setTag(null);
+            bi.ipv.setTag(null);
+            Clear.clearAllFields(bi.fldGrpCVvs306v);
+            Clear.clearAllFields(bi.fldGrpCVvs307);
+            bi.bcg.setChecked(false);
+            bi.fldGrpCVvs306v.setVisibility(View.GONE);
+            bi.fldGrpCVvs307.setVisibility(View.GONE);
+/*            if (i == bi.mh027b02.getId()) {
+                bi.fldGrpCVvs306v.setVisibility(View.VISIBLE);
+                bi.fldGrpCVvs307.setVisibility(View.VISIBLE);
+            } else if (i == bi.mh027b01.getId()) {
                 bi.fldGrpCVmh027a.setVisibility(View.VISIBLE);
-            }*//*
+            }*/
         });
 
-        setTags(bi.mh02601, new View[]{bi.rgmh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02604, bi.rgmh02605, bi.rgmh02606, bi.mh026021, bi.mh026022});
-        setTags(bi.rgmh02601, new View[]{bi.mh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02604, bi.rgmh02605, bi.rgmh02606, bi.mh026021, bi.mh026022});
-        setTags(bi.rgmh02602, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02603, bi.rgmh02604, bi.rgmh02605, bi.rgmh02606, bi.mh026021, bi.mh026022});
-        setTags(bi.rgmh02603, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02602, bi.rgmh02604, bi.rgmh02605, bi.rgmh02606, bi.mh026021, bi.mh026022});
-        setTags(bi.rgmh02604, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02605, bi.rgmh02606, bi.mh026021, bi.mh026022});
-        setTags(bi.rgmh02605, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02604, bi.rgmh02606, bi.mh026021, bi.mh026022});
-        setTags(bi.rgmh02606, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02604, bi.rgmh02605, bi.mh026021, bi.mh026022});
-        setTags(bi.mh026021, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02604, bi.rgmh02605, bi.rgmh02606, bi.mh026022});
-        setTags(bi.mh026022, new View[]{bi.mh02601, bi.rgmh02601, bi.rgmh02602, bi.rgmh02603, bi.rgmh02604, bi.rgmh02605, bi.rgmh02606, bi.mh026021});
+        setTags(bi.bcg, new View[]{bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
+        setTags(bi.penta, new View[]{bi.bcg, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
+        setTags(bi.measles, new View[]{bi.bcg, bi.penta, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
+        setTags(bi.dpt, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.hepb});
+        setTags(bi.opv, new View[]{bi.bcg, bi.penta, bi.measles, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
+        setTags(bi.pcv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
+        setTags(bi.rota, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.ipv, bi.dpt, bi.hepb});
+        setTags(bi.ipv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.hepb});
+        setTags(bi.hepb, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.ipv});
 
-        bi.rgmh02603.setOnCheckedChangeListener((radioGroup, i) -> {
+/*        bi.rgmh02603.setOnCheckedChangeListener((radioGroup, i) -> {
             Clear.clearAllFields(bi.fldGrpCVmh027a);
             bi.fldGrpCVmh027a.setVisibility(View.GONE);
         });*/
-
-
     }
 
     public void ss107yOnTextChanged(CharSequence s, int start, int before, int count) {
@@ -334,15 +250,6 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
             if (b) for (View view : views) view.setTag("-1");
         });
     }
-
-
-    /*public void ageZeroCheck(CharSequence s, int i, int i1, int i2) {
-        if (TextUtils.isEmpty(bi.mh09d.getText()) || TextUtils.isEmpty(bi.mh09m.getText()) || TextUtils.isEmpty(bi.mh09y.getText()))
-            return;
-        int check = Integer.parseInt(bi.mh09d.getText().toString()) + Integer.parseInt(bi.mh09m.getText().toString()) + Integer.parseInt(bi.mh09y.getText().toString());
-        if (check == 0) openWarningDialog(this, "Error", "All Fields Can't be ZERO", new EditTextPicker[]{bi.mh09y, bi.mh09m, bi.mh09d});
-        segregate();
-    }*/
 
 
     public void segregateByAge(CharSequence s, int i, int i1, int i2) {
@@ -568,6 +475,27 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         patientDetails.setVs306g(bi.vs306g.isChecked() ? "7" : "-1");
         patientDetails.setVs306i(bi.vs306i.isChecked() ? "8" : "-1");
         patientDetails.setVs30699(bi.vs30699.isChecked() ? "99" : "-1");
+
+        patientDetails.setBcg(bi.bcg.isChecked() ? "1" : "-1");
+        patientDetails.setPenta1(bi.penta1.isChecked() ? "1" : "-1");
+        patientDetails.setPenta2(bi.penta2.isChecked() ? "1" : "-1");
+        patientDetails.setPenta3(bi.penta3.isChecked() ? "1" : "-1");
+        patientDetails.setMeasles1(bi.measles1.isChecked() ? "1" : "-1");
+        patientDetails.setMeasles2(bi.measles2.isChecked() ? "1" : "-1");
+        patientDetails.setDpt(bi.dpt.isChecked() ? "1" : "-1");
+        patientDetails.setOpv0(bi.opv0.isChecked() ? "1" : "-1");
+        patientDetails.setOpv1(bi.opv1.isChecked() ? "1" : "-1");
+        patientDetails.setOpv2(bi.opv2.isChecked() ? "1" : "-1");
+        patientDetails.setOpv3(bi.opv3.isChecked() ? "1" : "-1");
+        patientDetails.setPcv1(bi.pcv1.isChecked() ? "1" : "-1");
+        patientDetails.setPcv2(bi.pcv2.isChecked() ? "1" : "-1");
+        patientDetails.setPcv3(bi.pcv3.isChecked() ? "1" : "-1");
+        patientDetails.setHepb(bi.hepb.isChecked() ? "1" : "-1");
+        patientDetails.setRota1(bi.rota1.isChecked() ? "1" : "-1");
+        patientDetails.setRota2(bi.rota2.isChecked() ? "1" : "-1");
+        patientDetails.setIpv1(bi.ipv1.isChecked() ? "1" : "-1");
+        patientDetails.setIpv2(bi.ipv2.isChecked() ? "1" : "-1");
+
         patientDetails.setVs307(bi.vs307a.isChecked() ? "1"
                 : bi.vs307b.isChecked() ? "2"
                 : bi.vs30799.isChecked() ? "99"
@@ -604,7 +532,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
                 && bi.rgmh02601.getCheckedRadioButtonId() == -1
                 && bi.rgmh02602.getCheckedRadioButtonId() == -1
                 && bi.rgmh02603.getCheckedRadioButtonId() == -1
-                && bi.rgmh02604.getCheckedRadioButtonId() == -1
+                && bi.pcv.getCheckedRadioButtonId() == -1
                 && bi.rgmh02605.getCheckedRadioButtonId() == -1
                 && bi.rgmh02606.getCheckedRadioButtonId() == -1
                 && !bi.mh02601.isChecked()

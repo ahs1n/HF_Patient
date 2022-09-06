@@ -184,6 +184,7 @@
     <string name="mh026w14">14 Weeks</string>
     <string name="mh026m09">09 Months</string>
     <string name="mh026m15">15 Months</string>
+    <string name="mh026m18">18 Months</string>
     <string name="mh026m59">0-59 Months</string>
 
     <string name="mh027"> Vaccination Card Issued at Camp </string>
@@ -205,6 +206,29 @@
     <string name="mh02902"> No </string>
     <string name="mh02903"> N R </string>
     <string name="mh030"> Remarks </string>
+
+
+    <string name="vs306v">What vaccines were given to the child at Camp?</string>
+    <string name="bcg">BCG</string>
+    <string name="opv0">OPV0</string>
+    <string name="opv1">OPV1</string>
+    <string name="penta1">Penta1</string>
+    <string name="pcv1">PCV1</string>
+    <string name="rota1">Rota1</string>
+    <string name="opv2">OPV2</string>
+    <string name="penta2">Penta2</string>
+    <string name="pcv2">PCV2</string>
+    <string name="rota2">Rota2</string>
+    <string name="hepb">HepB</string>
+    <string name="opv3">OPV3</string>
+    <string name="penta3">Penta3</string>
+    <string name="pcv3">PCV3</string>
+    <string name="ipv1">IPV1</string>
+    <string name="dpt">DPT</string>
+    <string name="measles1">Measles1</string>
+    <string name="tcv">TCV</string>
+    <string name="ipv2">IPV2</string>
+    <string name="measles2">Measles2</string>
 
 
     <string name='Q_bf01'>bf01</string>
@@ -700,6 +724,7 @@
     <string name='Q_pc201'>pc201</string>
     <string name='Q_pctitle'>pctitle</string>
     <string name='Q_ss101'>ss101</string>
+    <string name='Q_vs306v'>vs306v</string>
     <string name='Q_ss102'>ss102</string>
     <string name='Q_ss103'>ss103</string>
     <string name='Q_ss104'>ss104</string>

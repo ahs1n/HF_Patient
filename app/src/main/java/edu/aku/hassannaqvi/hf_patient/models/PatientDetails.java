@@ -138,6 +138,27 @@ public class PatientDetails extends BaseObservable {
     public String vs306g;
     public String vs306i;
     public String vs30699;
+
+    public String bcg;
+    public String penta1;
+    public String penta2;
+    public String penta3;
+    public String measles1;
+    public String measles2;
+    public String dpt;
+    public String opv0;
+    public String opv1;
+    public String opv2;
+    public String opv3;
+    public String pcv1;
+    public String pcv2;
+    public String pcv3;
+    public String hepb;
+    public String rota1;
+    public String rota2;
+    public String ipv1;
+    public String ipv2;
+
     public String vs307;
     public String vs308;
     // APP VARIABLES
@@ -486,6 +507,25 @@ public class PatientDetails extends BaseObservable {
                     .put("vs306g", vs306g)
                     .put("vs306i", vs306i)
                     .put("vs30699", vs30699)
+                    .put("bcg", bcg)
+                    .put("penta1", penta1)
+                    .put("penta2", penta2)
+                    .put("penta3", penta3)
+                    .put("measles1", measles1)
+                    .put("measles2", measles2)
+                    .put("dpt", dpt)
+                    .put("opv0", opv0)
+                    .put("opv1", opv1)
+                    .put("opv2", opv2)
+                    .put("opv3", opv3)
+                    .put("pcv1", pcv1)
+                    .put("pcv2", pcv2)
+                    .put("pcv3", pcv3)
+                    .put("hepb", hepb)
+                    .put("rota1", rota1)
+                    .put("rota2", rota2)
+                    .put("ipv1", ipv1)
+                    .put("ipv2", ipv2)
                     .put("vs307", vs307)
                     .put("vs308", vs308);
 
@@ -654,6 +694,25 @@ public class PatientDetails extends BaseObservable {
             this.vs306g = json.getString("vs306g");
             this.vs306i = json.getString("vs306i");
             this.vs30699 = json.getString("vs30699");
+            this.bcg = json.getString("bcg");
+            this.penta1 = json.getString("penta1");
+            this.penta2 = json.getString("penta2");
+            this.penta3 = json.getString("penta3");
+            this.measles1 = json.getString("measles1");
+            this.measles2 = json.getString("measles2");
+            this.dpt = json.getString("dpt");
+            this.opv0 = json.getString("opv0");
+            this.opv1 = json.getString("opv1");
+            this.opv2 = json.getString("opv2");
+            this.opv3 = json.getString("opv3");
+            this.pcv1 = json.getString("pcv1");
+            this.pcv2 = json.getString("pcv2");
+            this.pcv3 = json.getString("pcv3");
+            this.hepb = json.getString("hepb");
+            this.rota1 = json.getString("rota1");
+            this.rota2 = json.getString("rota2");
+            this.ipv1 = json.getString("ipv1");
+            this.ipv2 = json.getString("ipv2");
             this.vs307 = json.getString("vs307");
             this.vs308 = json.getString("vs308");
 
@@ -1783,6 +1842,196 @@ public class PatientDetails extends BaseObservable {
     public void setVs30699(String vs30699) {
         this.vs30699 = vs30699;
         notifyPropertyChanged(BR.vs30699);
+    }
+
+    @Bindable
+    public String getBcg() {
+        return bcg;
+    }
+
+    public void setBcg(String bcg) {
+        this.bcg = bcg;
+        notifyPropertyChanged(BR.bcg);
+    }
+
+    @Bindable
+    public String getPenta1() {
+        return penta1;
+    }
+
+    public void setPenta1(String penta1) {
+        this.penta1 = penta1;
+        notifyPropertyChanged(BR.penta1);
+    }
+
+    @Bindable
+    public String getPenta2() {
+        return penta2;
+    }
+
+    public void setPenta2(String penta2) {
+        this.penta2 = penta2;
+        notifyPropertyChanged(BR.penta2);
+    }
+
+    @Bindable
+    public String getPenta3() {
+        return penta3;
+    }
+
+    public void setPenta3(String penta3) {
+        this.penta3 = penta3;
+        notifyPropertyChanged(BR.penta3);
+    }
+
+    @Bindable
+    public String getMeasles1() {
+        return measles1;
+    }
+
+    public void setMeasles1(String measles1) {
+        this.measles1 = measles1;
+        notifyPropertyChanged(BR.measles1);
+    }
+
+    @Bindable
+    public String getMeasles2() {
+        return measles2;
+    }
+
+    public void setMeasles2(String measles2) {
+        this.measles2 = measles2;
+        notifyPropertyChanged(BR.measles2);
+    }
+
+    @Bindable
+    public String getDpt() {
+        return dpt;
+    }
+
+    public void setDpt(String dpt) {
+        this.dpt = dpt;
+        notifyPropertyChanged(BR.dpt);
+    }
+
+    @Bindable
+    public String getOpv0() {
+        return opv0;
+    }
+
+    public void setOpv0(String opv0) {
+        this.opv0 = opv0;
+        notifyPropertyChanged(BR.opv0);
+    }
+
+    @Bindable
+    public String getOpv1() {
+        return opv1;
+    }
+
+    public void setOpv1(String opv1) {
+        this.opv1 = opv1;
+        notifyPropertyChanged(BR.opv1);
+    }
+
+    @Bindable
+    public String getOpv2() {
+        return opv2;
+    }
+
+    public void setOpv2(String opv2) {
+        this.opv2 = opv2;
+        notifyPropertyChanged(BR.opv2);
+    }
+
+    @Bindable
+    public String getOpv3() {
+        return opv3;
+    }
+
+    public void setOpv3(String opv3) {
+        this.opv3 = opv3;
+        notifyPropertyChanged(BR.opv3);
+    }
+
+    @Bindable
+    public String getPcv1() {
+        return pcv1;
+    }
+
+    public void setPcv1(String pcv1) {
+        this.pcv1 = pcv1;
+        notifyPropertyChanged(BR.pcv1);
+    }
+
+    @Bindable
+    public String getPcv2() {
+        return pcv2;
+    }
+
+    public void setPcv2(String pcv2) {
+        this.pcv2 = pcv2;
+        notifyPropertyChanged(BR.pcv2);
+    }
+
+    @Bindable
+    public String getPcv3() {
+        return pcv3;
+    }
+
+    public void setPcv3(String pcv3) {
+        this.pcv3 = pcv3;
+        notifyPropertyChanged(BR.pcv3);
+    }
+
+    @Bindable
+    public String getHepb() {
+        return hepb;
+    }
+
+    public void setHepb(String hepb) {
+        this.hepb = hepb;
+        notifyPropertyChanged(BR.hepb);
+    }
+
+    @Bindable
+    public String getRota1() {
+        return rota1;
+    }
+
+    public void setRota1(String rota1) {
+        this.rota1 = rota1;
+        notifyPropertyChanged(BR.rota1);
+    }
+
+    @Bindable
+    public String getRota2() {
+        return rota2;
+    }
+
+    public void setRota2(String rota2) {
+        this.rota2 = rota2;
+        notifyPropertyChanged(BR.rota2);
+    }
+
+    @Bindable
+    public String getIpv1() {
+        return ipv1;
+    }
+
+    public void setIpv1(String ipv1) {
+        this.ipv1 = ipv1;
+        notifyPropertyChanged(BR.ipv1);
+    }
+
+    @Bindable
+    public String getIpv2() {
+        return ipv2;
+    }
+
+    public void setIpv2(String ipv2) {
+        this.ipv2 = ipv2;
+        notifyPropertyChanged(BR.ipv2);
     }
 
     @Bindable

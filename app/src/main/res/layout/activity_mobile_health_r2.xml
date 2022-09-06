@@ -136,6 +136,7 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <!-- ss101  Input-Numeric   -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVss101"
@@ -182,6 +183,7 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <!-- ss105  Input   -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVss105"
@@ -645,16 +647,16 @@
 
                             <CheckBox
                                 android:id="@+id/ss111a"
-                                android:enabled="@{!ss10801.checked &amp;&amp; !ss1082.checked}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="@{!ss10801.checked &amp;&amp; !ss1082.checked}"
                                 android:text="@string/ss111a" />
 
                             <CheckBox
                                 android:id="@+id/ss111b"
-                                android:enabled="@{!ss10801.checked &amp;&amp; !ss1082.checked}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="@{!ss10801.checked &amp;&amp; !ss1082.checked}"
                                 android:text="@string/ss111b" />
 
                             <CheckBox
@@ -1384,7 +1386,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                <!-- vs302  Radio   -->
+                    <!-- vs302  Radio   -->
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVvs302"
                         style="@style/cardView">
@@ -1649,7 +1651,8 @@
                     <!-- vs306  CheckBox   -->
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVvs306"
-                        style="@style/cardView">
+                        style="@style/cardView"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1748,6 +1751,597 @@
 
                         </LinearLayout>
 
+                    </androidx.cardview.widget.CardView>
+
+                    <!--vs306v  Radio-->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fldGrpCVvs306v"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bottom"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/quesNum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/Q_vs306v" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="@string/vs306v" />
+                            </LinearLayout>
+
+                            <!--<LinearLayout
+                                android:id="@+id/vs306vcheck"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:tag="0">-->
+
+                            <LinearLayout
+                                android:id="@+id/llscrollviewmh26"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/bacground_border"
+                                android:focusable="true">
+
+                                <HorizontalScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:id="@+id/llmh26"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026birth" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026w06" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026w10" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026w14" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026m09" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026m15" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026m18" />
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <RadioButton
+                                                android:id="@+id/bcg"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/bcg" />
+
+                                            <RadioGroup
+                                                android:id="@+id/penta"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/penta1"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/penta1" />
+
+                                                <RadioButton
+                                                    android:id="@+id/penta2"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/penta2" />
+
+                                                <RadioButton
+                                                    android:id="@+id/penta3"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/penta3" />
+
+                                            </RadioGroup>
+
+                                            <RadioGroup
+                                                android:id="@+id/measles"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/measles1"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/measles1" />
+
+                                                <RadioButton
+                                                    android:id="@+id/measles2"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/measles2" />
+
+                                            </RadioGroup>
+
+                                            <RadioButton
+                                                android:id="@+id/dpt"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/dpt" />
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/lightPink1"
+                                            android:orientation="horizontal">
+
+                                            <RadioGroup
+                                                android:id="@+id/opv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/opv0"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/opv0" />
+
+                                                <RadioButton
+                                                    android:id="@+id/opv1"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/opv1" />
+
+                                                <RadioButton
+                                                    android:id="@+id/opv2"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/opv2" />
+
+                                                <RadioButton
+                                                    android:id="@+id/opv3"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/opv3" />
+
+                                            </RadioGroup>
+
+                                            <View
+                                                android:layout_width="204dp"
+                                                android:layout_height="wrap_content" />
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <View
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content" />
+
+                                            <RadioGroup
+                                                android:id="@+id/pcv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/pcv1"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/pcv1" />
+
+                                                <RadioButton
+                                                    android:id="@+id/pcv2"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/pcv2" />
+
+                                                <RadioButton
+                                                    android:id="@+id/pcv3"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/pcv3" />
+
+                                            </RadioGroup>
+
+                                            <View
+                                                android:layout_width="204dp"
+                                                android:layout_height="wrap_content" />
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/lightPink1"
+                                            android:orientation="horizontal">
+
+                                            <RadioButton
+                                                android:id="@+id/hepb"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/hepb" />
+
+                                            <RadioGroup
+                                                android:id="@+id/rota"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/rota1"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/rota1" />
+
+                                                <RadioButton
+                                                    android:id="@+id/rota2"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/rota2" />
+
+                                            </RadioGroup>
+
+                                            <RadioGroup
+                                                android:id="@+id/ipv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <RadioButton
+                                                    android:id="@+id/ipv1"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/ipv1" />
+
+                                                <RadioButton
+                                                    android:id="@+id/ipv2"
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="@string/ipv2" />
+
+                                            </RadioGroup>
+
+                                            <View
+                                                android:layout_width="204dp"
+                                                android:layout_height="wrap_content" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+                                </HorizontalScrollView>
+                            </LinearLayout>
+
+                            <!--<LinearLayout
+                                android:id="@+id/llscrollviewmh260"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/bacground_border"
+                                android:focusable="true">
+
+                                <HorizontalScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:id="@+id/llmh26"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026birth" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026w06" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026w10" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026w14" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026m09" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026m15" />
+
+                                            <TextView
+                                                style="@style/sub_labels"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center_vertical|center_horizontal"
+                                                android:text="@string/mh026m18" />
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal">
+
+                                            <CheckBox
+                                                android:id="@+id/bcg"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/bcg" />
+
+                                            <CheckBox
+                                                android:id="@+id/penta1"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/penta1" />
+
+                                            <CheckBox
+                                                android:id="@+id/penta2"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/penta2" />
+
+                                            <CheckBox
+                                                android:id="@+id/penta3"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/penta3" />
+
+                                            <CheckBox
+                                                android:id="@+id/measles1"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/measles1" />
+
+                                            <CheckBox
+                                                android:id="@+id/m2"
+                                                android:layout_width="105dp"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/m2" />
+
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/lightPink1"
+                                            android:orientation="horizontal">
+
+                                            <CheckBox
+                                                android:id="@+id/opv0"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/opv0" />
+
+                                            <CheckBox
+                                                android:id="@+id/opv1"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/opv1" />
+
+                                            <CheckBox
+                                                android:id="@+id/opv2"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/opv2" />
+
+                                            <CheckBox
+                                                android:id="@+id/opv3"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/opv3" />
+
+                                            <CheckBox
+                                                android:id="@+id/tcv"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/tcv" />
+
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <View
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content" />
+
+                                            <CheckBox
+                                                android:id="@+id/pcv1"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/pcv1" />
+
+                                            <CheckBox
+                                                android:id="@+id/pcv2"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/pcv2" />
+
+                                            <CheckBox
+                                                android:id="@+id/pcv3"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/pcv3" />
+                                        </LinearLayout>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/grayDark1" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@color/lightPink1"
+                                            android:orientation="horizontal">
+
+                                            <CheckBox
+                                                android:id="@+id/hepb"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/hepb" />
+
+                                            <CheckBox
+                                                android:id="@+id/rv1"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/rv1" />
+
+                                            <CheckBox
+                                                android:id="@+id/rv2"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/rv2" />
+
+                                            <CheckBox
+                                                android:id="@+id/ipv1"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/ipv1" />
+
+                                            <CheckBox
+                                                android:id="@+id/ipv2"
+                                                android:layout_width="105dp"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/ipv2" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </HorizontalScrollView>
+                            </LinearLayout>-->
+                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
                     <!-- vs307  Radio   -->
