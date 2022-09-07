@@ -150,6 +150,7 @@ public class PatientDetails extends BaseObservable {
     public String opv1;
     public String opv2;
     public String opv3;
+    public String tcv;
     public String pcv1;
     public String pcv2;
     public String pcv3;
@@ -518,6 +519,7 @@ public class PatientDetails extends BaseObservable {
                     .put("opv1", opv1)
                     .put("opv2", opv2)
                     .put("opv3", opv3)
+                    .put("tcv", tcv)
                     .put("pcv1", pcv1)
                     .put("pcv2", pcv2)
                     .put("pcv3", pcv3)
@@ -705,6 +707,7 @@ public class PatientDetails extends BaseObservable {
             this.opv1 = json.getString("opv1");
             this.opv2 = json.getString("opv2");
             this.opv3 = json.getString("opv3");
+            this.tcv = json.getString("tcv");
             this.pcv1 = json.getString("pcv1");
             this.pcv2 = json.getString("pcv2");
             this.pcv3 = json.getString("pcv3");
@@ -1952,6 +1955,16 @@ public class PatientDetails extends BaseObservable {
     public void setOpv3(String opv3) {
         this.opv3 = opv3;
         notifyPropertyChanged(BR.opv3);
+    }
+
+    @Bindable
+    public String getTcv() {
+        return tcv;
+    }
+
+    public void setTcv(String tcv) {
+        this.tcv = tcv;
+        notifyPropertyChanged(BR.tcv);
     }
 
     @Bindable

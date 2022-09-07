@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -147,51 +148,56 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         bi.vs307.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVvs308));
 
         bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
+//        bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
 
-        bi.vs30699.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.vs306check, !b));
         bi.ss11099.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.ss110, !b));
         bi.ss11199.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.ss111check, !b));
         bi.pc20199.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.pc201check, !b));
         bi.di20299.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.di202check, !b));
         bi.me20399.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.me203check, !b));
 
-        bi.vs303a.setOnCheckedChangeListener((radioGroup, i) -> {
-            bi.bcg.setTag(null);
-            bi.penta.setTag(null);
-            bi.measles.setTag(null);
-            bi.dpt.setTag(null);
-            bi.opv.setTag(null);
-            bi.pcv.setTag(null);
-            bi.rota.setTag(null);
-            bi.hepb.setTag(null);
-            bi.ipv.setTag(null);
-            Clear.clearAllFields(bi.fldGrpCVvs306v);
-            Clear.clearAllFields(bi.fldGrpCVvs307);
-            bi.bcg.setChecked(false);
-            bi.fldGrpCVvs306v.setVisibility(View.GONE);
-            bi.fldGrpCVvs307.setVisibility(View.GONE);
-/*            if (i == bi.mh027b02.getId()) {
-                bi.fldGrpCVvs306v.setVisibility(View.VISIBLE);
-                bi.fldGrpCVvs307.setVisibility(View.VISIBLE);
-            } else if (i == bi.mh027b01.getId()) {
-                bi.fldGrpCVmh027a.setVisibility(View.VISIBLE);
-            }*/
+        bi.ss111c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                if (isChecked) {
+                    bi.fldGrpCVvs306v.setVisibility(View.VISIBLE);
+                    bi.fldGrpCVvs307.setVisibility(View.VISIBLE);
+                } else {
+                    bi.fldGrpCVvs306v.setVisibility(View.GONE);
+                    bi.fldGrpCVvs307.setVisibility(View.GONE);
+                    Clear.clearAllFields(bi.fldGrpCVvs306v);
+                    Clear.clearAllFields(bi.fldGrpCVvs307);
+                    bi.bcg.setTag(null);
+                    bi.penta.setTag(null);
+                    bi.measles.setTag(null);
+                    bi.dpt.setTag(null);
+                    bi.opv.setTag(null);
+                    bi.pcv.setTag(null);
+                    bi.rota.setTag(null);
+                    bi.hepb.setTag(null);
+                    bi.tcv.setTag(null);
+                    bi.ipv.setTag(null);
+                    bi.bcg.setChecked(false);
+                    bi.dpt.setChecked(false);
+                    bi.hepb.setChecked(false);
+                    bi.tcv.setChecked(false);
+                }
+            }
         });
 
-        setTags(bi.bcg, new View[]{bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
-        setTags(bi.penta, new View[]{bi.bcg, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
-        setTags(bi.measles, new View[]{bi.bcg, bi.penta, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
-        setTags(bi.dpt, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.hepb});
-        setTags(bi.opv, new View[]{bi.bcg, bi.penta, bi.measles, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
-        setTags(bi.pcv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.rota, bi.ipv, bi.dpt, bi.hepb});
-        setTags(bi.rota, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.ipv, bi.dpt, bi.hepb});
-        setTags(bi.ipv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.hepb});
-        setTags(bi.hepb, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.ipv});
 
-/*        bi.rgmh02603.setOnCheckedChangeListener((radioGroup, i) -> {
-            Clear.clearAllFields(bi.fldGrpCVmh027a);
-            bi.fldGrpCVmh027a.setVisibility(View.GONE);
-        });*/
+        setTags(bi.bcg, new View[]{bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.penta, new View[]{bi.bcg, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.measles, new View[]{bi.bcg, bi.penta, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.dpt, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.ipv, bi.hepb, bi.tcv});
+        setTags(bi.opv, new View[]{bi.bcg, bi.penta, bi.measles, bi.pcv, bi.rota, bi.ipv, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.pcv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.rota, bi.ipv, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.rota, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.ipv, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.ipv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.hepb, bi.tcv});
+        setTags(bi.hepb, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.ipv, bi.tcv});
+        setTags(bi.tcv, new View[]{bi.bcg, bi.penta, bi.measles, bi.opv, bi.pcv, bi.rota, bi.dpt, bi.ipv, bi.hepb});
+
     }
 
     public void ss107yOnTextChanged(CharSequence s, int start, int before, int count) {
@@ -487,6 +493,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         patientDetails.setOpv1(bi.opv1.isChecked() ? "1" : "-1");
         patientDetails.setOpv2(bi.opv2.isChecked() ? "1" : "-1");
         patientDetails.setOpv3(bi.opv3.isChecked() ? "1" : "-1");
+        patientDetails.setTcv(bi.tcv.isChecked() ? "1" : "-1");
         patientDetails.setPcv1(bi.pcv1.isChecked() ? "1" : "-1");
         patientDetails.setPcv2(bi.pcv2.isChecked() ? "1" : "-1");
         patientDetails.setPcv3(bi.pcv3.isChecked() ? "1" : "-1");
@@ -519,46 +526,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 
 
     private boolean formValidation() {
-
-/*
-
-        if (!TextUtils.isEmpty(bi.mh09d.getText()) || !TextUtils.isEmpty(bi.mh09m.getText()) || !TextUtils.isEmpty(bi.mh09y.getText())) {
-            int check = Integer.parseInt(bi.mh09d.getText().toString()) + Integer.parseInt(bi.mh09m.getText().toString()) + Integer.parseInt(bi.mh09y.getText().toString());
-            if (check == 0)
-                return Validator.emptyCustomTextBox(this, bi.mh09d, "All Fields can't be zero");
-        }
-
-        if(bi.mh027b02.isChecked()
-                && bi.rgmh02601.getCheckedRadioButtonId() == -1
-                && bi.rgmh02602.getCheckedRadioButtonId() == -1
-                && bi.rgmh02603.getCheckedRadioButtonId() == -1
-                && bi.pcv.getCheckedRadioButtonId() == -1
-                && bi.rgmh02605.getCheckedRadioButtonId() == -1
-                && bi.rgmh02606.getCheckedRadioButtonId() == -1
-                && !bi.mh02601.isChecked()
-                && !bi.mh026019.isChecked()
-                && !bi.mh026021.isChecked()
-                && !bi.mh026022.isChecked()
-
-        ) {
-            return Validator.emptyCustomTextBox(this, bi.mh026020, "Please select at least one vaccine.");
-        }
-*/
-
-       /* if (!AllVaccinationsViewed && Integer.valueOf(bi.mh09y.getText().toString()) <= 5 && bi.mh027b02.isChecked()) {
-
-            Toast.makeText(
-                    this,
-                    "ERROR(Vaccinations) Probe all vaccinations ",
-                    Toast.LENGTH_SHORT
-            ).show();
-
-            bi.llscrollviewmh26.requestFocus();
-            return false;
-        }*/
-
         return Validator.emptyCheckingContainer(this, bi.GrpName);
-
     }
 
 
@@ -569,34 +537,8 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
 
     @Override
     public void endSecActivity(boolean flag) {
-        //if (!Validator.emptyTextBox(this, bi.mh01)) return;
-
         finish();
         gotoActivity(this, MainActivity.class);
 
     }
-
-
-  /*  private void populateSpinner(String camp_id) {
-        // Spinner Drop down elements
-        campNo = new ArrayList<String>() {
-            {
-                add("....");
-            }
-        };
-        List<String> campDoc = new ArrayList<String>() {
-            {
-                add("....");
-            }
-        };
-        ArrayList<Doctor> dc = db.getDoctorByCamp(camp_id);
-        for (Doctor d : dc) {
-            campNo.add(d.getIddoctor());
-            campDoc.add(d.getStaff_name());
-        }
-
-        bi.mh06.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, campDoc));
-
-    }*/
-
 }
