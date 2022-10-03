@@ -1565,7 +1565,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         JSONArray jsa = new JSONArray();
 
-        try {
             c = db.query(
                     PDContract.MHTable.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
@@ -1576,15 +1575,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                Log.d(TAG, "getUnsyncedMH: " + c.getCount());
+                Log.d(TAG, "getUnsyncedPD: " + c.getCount());
                 PatientDetails mhForm = new PatientDetails();
                 jsa.put(mhForm.Hydrate(c).toJSONObject());
             }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-        }
+
+        c.close();
+
         return jsa;
     }
 

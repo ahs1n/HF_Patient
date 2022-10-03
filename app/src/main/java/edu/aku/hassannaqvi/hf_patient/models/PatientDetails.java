@@ -1,7 +1,6 @@
 package edu.aku.hassannaqvi.hf_patient.models;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -330,397 +329,6 @@ public class PatientDetails extends BaseObservable {
     public void setStatus(String status) {
         this.status = status;
         notifyPropertyChanged(BR.status);
-    }
-
-
-    public PatientDetails Sync(JSONObject jsonObject) throws JSONException {
-        this.id = jsonObject.getString(PDContract.MHTable.COLUMN_ID);
-        this.uid = jsonObject.getString(PDContract.MHTable.COLUMN_UID);
-        this.userName = jsonObject.getString(PDContract.MHTable.COLUMN_USERNAME);
-        this.sysDate = jsonObject.getString(PDContract.MHTable.COLUMN_SYSDATE);
-        this.deviceId = jsonObject.getString(PDContract.MHTable.COLUMN_DEVICEID);
-        this.deviceTag = jsonObject.getString(PDContract.MHTable.COLUMN_DEVICETAGID);
-        this.appver = jsonObject.getString(PDContract.MHTable.COLUMN_APPVERSION);
-        this.synced = jsonObject.getString(PDContract.MHTable.COLUMN_SYNCED);
-        this.syncDate = jsonObject.getString(PDContract.MHTable.COLUMN_SYNCED_DATE);
-        this.status = jsonObject.getString(PDContract.MHTable.COLUMN_STATUS);
-        this.serial = jsonObject.getString(PDContract.MHTable.COLUMN_SERIAL);
-        this.ss101 = jsonObject.getString(PDContract.MHTable.COLUMN_SS101);
-        this.ss102 = jsonObject.getString(PDContract.MHTable.COLUMN_SS102);
-        this.ss103 = jsonObject.getString(PDContract.MHTable.COLUMN_SS103);
-        this.ss104 = jsonObject.getString(PDContract.MHTable.COLUMN_SS104);
-        this.ss105 = jsonObject.getString(PDContract.MHTable.COLUMN_SS105);
-        this.ss106 = jsonObject.getString(PDContract.MHTable.COLUMN_SS106);
-        this.ss107 = jsonObject.getString(PDContract.MHTable.COLUMN_SS107);
-
-        this.sA = jsonObject.getString(PDContract.MHTable.COLUMN_SA);
-
-        return this;
-
-    }
-
-
-    public PatientDetails Hydrate(Cursor cursor) throws JSONException {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_ID));
-        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_UID));
-        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_USERNAME));
-        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYSDATE));
-        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_DEVICEID));
-        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_DEVICETAGID));
-        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_APPVERSION));
-        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYNCED));
-        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYNCED_DATE));
-        this.status = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_STATUS));
-        this.serial = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SERIAL));
-        this.ss101 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS101));
-        this.ss102 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS102));
-        this.ss103 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS103));
-        this.ss104 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS104));
-        this.ss105 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS105));
-        this.ss106 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS106));
-        this.ss107 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS107));
-
-        //For childCount
-        //this.sA = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SA));
-
-        sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SA)));
-
-        return this;
-    }
-
-
-    //TODO: Try this instead of toJSONObject
-    @Override
-    public String toString() {
-        return new GsonBuilder().create().toJson(this, PatientDetails.class);
-    }
-
-
-    public String sAtoString() {
-        JSONObject json = new JSONObject();
-
-        try {
-            json
-                    /*  .put("ss101d", ss101d)
-                      .put("ss101m", ss101m)
-                      .put("ss101y", ss101y)
-                      .put("ss102", ss102)
-                      .put("ss103", ss103)
-                      .put("ss104", ss104)
-                      .put("ss105", ss105)
-                      .put("ss106", ss106)
-                      .put("ss107y", ss107y)
-                      .put("ss107m", ss107m)
-                      .put("ss107d", ss107d)*/
-                    .put("ss108", ss108)
-                    .put("ss108a", ss108a)
-                    .put("ss109", ss109)
-                    .put("ss110", ss110)
-                    .put("ss11099", ss11099)
-                    .put("ss111a", ss111a)
-                    .put("ss111b", ss111b)
-                    .put("ss111c", ss111c)
-                    .put("ss111d", ss111d)
-                    .put("ss11199", ss11199)
-                    .put("pc20101", pc20101)
-                    .put("pc201a", pc201a)
-                    .put("pc20102", pc20102)
-                    .put("pc20103", pc20103)
-                    .put("pc20104", pc20104)
-                    .put("pc20105", pc20105)
-                    .put("pc20106", pc20106)
-                    .put("pc20107", pc20107)
-                    .put("pc20108", pc20108)
-                    .put("pc20109", pc20109)
-                    .put("pc20110", pc20110)
-                    .put("pc20111", pc20111)
-                    .put("pc20112", pc20112)
-                    .put("pc20113", pc20113)
-                    .put("pc20114", pc20114)
-                    .put("pc20115", pc20115)
-                    .put("pc20116", pc20116)
-                    .put("pc20117", pc20117)
-                    .put("pc20118", pc20118)
-                    .put("pc20119", pc20119)
-                    .put("pc20196", pc20196)
-                    .put("pc20196x", pc20196x)
-                    .put("pc20199", pc20199)
-                    .put("di20201", di20201)
-                    .put("di20202", di20202)
-                    .put("di20203", di20203)
-                    .put("di20204", di20204)
-                    .put("di20205", di20205)
-                    .put("di20206", di20206)
-                    .put("di20207", di20207)
-                    .put("di20208", di20208)
-                    .put("di20209", di20209)
-                    .put("di20210", di20210)
-                    .put("di20211", di20211)
-                    .put("di20212", di20212)
-                    .put("di20213", di20213)
-                    .put("di20214", di20214)
-                    .put("di20215", di20215)
-                    .put("di20216", di20216)
-                    .put("di20217", di20217)
-                    .put("di20218", di20218)
-                    .put("di20219", di20219)
-                    .put("di20296", di20296)
-                    .put("di20296x", di20296x)
-                    .put("di20299", di20299)
-                    .put("me20301", me20301)
-                    .put("me20302", me20302)
-                    .put("me20303", me20303)
-                    .put("me20304", me20304)
-                    .put("me20305", me20305)
-                    .put("me20306", me20306)
-                    .put("me20307", me20307)
-                    .put("me20308", me20308)
-                    .put("me20309", me20309)
-                    .put("me20310", me20310)
-                    .put("me20311", me20311)
-                    .put("me20312", me20312)
-                    .put("me20313", me20313)
-                    .put("me20314", me20314)
-                    .put("me20315", me20315)
-                    .put("me20316", me20316)
-                    .put("me20317", me20317)
-                    .put("me20318", me20318)
-                    .put("me20319", me20319)
-                    .put("me20320", me20320)
-                    .put("me20321", me20321)
-                    .put("me20322", me20322)
-                    .put("me20323", me20323)
-                    .put("me20324", me20324)
-                    .put("me20396", me20396)
-                    .put("me20396x", me20396x)
-                    .put("me20399", me20399)
-                    .put("vs301", vs301)
-                    .put("vs302", vs302)
-                    .put("vs303", vs303)
-                    .put("vs304", vs304)
-                    .put("vs305", vs305)
-                    .put("vs306a", vs306a)
-                    .put("vs306b", vs306b)
-                    .put("vs306c", vs306c)
-                    .put("vs306d", vs306d)
-                    .put("vs306e", vs306e)
-                    .put("vs306f", vs306f)
-                    .put("vs306g", vs306g)
-                    .put("vs306i", vs306i)
-                    .put("vs30699", vs30699)
-                    .put("bcg", bcg)
-                    .put("penta1", penta1)
-                    .put("penta2", penta2)
-                    .put("penta3", penta3)
-                    .put("measles1", measles1)
-                    .put("measles2", measles2)
-                    .put("dpt", dpt)
-                    .put("opv0", opv0)
-                    .put("opv1", opv1)
-                    .put("opv2", opv2)
-                    .put("opv3", opv3)
-                    .put("tcv", tcv)
-                    .put("pcv1", pcv1)
-                    .put("pcv2", pcv2)
-                    .put("pcv3", pcv3)
-                    .put("hepb", hepb)
-                    .put("rota1", rota1)
-                    .put("rota2", rota2)
-                    .put("ipv1", ipv1)
-                    .put("ipv2", ipv2)
-                    .put("vs307", vs307)
-                    .put("vs308", vs308);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return "\"error\":, \"" + e.getMessage() + "\"";
-
-        }
-        return json.toString();
-    }
-
-
-    public JSONObject toJSONObject() throws JSONException {
-
-        JSONObject json = new JSONObject();
-
-
-        json.put(PDContract.MHTable.COLUMN_ID, this.id);
-        json.put(PDContract.MHTable.COLUMN_UID, this.uid);
-        json.put(PDContract.MHTable.COLUMN_USERNAME, this.userName);
-        json.put(PDContract.MHTable.COLUMN_SYSDATE, this.sysDate);
-        json.put(PDContract.MHTable.COLUMN_DEVICEID, this.deviceId);
-        json.put(PDContract.MHTable.COLUMN_DEVICETAGID, this.deviceTag);
-        json.put(PDContract.MHTable.COLUMN_APPVERSION, this.appver);
-        json.put(PDContract.MHTable.COLUMN_SYNCED, this.synced);
-        json.put(PDContract.MHTable.COLUMN_SYNCED_DATE, this.syncDate);
-        json.put(PDContract.MHTable.COLUMN_STATUS, this.status);
-        json.put(PDContract.MHTable.COLUMN_SERIAL, this.serial);
-        json.put(PDContract.MHTable.COLUMN_SS101, this.ss101);
-        json.put(PDContract.MHTable.COLUMN_SS102, this.ss102);
-        json.put(PDContract.MHTable.COLUMN_SS103, this.ss103);
-        json.put(PDContract.MHTable.COLUMN_SS104, this.ss104);
-        json.put(PDContract.MHTable.COLUMN_SS105, this.ss105);
-        json.put(PDContract.MHTable.COLUMN_SS106, this.ss106);
-        json.put(PDContract.MHTable.COLUMN_SS107, this.ss107);
-
-        json.put(PDContract.MHTable.COLUMN_SA, new JSONObject(sAtoString()));
-
-        //For ChildCount
-        //json.put(MHContract.MHTable.COLUMN_SA, this.sA == null ? JSONObject.NULL : this.sA);
-
-
-/*
-            if (this.sA != null && !this.sA.equals("")) {
-                json.put(MHContract.MHTable.COLUMN_SA, new JSONObject(this.sA));
-            }*/
-
-        return json;
-
-    }
-
-
-    public void sAHydrate(String string) throws JSONException {
-        Log.d("sAHydrateS", "string: " + string);
-
-        if (string != null) {
-
-
-            JSONObject json = null;
-            json = new JSONObject(string);
-
-/*                this.ss101d = json.getString("ss101d");
-                this.ss101m = json.getString("ss101m");
-                this.ss101y = json.getString("ss101y");
-                this.ss102 = json.getString("ss102");
-                this.ss103 = json.getString("ss103");
-                this.ss104 = json.getString("ss104");
-                this.ss105 = json.getString("ss105");
-                this.ss106 = json.getString("ss106");
-                this.ss107y = json.getString("ss107y");
-                this.ss107m = json.getString("ss107m");
-                this.ss107d = json.getString("ss107d");*/
-            this.ss108 = json.getString("ss108");
-            this.ss108a = json.getString("ss108a");
-            this.ss109 = json.getString("ss109");
-            this.ss110 = json.getString("ss110");
-            this.ss11099 = json.getString("ss11099");
-            this.ss111a = json.getString("ss111a");
-            this.ss111b = json.getString("ss111b");
-            this.ss111c = json.getString("ss111c");
-            this.ss111d = json.getString("ss111d");
-            this.ss11199 = json.getString("ss11199");
-            this.pc201a = json.getString("pc201a");
-            this.pc20101 = json.getString("pc20101");
-            this.pc20102 = json.getString("pc20102");
-            this.pc20103 = json.getString("pc20103");
-            this.pc20104 = json.getString("pc20104");
-            this.pc20105 = json.getString("pc20105");
-            this.pc20106 = json.getString("pc20106");
-            this.pc20107 = json.getString("pc20107");
-            this.pc20108 = json.getString("pc20108");
-            this.pc20109 = json.getString("pc20109");
-            this.pc20110 = json.getString("pc20110");
-            this.pc20111 = json.getString("pc20111");
-            this.pc20112 = json.getString("pc20112");
-            this.pc20113 = json.getString("pc20113");
-            this.pc20114 = json.getString("pc20114");
-            this.pc20115 = json.getString("pc20115");
-            this.pc20116 = json.getString("pc20116");
-            this.pc20117 = json.getString("pc20117");
-            this.pc20118 = json.getString("pc20118");
-            this.pc20119 = json.getString("pc20119");
-            this.pc20196 = json.getString("pc20196");
-            this.pc20196x = json.getString("pc20196x");
-            this.pc20199 = json.getString("pc20199");
-            this.di20201 = json.getString("di20201");
-            this.di20202 = json.getString("di20202");
-            this.di20203 = json.getString("di20203");
-            this.di20204 = json.getString("di20204");
-            this.di20205 = json.getString("di20205");
-            this.di20206 = json.getString("di20206");
-            this.di20207 = json.getString("di20207");
-            this.di20208 = json.getString("di20208");
-            this.di20209 = json.getString("di20209");
-            this.di20210 = json.getString("di20210");
-            this.di20211 = json.getString("di20211");
-            this.di20212 = json.getString("di20212");
-            this.di20213 = json.getString("di20213");
-            this.di20214 = json.getString("di20214");
-            this.di20215 = json.getString("di20215");
-            this.di20216 = json.getString("di20216");
-            this.di20217 = json.getString("di20217");
-            this.di20218 = json.getString("di20218");
-            this.di20219 = json.getString("di20219");
-            this.di20296 = json.getString("di20296");
-            this.di20296x = json.getString("di20296x");
-            this.di20299 = json.getString("di20299");
-            this.me20301 = json.getString("me20301");
-            this.me20302 = json.getString("me20302");
-            this.me20303 = json.getString("me20303");
-            this.me20304 = json.getString("me20304");
-            this.me20305 = json.getString("me20305");
-            this.me20306 = json.getString("me20306");
-            this.me20307 = json.getString("me20307");
-            this.me20308 = json.getString("me20308");
-            this.me20309 = json.getString("me20309");
-            this.me20310 = json.getString("me20310");
-            this.me20311 = json.getString("me20311");
-            this.me20312 = json.getString("me20312");
-            this.me20313 = json.getString("me20313");
-            this.me20314 = json.getString("me20314");
-            this.me20315 = json.getString("me20315");
-            this.me20316 = json.getString("me20316");
-            this.me20317 = json.getString("me20317");
-            this.me20318 = json.getString("me20318");
-            this.me20319 = json.getString("me20319");
-            this.me20320 = json.getString("me20320");
-            this.me20321 = json.getString("me20321");
-            this.me20322 = json.getString("me20322");
-            this.me20323 = json.getString("me20323");
-            this.me20324 = json.getString("me20324");
-            this.me20396 = json.getString("me20396");
-            this.me20396x = json.getString("me20396x");
-            this.me20399 = json.getString("me20399");
-            this.vs301 = json.getString("vs301");
-            this.vs302 = json.getString("vs302");
-            this.vs303 = json.getString("vs303");
-            this.vs304 = json.getString("vs304");
-            this.vs305 = json.getString("vs305");
-            this.vs306a = json.getString("vs306a");
-            this.vs306b = json.getString("vs306b");
-            this.vs306c = json.getString("vs306c");
-            this.vs306d = json.getString("vs306d");
-            this.vs306e = json.getString("vs306e");
-            this.vs306f = json.getString("vs306f");
-            this.vs306g = json.getString("vs306g");
-            this.vs306i = json.getString("vs306i");
-            this.vs30699 = json.getString("vs30699");
-            this.bcg = json.getString("bcg");
-            this.penta1 = json.getString("penta1");
-            this.penta2 = json.getString("penta2");
-            this.penta3 = json.getString("penta3");
-            this.measles1 = json.getString("measles1");
-            this.measles2 = json.getString("measles2");
-            this.dpt = json.getString("dpt");
-            this.opv0 = json.getString("opv0");
-            this.opv1 = json.getString("opv1");
-            this.opv2 = json.getString("opv2");
-            this.opv3 = json.getString("opv3");
-            this.tcv = json.getString("tcv");
-            this.pcv1 = json.getString("pcv1");
-            this.pcv2 = json.getString("pcv2");
-            this.pcv3 = json.getString("pcv3");
-            this.hepb = json.getString("hepb");
-            this.rota1 = json.getString("rota1");
-            this.rota2 = json.getString("rota2");
-            this.ipv1 = json.getString("ipv1");
-            this.ipv2 = json.getString("ipv2");
-            this.vs307 = json.getString("vs307");
-            this.vs308 = json.getString("vs308");
-
-
-        }
     }
 
     @Bindable
@@ -2087,4 +1695,395 @@ public class PatientDetails extends BaseObservable {
         this.ss107 = ss107;
         notifyPropertyChanged(BR.ss107);
     }
+
+
+    public PatientDetails Sync(JSONObject jsonObject) throws JSONException {
+        this.id = jsonObject.getString(PDContract.MHTable.COLUMN_ID);
+        this.uid = jsonObject.getString(PDContract.MHTable.COLUMN_UID);
+        this.userName = jsonObject.getString(PDContract.MHTable.COLUMN_USERNAME);
+        this.sysDate = jsonObject.getString(PDContract.MHTable.COLUMN_SYSDATE);
+        this.deviceId = jsonObject.getString(PDContract.MHTable.COLUMN_DEVICEID);
+        this.deviceTag = jsonObject.getString(PDContract.MHTable.COLUMN_DEVICETAGID);
+        this.appver = jsonObject.getString(PDContract.MHTable.COLUMN_APPVERSION);
+        this.synced = jsonObject.getString(PDContract.MHTable.COLUMN_SYNCED);
+        this.syncDate = jsonObject.getString(PDContract.MHTable.COLUMN_SYNCED_DATE);
+        this.status = jsonObject.getString(PDContract.MHTable.COLUMN_STATUS);
+        this.serial = jsonObject.getString(PDContract.MHTable.COLUMN_SERIAL);
+        this.ss101 = jsonObject.getString(PDContract.MHTable.COLUMN_SS101);
+        this.ss102 = jsonObject.getString(PDContract.MHTable.COLUMN_SS102);
+        this.ss103 = jsonObject.getString(PDContract.MHTable.COLUMN_SS103);
+        this.ss104 = jsonObject.getString(PDContract.MHTable.COLUMN_SS104);
+        this.ss105 = jsonObject.getString(PDContract.MHTable.COLUMN_SS105);
+        this.ss106 = jsonObject.getString(PDContract.MHTable.COLUMN_SS106);
+        this.ss107 = jsonObject.getString(PDContract.MHTable.COLUMN_SS107);
+
+        this.sA = jsonObject.getString(PDContract.MHTable.COLUMN_SA);
+
+        return this;
+
+    }
+
+
+    //TODO: Try this instead of toJSONObject
+    @Override
+    public String toString() {
+        return new GsonBuilder().create().toJson(this, PatientDetails.class);
+    }
+
+
+    public JSONObject toJSONObject() throws JSONException {
+
+        JSONObject json = new JSONObject();
+
+
+        json.put(PDContract.MHTable.COLUMN_ID, this.id);
+        json.put(PDContract.MHTable.COLUMN_UID, this.uid);
+        json.put(PDContract.MHTable.COLUMN_USERNAME, this.userName);
+        json.put(PDContract.MHTable.COLUMN_SYSDATE, this.sysDate);
+        json.put(PDContract.MHTable.COLUMN_DEVICEID, this.deviceId);
+        json.put(PDContract.MHTable.COLUMN_DEVICETAGID, this.deviceTag);
+        json.put(PDContract.MHTable.COLUMN_APPVERSION, this.appver);
+        json.put(PDContract.MHTable.COLUMN_SYNCED, this.synced);
+        json.put(PDContract.MHTable.COLUMN_SYNCED_DATE, this.syncDate);
+        json.put(PDContract.MHTable.COLUMN_STATUS, this.status);
+        json.put(PDContract.MHTable.COLUMN_SERIAL, this.serial);
+        json.put(PDContract.MHTable.COLUMN_SS101, this.ss101);
+        json.put(PDContract.MHTable.COLUMN_SS102, this.ss102);
+        json.put(PDContract.MHTable.COLUMN_SS103, this.ss103);
+        json.put(PDContract.MHTable.COLUMN_SS104, this.ss104);
+        json.put(PDContract.MHTable.COLUMN_SS105, this.ss105);
+        json.put(PDContract.MHTable.COLUMN_SS106, this.ss106);
+        json.put(PDContract.MHTable.COLUMN_SS107, this.ss107);
+
+        json.put(PDContract.MHTable.COLUMN_SA, new JSONObject(sAtoString()));
+
+        //For ChildCount
+        //json.put(MHContract.MHTable.COLUMN_SA, this.sA == null ? JSONObject.NULL : this.sA);
+
+
+/*
+            if (this.sA != null && !this.sA.equals("")) {
+                json.put(MHContract.MHTable.COLUMN_SA, new JSONObject(this.sA));
+            }*/
+
+        return json;
+
+    }
+
+    public String sAtoString() {
+        JSONObject json = new JSONObject();
+
+        try {
+            json
+                    /*  .put("ss101d", ss101d)
+                      .put("ss101m", ss101m)
+                      .put("ss101y", ss101y)
+                      .put("ss102", ss102)
+                      .put("ss103", ss103)
+                      .put("ss104", ss104)
+                      .put("ss105", ss105)
+                      .put("ss106", ss106)
+                      .put("ss107y", ss107y)
+                      .put("ss107m", ss107m)
+                      .put("ss107d", ss107d)*/
+                    .put("ss108", ss108)
+                    .put("ss108a", ss108a)
+                    .put("ss109", ss109)
+                    .put("ss110", ss110)
+                    .put("ss11099", ss11099)
+                    .put("ss111a", ss111a)
+                    .put("ss111b", ss111b)
+                    .put("ss111c", ss111c)
+                    .put("ss111d", ss111d)
+                    .put("ss11199", ss11199)
+                    .put("pc20101", pc20101)
+                    .put("pc201a", pc201a)
+                    .put("pc20102", pc20102)
+                    .put("pc20103", pc20103)
+                    .put("pc20104", pc20104)
+                    .put("pc20105", pc20105)
+                    .put("pc20106", pc20106)
+                    .put("pc20107", pc20107)
+                    .put("pc20108", pc20108)
+                    .put("pc20109", pc20109)
+                    .put("pc20110", pc20110)
+                    .put("pc20111", pc20111)
+                    .put("pc20112", pc20112)
+                    .put("pc20113", pc20113)
+                    .put("pc20114", pc20114)
+                    .put("pc20115", pc20115)
+                    .put("pc20116", pc20116)
+                    .put("pc20117", pc20117)
+                    .put("pc20118", pc20118)
+                    .put("pc20119", pc20119)
+                    .put("pc20196", pc20196)
+                    .put("pc20196x", pc20196x)
+                    .put("pc20199", pc20199)
+                    .put("di20201", di20201)
+                    .put("di20202", di20202)
+                    .put("di20203", di20203)
+                    .put("di20204", di20204)
+                    .put("di20205", di20205)
+                    .put("di20206", di20206)
+                    .put("di20207", di20207)
+                    .put("di20208", di20208)
+                    .put("di20209", di20209)
+                    .put("di20210", di20210)
+                    .put("di20211", di20211)
+                    .put("di20212", di20212)
+                    .put("di20213", di20213)
+                    .put("di20214", di20214)
+                    .put("di20215", di20215)
+                    .put("di20216", di20216)
+                    .put("di20217", di20217)
+                    .put("di20218", di20218)
+                    .put("di20219", di20219)
+                    .put("di20296", di20296)
+                    .put("di20296x", di20296x)
+                    .put("di20299", di20299)
+                    .put("me20301", me20301)
+                    .put("me20302", me20302)
+                    .put("me20303", me20303)
+                    .put("me20304", me20304)
+                    .put("me20305", me20305)
+                    .put("me20306", me20306)
+                    .put("me20307", me20307)
+                    .put("me20308", me20308)
+                    .put("me20309", me20309)
+                    .put("me20310", me20310)
+                    .put("me20311", me20311)
+                    .put("me20312", me20312)
+                    .put("me20313", me20313)
+                    .put("me20314", me20314)
+                    .put("me20315", me20315)
+                    .put("me20316", me20316)
+                    .put("me20317", me20317)
+                    .put("me20318", me20318)
+                    .put("me20319", me20319)
+                    .put("me20320", me20320)
+                    .put("me20321", me20321)
+                    .put("me20322", me20322)
+                    .put("me20323", me20323)
+                    .put("me20324", me20324)
+                    .put("me20396", me20396)
+                    .put("me20396x", me20396x)
+                    .put("me20399", me20399)
+                    .put("vs301", vs301)
+                    .put("vs302", vs302)
+                    .put("vs303", vs303)
+                    .put("vs304", vs304)
+                    .put("vs305", vs305)
+                    .put("vs306a", vs306a)
+                    .put("vs306b", vs306b)
+                    .put("vs306c", vs306c)
+                    .put("vs306d", vs306d)
+                    .put("vs306e", vs306e)
+                    .put("vs306f", vs306f)
+                    .put("vs306g", vs306g)
+                    .put("vs306i", vs306i)
+                    .put("vs30699", vs30699)
+                    .put("bcg", bcg)
+                    .put("penta1", penta1)
+                    .put("penta2", penta2)
+                    .put("penta3", penta3)
+                    .put("measles1", measles1)
+                    .put("measles2", measles2)
+                    .put("dpt", dpt)
+                    .put("opv0", opv0)
+                    .put("opv1", opv1)
+                    .put("opv2", opv2)
+                    .put("opv3", opv3)
+                    .put("tcv", tcv)
+                    .put("pcv1", pcv1)
+                    .put("pcv2", pcv2)
+                    .put("pcv3", pcv3)
+                    .put("hepb", hepb)
+                    .put("rota1", rota1)
+                    .put("rota2", rota2)
+                    .put("ipv1", ipv1)
+                    .put("ipv2", ipv2)
+                    .put("vs307", vs307)
+                    .put("vs308", vs308);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "\"error\":, \"" + e.getMessage() + "\"";
+
+        }
+        return json.toString();
+    }
+
+
+    public PatientDetails Hydrate(Cursor cursor) throws JSONException {
+        this.id = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_ID));
+        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_UID));
+        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_USERNAME));
+        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYSDATE));
+        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_DEVICEID));
+        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_DEVICETAGID));
+        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_APPVERSION));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYNCED));
+        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SYNCED_DATE));
+        this.status = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_STATUS));
+        this.serial = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SERIAL));
+        this.ss101 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS101));
+        this.ss102 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS102));
+        this.ss103 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS103));
+        this.ss104 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS104));
+        this.ss105 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS105));
+        this.ss106 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS106));
+        this.ss107 = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SS107));
+
+        //For childCount
+        //this.sA = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SA));
+
+        sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(PDContract.MHTable.COLUMN_SA)));
+
+        return this;
+    }
+
+    public void sAHydrate(String string) throws JSONException {
+//        Log.d("sAHydrateS", "string: " + string);
+
+        if (string != null) {
+
+
+            JSONObject json = null;
+            json = new JSONObject(string);
+
+/*                this.ss101d = json.getString("ss101d");
+                this.ss101m = json.getString("ss101m");
+                this.ss101y = json.getString("ss101y");
+                this.ss102 = json.getString("ss102");
+                this.ss103 = json.getString("ss103");
+                this.ss104 = json.getString("ss104");
+                this.ss105 = json.getString("ss105");
+                this.ss106 = json.getString("ss106");
+                this.ss107y = json.getString("ss107y");
+                this.ss107m = json.getString("ss107m");
+                this.ss107d = json.getString("ss107d");*/
+            this.ss108 = json.getString("ss108");
+            this.ss108a = json.getString("ss108a");
+            this.ss109 = json.getString("ss109");
+            this.ss110 = json.getString("ss110");
+            this.ss11099 = json.getString("ss11099");
+            this.ss111a = json.getString("ss111a");
+            this.ss111b = json.getString("ss111b");
+            this.ss111c = json.getString("ss111c");
+            this.ss111d = json.getString("ss111d");
+            this.ss11199 = json.getString("ss11199");
+            this.pc201a = json.getString("pc201a");
+            this.pc20101 = json.getString("pc20101");
+            this.pc20102 = json.getString("pc20102");
+            this.pc20103 = json.getString("pc20103");
+            this.pc20104 = json.getString("pc20104");
+            this.pc20105 = json.getString("pc20105");
+            this.pc20106 = json.getString("pc20106");
+            this.pc20107 = json.getString("pc20107");
+            this.pc20108 = json.getString("pc20108");
+            this.pc20109 = json.getString("pc20109");
+            this.pc20110 = json.getString("pc20110");
+            this.pc20111 = json.getString("pc20111");
+            this.pc20112 = json.getString("pc20112");
+            this.pc20113 = json.getString("pc20113");
+            this.pc20114 = json.getString("pc20114");
+            this.pc20115 = json.getString("pc20115");
+            this.pc20116 = json.getString("pc20116");
+            this.pc20117 = json.getString("pc20117");
+            this.pc20118 = json.getString("pc20118");
+            this.pc20119 = json.getString("pc20119");
+            this.pc20196 = json.getString("pc20196");
+            this.pc20196x = json.getString("pc20196x");
+            this.pc20199 = json.getString("pc20199");
+            this.di20201 = json.getString("di20201");
+            this.di20202 = json.getString("di20202");
+            this.di20203 = json.getString("di20203");
+            this.di20204 = json.getString("di20204");
+            this.di20205 = json.getString("di20205");
+            this.di20206 = json.getString("di20206");
+            this.di20207 = json.getString("di20207");
+            this.di20208 = json.getString("di20208");
+            this.di20209 = json.getString("di20209");
+            this.di20210 = json.getString("di20210");
+            this.di20211 = json.getString("di20211");
+            this.di20212 = json.getString("di20212");
+            this.di20213 = json.getString("di20213");
+            this.di20214 = json.getString("di20214");
+            this.di20215 = json.getString("di20215");
+            this.di20216 = json.getString("di20216");
+            this.di20217 = json.getString("di20217");
+            this.di20218 = json.getString("di20218");
+            this.di20219 = json.getString("di20219");
+            this.di20296 = json.getString("di20296");
+            this.di20296x = json.getString("di20296x");
+            this.di20299 = json.getString("di20299");
+            this.me20301 = json.getString("me20301");
+            this.me20302 = json.getString("me20302");
+            this.me20303 = json.getString("me20303");
+            this.me20304 = json.getString("me20304");
+            this.me20305 = json.getString("me20305");
+            this.me20306 = json.getString("me20306");
+            this.me20307 = json.getString("me20307");
+            this.me20308 = json.getString("me20308");
+            this.me20309 = json.getString("me20309");
+            this.me20310 = json.getString("me20310");
+            this.me20311 = json.getString("me20311");
+            this.me20312 = json.getString("me20312");
+            this.me20313 = json.getString("me20313");
+            this.me20314 = json.getString("me20314");
+            this.me20315 = json.getString("me20315");
+            this.me20316 = json.getString("me20316");
+            this.me20317 = json.getString("me20317");
+            this.me20318 = json.getString("me20318");
+            this.me20319 = json.getString("me20319");
+            this.me20320 = json.getString("me20320");
+            this.me20321 = json.getString("me20321");
+            this.me20322 = json.getString("me20322");
+            this.me20323 = json.getString("me20323");
+            this.me20324 = json.getString("me20324");
+            this.me20396 = json.getString("me20396");
+            this.me20396x = json.getString("me20396x");
+            this.me20399 = json.getString("me20399");
+            this.vs301 = json.getString("vs301");
+            this.vs302 = json.getString("vs302");
+            this.vs303 = json.getString("vs303");
+            this.vs304 = json.getString("vs304");
+            this.vs305 = json.getString("vs305");
+            this.vs306a = json.has("vs306a") ? json.getString("vs306a") : "";
+            this.vs306b = json.has("vs306b") ? json.getString("vs306b") : "";
+            this.vs306c = json.has("vs306c") ? json.getString("vs306c") : "";
+            this.vs306d = json.has("vs306d") ? json.getString("vs306d") : "";
+            this.vs306e = json.has("vs306e") ? json.getString("vs306e") : "";
+            this.vs306f = json.has("vs306f") ? json.getString("vs306f") : "";
+            this.vs306g = json.has("vs306g") ? json.getString("vs306g") : "";
+            this.vs306i = json.has("vs306i") ? json.getString("vs306i") : "";
+            this.vs30699 = json.has("vs30699") ? json.getString("vs30699") : "";
+            this.bcg = json.has("bcg") ? json.getString("bcg") : "";
+            this.penta1 = json.has("penta1") ? json.getString("penta1") : "";
+            this.penta2 = json.has("penta2") ? json.getString("penta2") : "";
+            this.penta3 = json.has("penta3") ? json.getString("penta3") : "";
+            this.measles1 = json.has("measles1") ? json.getString("measles1") : "";
+            this.measles2 = json.has("measles2") ? json.getString("measles2") : "";
+            this.dpt = json.has("dpt") ? json.getString("dpt") : "";
+            this.opv0 = json.has("opv0") ? json.getString("opv0") : "";
+            this.opv1 = json.has("opv1") ? json.getString("opv1") : "";
+            this.opv2 = json.has("opv2") ? json.getString("opv2") : "";
+            this.opv3 = json.has("opv3") ? json.getString("opv3") : "";
+            this.tcv = json.has("tcv") ? json.getString("tcv") : "";
+            this.pcv1 = json.has("pcv1") ? json.getString("pcv1") : "";
+            this.pcv2 = json.has("pcv2") ? json.getString("pcv2") : "";
+            this.pcv3 = json.has("pcv3") ? json.getString("pcv3") : "";
+            this.hepb = json.has("hepb") ? json.getString("hepb") : "";
+            this.rota1 = json.has("rota1") ? json.getString("rota1") : "";
+            this.rota2 = json.has("rota2") ? json.getString("rota2") : "";
+            this.ipv1 = json.has("ipv1") ? json.getString("ipv1") : "";
+            this.ipv2 = json.has("ipv2") ? json.getString("ipv2") : "";
+            this.vs307 = json.getString("vs307");
+            this.vs308 = json.getString("vs308");
+
+
+        }
+    }
+
+
 }

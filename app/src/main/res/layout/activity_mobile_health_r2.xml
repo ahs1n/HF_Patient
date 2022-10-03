@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -1652,6 +1653,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVvs306"
                         style="@style/cardView"
+                        tools:visibility="visible"
                         android:visibility="gone">
 
                         <LinearLayout
