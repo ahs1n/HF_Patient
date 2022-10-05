@@ -73,7 +73,7 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         setupSkips();
         populateSpinner();
 
-        bi.ss101.setMinDate(DateUtils.getMonthsBack("dd/MM/yyyy", -2));
+        bi.ss101.setMinDate(DateUtils.getMonthsBack("dd/MM/yyyy", -4));
     }
 
     private void populateSpinner() {
