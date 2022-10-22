@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "424413659572",
+    "project_id": "hf-patient-56348",
+    "storage_bucket": "hf-patient-56348.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424413659572:android:6e7398b07f3737b79f72e1",
+        "android_client_info": {
+          "package_name": "edu.aku.hassannaqvi.hf_patient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424413659572-fpv3ftlklo7di5iipq0b05mjir94o3eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ_fHyMKnabQCwYpgkDLhx7sOmX7DjmCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424413659572-fpv3ftlklo7di5iipq0b05mjir94o3eh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
