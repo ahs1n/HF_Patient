@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+// Added by Omar - Start
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+// Added by Omar - End
 
 android {
     compileSdkVersion 31
@@ -119,6 +123,21 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Added by Omar - Start
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:31.0.1')
+
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+
+    // Add the dependency for the Firebase SDK for Google Analytics
+    // For Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // For Crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics'
+    // Added by Omar - End
+
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.2.1"
