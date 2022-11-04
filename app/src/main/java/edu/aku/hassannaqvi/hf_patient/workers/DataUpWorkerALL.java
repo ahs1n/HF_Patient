@@ -391,7 +391,7 @@ public class DataUpWorkerALL extends Worker {
         }
         try {
             result = new StringBuilder(CipherSecure.decryptGCM(result.toString()));
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException | UnsupportedEncodingException e) {
+        } catch (NoSuchPaddingException | IllegalArgumentException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException | UnsupportedEncodingException e) {
             Log.d(TAG, "doWork (Encryption Error): " + e.getMessage());
             displayNotification(nTitle, "Encryption Error: " + e.getMessage());
             data = new Data.Builder()
