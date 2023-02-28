@@ -748,6 +748,7 @@
     <string name='Q_vs308'>vs308</string>
     <string name='Q_vstitle'>vstitle</string>
     <string name="username_password_same">Username and Password cannot be same.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

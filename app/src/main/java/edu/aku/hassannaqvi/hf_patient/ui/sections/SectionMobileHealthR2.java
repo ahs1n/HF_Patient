@@ -541,4 +541,10 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         gotoActivity(this, MainActivity.class);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
 }
